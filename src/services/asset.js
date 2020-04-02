@@ -5,7 +5,6 @@ let token = null
 
 const setToken = newToken => {
     token = `bearer ${newToken}`
-    console.log(token)
 }
 
 const addStock = async stock => {
@@ -16,4 +15,12 @@ const addStock = async stock => {
    return response.data
 }
 
-export default {setToken, addStock}
+const getAssets = async () => {
+    const config = {
+        headers: { Authorization: token}
+    }
+    const response = await axios.get(baseUrl, config)
+    return response.data
+}
+
+export default {setToken, addStock, getAssets}

@@ -1,10 +1,14 @@
-import signupService from '../services/signup'
-import assetService from '../services/asset'
 
 export const login = (user) => {
     return ({
         type: 'LOGIN',
         user
+    })
+}
+
+export const logout = () => {
+    return({
+        type: 'LOGOUT'
     })
 }
 // export const login = (username, password) => {
@@ -37,6 +41,8 @@ const userReducer = (state = null, action) => {
     switch (action.type) {
         case 'LOGIN':
             return action.user
+        case 'LOGOUT':
+            return null
         default:
             return state
     }

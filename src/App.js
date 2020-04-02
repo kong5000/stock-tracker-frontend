@@ -1,13 +1,14 @@
 import React, { useEffect } from 'react'
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Signup from './components/Signup'
+import Assets from './components/Assets'
 import assetService from './services/asset'
 import { useSelector, useDispatch } from 'react-redux'
 import { login } from './reducers/user'
 
 const App = () => {
   // const [user, setUser] = useState(null)
-  const user = useSelector(state => state)
+  const user = useSelector(state => state.user)
   const dispatch = useDispatch()
 
   useEffect(() => {
@@ -36,6 +37,7 @@ const App = () => {
       {user && <div>logged in</div>}
       <Signup
       ></Signup>
+      {user && <Assets/>}
       <button onClick={testBuy}>test buying a stock</button>
       {user && <div>Logged in as {user.username}</div>}
     </div>

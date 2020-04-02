@@ -1,6 +1,6 @@
 import React, {useState} from 'react'
 import { useDispatch } from 'react-redux'
-import { login } from '../reducers/user'
+import { login, logout } from '../reducers/user'
 import assetService from '../services/asset'
 import signupService from '../services/signup'
 
@@ -35,6 +35,12 @@ const Signup = ({ handleSignup }) => {
         setUsername('')
         setPassword('')
       }
+    
+      const handleLogout = (event) =>{
+        event.preventDefault()
+        window.localStorage.removeItem('loggedInUser')
+        dispatch(logout())
+      }
 
     return (
         <div>
@@ -56,6 +62,7 @@ const Signup = ({ handleSignup }) => {
             </form>
             <h2>Login</h2>
             <button onClick={handleLogin}>login</button>
+            <button onClick={handleLogout}>logout</button>
         </div>
     )
 }
