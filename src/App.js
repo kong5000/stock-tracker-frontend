@@ -1,10 +1,13 @@
 import React from 'react'
-import ReactDOM from 'react-dom'
+import 'bootstrap/dist/css/bootstrap.min.css';
+import Signup from './components/Signup'
 
 const App = () => (
   <div>
     <p>Hello world</p>
+    <Signup></Signup>
+    <div>adasdsad</div>
   </div>
 )
 
-ReactDOM.render(<App />, document.getElementById('root'))
+export default App
