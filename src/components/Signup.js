@@ -1,46 +1,26 @@
-import React, { useState } from 'react'
-import signupService from '../services/signup'
+import React from 'react'
 
-const Signup = (props) => {
-    const [username, setUsername] = useState('')
-    const [password, setPassword] = useState('')
-    const [user, setUser] = useState(null)
-
-    const handleSignup = async (event) => {
-        event.preventDefault()
-        const newUser = {
-            username,
-            password
-        }
-        try{
-            const newUser = await signupService.signup(newUser)
-            setUser(newUser)
-            setUsername('')
-            setPassword('')
-        }catch(exception){
-
-        }
-        
-        console.log(user)
-    }
-
+const Signup = ({username, password, handleSignup, handleLogin, onUsernameChange, onPasswordChange}) => {
     return (
         <div>
+            <h2>Signup</h2>
             <form onSubmit={handleSignup}>
                 <input
                     type="text"
                     value={username}
                     name="Username"
-                    onChange={({ target }) => { setUsername(target.value) }}
+                    onChange={onUsernameChange}
                 />
                 <input
                     type="password"
                     value={password}
                     name="Password"
-                    onChange={({ target }) => { setPassword(target.value) }}
+                    onChange={onPasswordChange}
                 />
                 <button type="submit">Signup</button>
             </form>
+            <h2>Login</h2>
+            <button onClick={handleLogin}>login</button>
         </div>
     )
 }
