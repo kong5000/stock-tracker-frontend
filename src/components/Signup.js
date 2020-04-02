@@ -1,6 +1,41 @@
-import React from 'react'
+import React, {useState} from 'react'
+import { useDispatch } from 'react-redux'
+import { login } from '../reducers/user'
+import assetService from '../services/asset'
+import signupService from '../services/signup'
 
-const Signup = ({username, password, handleSignup, handleLogin, onUsernameChange, onPasswordChange}) => {
+const Signup = ({ handleSignup }) => {
+    const dispatch = useDispatch()
+
+    const [username, setUsername] = useState('')
+    const [password, setPassword] = useState('')
+
+    const onUsernameChange = (event) => {
+        setUsername(event.target.value)
+      }
+      const onPasswordChange = (event) => {
+        setPassword(event.target.value)
+      }
+
+    const handleLogin = async (event) => {
+        event.preventDefault()
+    
+        const newUser = {
+          username,
+          password
+        }
+        try {
+          const user = await signupService.login(newUser)
+          assetService.setToken(user.token)
+          dispatch(login(user))
+          window.localStorage.setItem('loggedInUser', JSON.stringify(user))
+        } catch (exception) {
+    
+        }
+        setUsername('')
+        setPassword('')
+      }
+
     return (
         <div>
             <h2>Signup</h2>
