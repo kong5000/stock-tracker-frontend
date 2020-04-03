@@ -2,8 +2,7 @@ import React, {useState} from 'react'
 import { useDispatch } from 'react-redux'
 import { login, logout } from '../reducers/user'
 import assetService from '../services/asset'
-import signupService from '../services/signup'
-import signup from '../services/signup'
+import userService from '../services/user'
 
 const Signup = () => {
     const dispatch = useDispatch()
@@ -27,8 +26,8 @@ const Signup = () => {
       }
 
       try {
-        const newUser = await signupService.signup(signupCredentials)
-        const loggednInUser = await signupService.login(signupCredentials)
+        await userService.signup(signupCredentials)
+        const loggednInUser = await userService.login(signupCredentials)
         assetService.setToken(loggednInUser.token)
         dispatch(login(loggednInUser))
         window.localStorage.setItem('loggedInUser', JSON.stringify(loggednInUser))
@@ -47,7 +46,7 @@ const Signup = () => {
           password
         }
         try {
-          const user = await signupService.login(loginCredentials)
+          const user = await userService.login(loginCredentials)
           assetService.setToken(user.token)
           dispatch(login(user))
           window.localStorage.setItem('loggedInUser', JSON.stringify(user))
