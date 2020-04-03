@@ -11,23 +11,20 @@ const Assets = () => {
     useEffect(() => {
         assetsService.getAssets().then(
             assets => {
-                dispatch(setAssets(assets))
+                dispatch(setAssets(assets.stocks))
             }
         )
     }, [dispatch])
 
-    if (assets.stocks) {
+    if (assets.length > 0) {
         return (
             <div>
-                Assets Should be here
-                {assets.stocks.map(stock => <div key={stock.ticker}>{stock.ticker} {stock.shares} {stock.price}</div>)}
+                {assets.map(stock => <div key={stock.ticker}>{stock.ticker} {stock.shares} {stock.price}</div>)}
             </div>
         )
     } else {
         return (null)
     }
-
-
 }
 
 export default Assets

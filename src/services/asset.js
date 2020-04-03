@@ -11,6 +11,7 @@ const addStock = async stock => {
    const config = {
        headers: { Authorization: token}
    }
+   console.log('REQUEST')
    const response = await axios.post(baseUrl +'/asset', stock, config)
    return response.data
 }
