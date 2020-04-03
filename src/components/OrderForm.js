@@ -1,6 +1,6 @@
  import React, {useState} from 'react'
  import { useDispatch } from 'react-redux'
- import { buyAsset, sellStock, setAssets } from '../reducers/assets'
+ import { setAssets } from '../reducers/assets'
  import assetsService from '../services/asset'
 
 const OrderForm = () => {

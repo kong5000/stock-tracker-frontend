@@ -19,7 +19,7 @@ const App = () => {
       dispatch(login(userObj))
       assetService.setToken(userObj.token)
     }
-  }, [])
+  }, [dispatch])
 
   const testBuy = async () => {
     const stock = {

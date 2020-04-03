@@ -5,13 +5,6 @@ export const setAssets = (assets) => {
     })
 }
 
-export const buyAsset = (asset) => {
-    return({
-        type: 'BUY',
-        asset
-    })
-}
-
 const assetsReducer = (state = null, action) => {
     switch(action.type){
         case 'SET':
