@@ -3,17 +3,24 @@ import { useSelector, useDispatch } from 'react-redux'
 import assetsService from '../services/asset'
 import { setAssets } from '../reducers/assets'
 import Chart from "react-apexcharts"
+import Modal from 'react-bootstrap/Modal'
 
 const Assets = () => {
     const [selectedStock, setSelectedStock] = useState(null)
+    const [showModal, setShowModal] = useState(false)
+
     const assets = useSelector(state => state.assets)
 
     const dispatch = useDispatch()
 
+    const handleModalClose = () => {
+        setShowModal(false)
+    }
     const chartClick = (event, chartContext, config) => {
         // The last parameter config contains additional information like `seriesIndex` and `dataPointIndex` for cartesian charts
         console.log(config.dataPointIndex, assets.stocks[config.dataPointIndex])
         setSelectedStock(assets.stocks[config.dataPointIndex])
+        setShowModal(true)
     }
 
     const generateChartOptions = () => {
@@ -43,31 +50,6 @@ const Assets = () => {
         )
     }
 
-
-
-
-    const options = {
-        chart: {
-            type: 'pie',
-
-        },
-        labels: ['a', 'b', 'c'],
-        responsive: [{
-            breakpoint: 40,
-            options: {
-                chart: {
-                    width: 200
-                },
-                legend: {
-                    position: 'bottom'
-                }
-            }
-        }]
-    }
-
-
-    // const series = [1, 10 , 20]
-
     useEffect(() => {
         assetsService.getAssets().then(
             assets => {
@@ -88,6 +70,22 @@ const Assets = () => {
                         width="500"
                     />
                 </div>
+
+                {selectedStock &&
+
+                    <Modal show={showModal} onHide={handleModalClose}>
+                        <Modal.Body>
+                            <div>
+                                {selectedStock.ticker}
+                                shares:{selectedStock.shares}
+                                value:{selectedStock.shares * selectedStock.price}
+                            </div>
+                        </Modal.Body>
+                    </Modal>
+                }
+
+
+
                 {selectedStock &&
                     <div>
                         {selectedStock.ticker}
