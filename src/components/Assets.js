@@ -1,17 +1,19 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import assetsService from '../services/asset'
 import { setAssets } from '../reducers/assets'
 import Chart from "react-apexcharts"
 
 const Assets = () => {
+    const [selectedStock, setSelectedStock] = useState(null)
     const assets = useSelector(state => state.assets)
 
     const dispatch = useDispatch()
 
     const chartClick = (event, chartContext, config) => {
-                           // The last parameter config contains additional information like `seriesIndex` and `dataPointIndex` for cartesian charts
-                           console.log(config, "CLIK CLICK")
+        // The last parameter config contains additional information like `seriesIndex` and `dataPointIndex` for cartesian charts
+        console.log(config.dataPointIndex, assets.stocks[config.dataPointIndex])
+        setSelectedStock(assets.stocks[config.dataPointIndex])
     }
 
     const generateChartOptions = () => {
@@ -22,7 +24,7 @@ const Assets = () => {
                 chart: {
                     type: 'pie',
                     events: {
-                        click: chartClick
+                        dataPointSelection: chartClick
                     }
                 },
                 labels,
@@ -42,8 +44,8 @@ const Assets = () => {
     }
 
 
- 
-        
+
+
     const options = {
         chart: {
             type: 'pie',
@@ -86,6 +88,13 @@ const Assets = () => {
                         width="500"
                     />
                 </div>
+                {selectedStock &&
+                    <div>
+                        {selectedStock.ticker}
+                        shares:{selectedStock.shares}
+                        value:{selectedStock.shares * selectedStock.price}
+                    </div>
+                }
             </div>
         )
     } else {
