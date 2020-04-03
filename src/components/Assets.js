@@ -11,15 +11,15 @@ const Assets = () => {
     useEffect(() => {
         assetsService.getAssets().then(
             assets => {
-                dispatch(setAssets(assets.stocks))
+                dispatch(setAssets(assets))
             }
         )
     }, [dispatch])
 
-    if (assets.length > 0) {
+    if (assets) {
         return (
             <div>
-                {assets.map(stock => <div key={stock.ticker}>{stock.ticker} {stock.shares} {stock.price}</div>)}
+                {assets.stocks.map(stock => <div key={stock.ticker}>{stock.ticker} {stock.shares} {stock.price}</div>)}
             </div>
         )
     } else {

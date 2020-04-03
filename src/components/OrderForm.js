@@ -1,6 +1,6 @@
  import React, {useState} from 'react'
  import { useDispatch } from 'react-redux'
- import { buyAsset } from '../reducers/assets'
+ import { buyAsset, sellStock, setAssets } from '../reducers/assets'
  import assetsService from '../services/asset'
 
 const OrderForm = () => {
@@ -25,9 +25,9 @@ const OrderForm = () => {
                 shares,
                 name: 'Temporary'
             }
-            await assetsService.addStock(stock)
-            dispatch(buyAsset(
-                stock
+            const updatedAssets = await assetsService.addStock(stock)
+            dispatch(setAssets(
+                updatedAssets
             ))
         }catch(exception){
             console.log(exception)
@@ -36,8 +36,23 @@ const OrderForm = () => {
         clearForm()
     }
 
-    const onSubmitSell = (event) => {
+    const onSubmitSell = async (event) => {
         event.preventDefault()
+        try{
+            const order = {
+                ticker: symbol,
+                price,
+                shares,
+            }
+            const updatedPortfolio = await assetsService.sellStock(order)
+            dispatch(setAssets(
+                updatedPortfolio
+            ))
+        }catch(exception){
+            console.log(exception)
+        }
+
+        clearForm()
     }
  
     const onSymbolChange = (event) => {

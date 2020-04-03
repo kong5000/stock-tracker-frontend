@@ -11,9 +11,16 @@ const addStock = async stock => {
    const config = {
        headers: { Authorization: token}
    }
-   console.log('REQUEST')
    const response = await axios.post(baseUrl +'/asset', stock, config)
    return response.data
+}
+
+const sellStock = async stock => {
+    const config = {
+        headers: { Authorization: token}
+    }
+    const response = await axios.post(baseUrl +'/sell', stock, config)
+    return response.data
 }
 
 const getAssets = async () => {
@@ -24,4 +31,4 @@ const getAssets = async () => {
     return response.data
 }
 
-export default {setToken, addStock, getAssets}
+export default {setToken, addStock, sellStock, getAssets}

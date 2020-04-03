@@ -3,8 +3,9 @@ import { useDispatch } from 'react-redux'
 import { login, logout } from '../reducers/user'
 import assetService from '../services/asset'
 import signupService from '../services/signup'
+import signup from '../services/signup'
 
-const Signup = ({ handleSignup }) => {
+const Signup = () => {
     const dispatch = useDispatch()
 
     const [username, setUsername] = useState('')
@@ -17,15 +18,36 @@ const Signup = ({ handleSignup }) => {
         setPassword(event.target.value)
       }
 
+    const handleSignup = async (event) => {
+      event.preventDefault()
+
+      const signupCredentials = {
+        username,
+        password
+      }
+
+      try {
+        const newUser = await signupService.signup(signupCredentials)
+        const loggednInUser = await signupService.login(signupCredentials)
+        assetService.setToken(loggednInUser.token)
+        dispatch(login(loggednInUser))
+        window.localStorage.setItem('loggedInUser', JSON.stringify(loggednInUser))
+      } catch (exception) {
+  
+      }
+      setUsername('')
+      setPassword('')
+    }
+
     const handleLogin = async (event) => {
         event.preventDefault()
     
-        const newUser = {
+        const loginCredentials = {
           username,
           password
         }
         try {
-          const user = await signupService.login(newUser)
+          const user = await signupService.login(loginCredentials)
           assetService.setToken(user.token)
           dispatch(login(user))
           window.localStorage.setItem('loggedInUser', JSON.stringify(user))
