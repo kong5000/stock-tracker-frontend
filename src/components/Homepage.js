@@ -1,9 +1,6 @@
-import React, { useState } from 'react'
+import React from 'react'
 import Chart from "react-apexcharts"
-import Modal from 'react-bootstrap/Modal'
-import Button from 'react-bootstrap/Button'
-import Signup from './Signup'
-import Login from './Login'
+import '../styles/homepage.css'
 import { Link } from 'react-router-dom'
 
 const Homepage = () => {

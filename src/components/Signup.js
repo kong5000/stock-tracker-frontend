@@ -4,20 +4,26 @@ import { login } from '../reducers/user'
 import assetService from '../services/asset'
 import userService from '../services/user'
 import { useHistory } from 'react-router-dom'
+import '../styles/form.css'
 
 const Signup = () => {
+  const [username, setUsername] = useState('')
+  const [password, setPassword] = useState('')
+  const [rememberMe, setRememberMe] = useState(true)
+
   const dispatch = useDispatch()
 
   const history = useHistory()
-
-  const [username, setUsername] = useState('')
-  const [password, setPassword] = useState('')
 
   const onUsernameChange = (event) => {
     setUsername(event.target.value)
   }
   const onPasswordChange = (event) => {
     setPassword(event.target.value)
+  }
+
+  const handleCheckBoxChange = (event) => {
+    setRememberMe(!rememberMe)
   }
 
   const handleSignup = async (event) => {
@@ -33,7 +39,9 @@ const Signup = () => {
       const loggednInUser = await userService.login(signupCredentials)
       assetService.setToken(loggednInUser.token)
       dispatch(login(loggednInUser))
-      window.localStorage.setItem('loggedInUser', JSON.stringify(loggednInUser))
+      if (rememberMe) {
+        window.localStorage.setItem('loggedInUser', JSON.stringify(loggednInUser))
+      }
       history.push('/portfolio')
     } catch (exception) {
 
@@ -43,22 +51,18 @@ const Signup = () => {
   }
 
   return (
-    <div>
-     <h2>Signup</h2>
-      <form onSubmit={handleSignup}>
-        <input
-          type="text"
-          value={username}
-          name="Username"
-          onChange={onUsernameChange}
-        />
-        <input
-          type="password"
-          value={password}
-          name="Password"
-          onChange={onPasswordChange}
-        />
-        <button type="submit">Signup</button>
+    <div className="container text-center">
+      <form className="form-signin" onSubmit={handleSignup}>
+        <i class="fas fa-seedling fa-7x icon"></i>
+        <h1 className="h3 mb-3 font-weight-normal">Sign Up</h1>
+        <input value={username} onChange={onUsernameChange} type="text" className="form-control" placeholder="Username" required autofocus />
+        <input value={password} onChange={onPasswordChange} type="password" className="form-control" placeholder="Password" required />
+        <div className="checkbox mb-3">
+          <label>
+            <input type="checkbox" value="remember-me" checked={rememberMe} onChange={handleCheckBoxChange} /> Remember me
+          </label>
+        </div>
+        <button className="btn btn-lg btn-primary btn-block" type="submit">Sign Up</button>
       </form>
     </div>
   )
