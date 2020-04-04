@@ -1,51 +1,55 @@
-import React from 'react'
+import React, { useState } from 'react'
 import Chart from "react-apexcharts"
+import Modal from 'react-bootstrap/Modal'
+import Button from 'react-bootstrap/Button'
+import Signup from './Signup'
+import Login from './Login'
+import { Link } from 'react-router-dom'
 
 const Homepage = () => {
     const exampleData = [100, 100, 100]
-    const exampleLabels = ['SIGNUP', 'LOGIN', 'ABOUT']
 
     const chartOptions = {
         chart: {
             type: 'pie'
         },
-        labels: exampleLabels,
-        responsive: [{
-            breakpoint: 40,
-            options: {
-                chart: {
-                    width: 200
-                },
-                legend: {
-                    position: 'bottom'
-                }
-            }
-        }]
+        legend: {
+            show: false,
+        },
+        dataLabels: {
+            enabled: false
+        },
+        seriesLabels: {
+            enabled: false
+        }
     }
-
 
     return (
         <div className="homepage">
             <div className="homepage-left-half">
-                <div className="tagline">
-                    <h1>Watch Your Stocks Grow</h1>
-                </div>
+                <h1 className="tagline">Watch Your Stocks Grow</h1>
                 <ul>
                     <li>
-                        BeanStock is a stock tracking app I built to practice full stack web devlopment.
+                        BeanStock is a stock portfolio tracking app I built to practice web devlopment.
                 </li>
                     <li>
-                        Try signing up to add stocks to your portfolio.
+                        Try making an account and add some stocks to your portfolio.
                 </li>
                     <li>
-                        Built with React, Redux, Express , Boostrap and MongoDB
+                        Built using React, Redux, Express , Boostrap and MongoDB
+                </li>
+                    <li>
+                        Market data provided by IEX Cloud
                 </li>
                 </ul>
+                <div>
+                    <Link to='/login' className="homepage-btn">Login</Link>
+                    <Link to='/signup' className="homepage-btn">Signup</Link>
+                </div>
             </div>
             <div className="homepage-right-half">
                 <Chart
                     options={chartOptions}
-                    labels={exampleLabels}
                     series={exampleData}
                     type="pie"
                     width="500">

@@ -2,6 +2,7 @@ import React, { useEffect } from 'react'
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './App.css'
 import Signup from './components/Signup'
+import Login from './components/Login'
 import Assets from './components/Assets'
 import OrderForm from './components/OrderForm'
 import Homepage from './components/Homepage'
@@ -9,6 +10,7 @@ import NavigationBar from './components/NavigationBar'
 import assetService from './services/asset'
 import { useSelector, useDispatch } from 'react-redux'
 import { login } from './reducers/user'
+import { BrowserRouter, Switch, Route } from 'react-router-dom'
 
 const App = () => {
   // const [user, setUser] = useState(null)
@@ -37,14 +39,24 @@ const App = () => {
 
   return (
     <div>
-      <NavigationBar/>
-      <Homepage/>
-      <Signup
-      ></Signup>
-      {user && <Assets/>}
-      <button onClick={testBuy}>test buying a stock</button>
-      {user && <div>Logged in as {user.username}</div>}
-      <OrderForm/>
+      <BrowserRouter>
+        <NavigationBar />
+        <Switch>
+          <Route exact path="/">
+            <Homepage />
+          </Route>
+          <Route path="/portfolio">
+            {user && <Assets />}
+            {user && <div>Logged in as {user.username}</div>}
+          </Route>
+          <Route path='/login'>
+            <Login/>
+          </Route>
+          <Route path='/signup'>
+            <Signup/>
+          </Route>
+        </Switch>
+      </BrowserRouter>
     </div>
   )
 

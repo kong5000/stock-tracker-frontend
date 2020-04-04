@@ -1,91 +1,67 @@
-import React, {useState} from 'react'
+import React, { useState } from 'react'
 import { useDispatch } from 'react-redux'
-import { login, logout } from '../reducers/user'
+import { login } from '../reducers/user'
 import assetService from '../services/asset'
 import userService from '../services/user'
+import { useHistory } from 'react-router-dom'
 
 const Signup = () => {
-    const dispatch = useDispatch()
+  const dispatch = useDispatch()
 
-    const [username, setUsername] = useState('')
-    const [password, setPassword] = useState('')
+  const history = useHistory()
 
-    const onUsernameChange = (event) => {
-        setUsername(event.target.value)
-      }
-      const onPasswordChange = (event) => {
-        setPassword(event.target.value)
-      }
+  const [username, setUsername] = useState('')
+  const [password, setPassword] = useState('')
 
-    const handleSignup = async (event) => {
-      event.preventDefault()
+  const onUsernameChange = (event) => {
+    setUsername(event.target.value)
+  }
+  const onPasswordChange = (event) => {
+    setPassword(event.target.value)
+  }
 
-      const signupCredentials = {
-        username,
-        password
-      }
+  const handleSignup = async (event) => {
+    event.preventDefault()
 
-      try {
-        await userService.signup(signupCredentials)
-        const loggednInUser = await userService.login(signupCredentials)
-        assetService.setToken(loggednInUser.token)
-        dispatch(login(loggednInUser))
-        window.localStorage.setItem('loggedInUser', JSON.stringify(loggednInUser))
-      } catch (exception) {
-  
-      }
-      setUsername('')
-      setPassword('')
+    const signupCredentials = {
+      username,
+      password
     }
 
-    const handleLogin = async (event) => {
-        event.preventDefault()
-    
-        const loginCredentials = {
-          username,
-          password
-        }
-        try {
-          const user = await userService.login(loginCredentials)
-          assetService.setToken(user.token)
-          dispatch(login(user))
-          window.localStorage.setItem('loggedInUser', JSON.stringify(user))
-        } catch (exception) {
-    
-        }
-        setUsername('')
-        setPassword('')
-      }
-    
-      const handleLogout = (event) =>{
-        event.preventDefault()
-        window.localStorage.removeItem('loggedInUser')
-        dispatch(logout())
-      }
+    try {
+      await userService.signup(signupCredentials)
+      const loggednInUser = await userService.login(signupCredentials)
+      assetService.setToken(loggednInUser.token)
+      dispatch(login(loggednInUser))
+      window.localStorage.setItem('loggedInUser', JSON.stringify(loggednInUser))
+      history.push('/portfolio')
+    } catch (exception) {
 
-    return (
-        <div>
-            <h2>Signup</h2>
-            <form onSubmit={handleSignup}>
-                <input
-                    type="text"
-                    value={username}
-                    name="Username"
-                    onChange={onUsernameChange}
-                />
-                <input
-                    type="password"
-                    value={password}
-                    name="Password"
-                    onChange={onPasswordChange}
-                />
-                <button type="submit">Signup</button>
-            </form>
-            <h2>Login</h2>
-            <button onClick={handleLogin}>login</button>
-            <button onClick={handleLogout}>logout</button>
-        </div>
-    )
+    }
+    setUsername('')
+    setPassword('')
+  }
+
+  return (
+    <div>
+     <h2>Signup</h2>
+      <form onSubmit={handleSignup}>
+        <input
+          type="text"
+          value={username}
+          name="Username"
+          onChange={onUsernameChange}
+        />
+        <input
+          type="password"
+          value={password}
+          name="Password"
+          onChange={onPasswordChange}
+        />
+        <button type="submit">Signup</button>
+      </form>
+    </div>
+  )
 }
 
 export default Signup
