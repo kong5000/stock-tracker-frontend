@@ -84,49 +84,48 @@ const OrderForm = () => {
 
     return (
         <div className="container">
-            <div className="py-5 text-center">
+            <div className="py-3 text-center">
                 <i class="fas fa-seedling fa-5x icon"></i>
             </div>
-            <div className="row">
-                <div className="col-md-4 order-md-2 mb-4">
-                </div>
-                <div className="col-md-8 order-md-1">
-                    <h4 className="mb-3">Stock Info</h4>
-                    <form onSubmit={onOrderSubmit}>
-                        <div className="row">
-                            <div className="col-md-6 mb-3">
-                                <label htmlFor="symbol">Ticker Symbol</label>
-                                <input
-                                    type="text"
-                                    className="form-control"
-                                    id="symbol"
-                                    required
-                                    value={symbol}
-                                    onChange={onSymbolChange}
-                                />
-                                <div className="invalid-feedback">
-                                    A symbol is required
+            <div className="text-center">
+                <h4 className="mb-3">Order Info</h4>
+                <form onSubmit={onOrderSubmit}>
+                    <div className="row">
+                        <div className="col-md-6 mb-3">
+                            <label htmlFor="symbol">Ticker Symbol</label>
+                            <input
+                                type="text"
+                                className="form-control"
+                                id="symbol"
+                                required
+                                value={symbol}
+                                onChange={onSymbolChange}
+                            />
+                            <div className="invalid-feedback">
+                                A symbol is required
                                 </div>
-                            </div>
-                            <div className="col-md-6 mb-3">
-                                <label htmlFor="assetName">Asset name</label>
-                                <input
-                                    type="text"
-                                    className="form-control"
-                                    id="assetName"
-                                    required
-                                    value={assetName}
-                                    onChange={onAssetNameChange}
-                                />
-                                <div className="invalid-feedback">
-                                    A an asset name is required
-                            </div>
+                        </div>
+                        <div className="col-md-6 mb-3">
+                            <label htmlFor="assetName">Asset name</label>
+                            <input
+                                type="text"
+                                className="form-control"
+                                id="assetName"
+                                required
+                                value={assetName}
+                                onChange={onAssetNameChange}
+                            />
+                            <div className="invalid-feedback">
+                                A an asset name is required
                             </div>
                         </div>
-                        <div className="mb-3">
+                    </div>
+                    <div className="row">
+                        <div className="col-md-6 mb-3">
                             <label htmlFor="shareQuantity">Share Quantity</label>
                             <input
                                 type="number"
+                                min="0"
                                 className="form-control"
                                 id="shareQuantity"
                                 required
@@ -137,61 +136,67 @@ const OrderForm = () => {
                                 Must buy or sell at least one share
                             </div>
                         </div>
-                        <div className="mb-3">
+                        <div className="col-md-6 mb-3">
                             <label htmlFor="price">Price</label>
                             <input
                                 type="number"
+                                step="0.0001"
+                                min="0"
                                 className="form-control"
                                 id="price"
                                 required
                                 value={price}
                                 onChange={onPriceChange}
+                                defaultValue=''
                             />
                         </div>
-                        <hr className="mb-4" />
-                        <h4 className="mb-3">Order Type</h4>
-                        <div className="d-block my-3">
-                            <div className="custom-control custom-radio">
-                                <input
-                                    id="buyOrder"
-                                    name="orderType"
-                                    type="radio"
-                                    className="custom-control-input"
-                                    defaultChecked
-                                    checked={orderType === 'Buy'}
-                                    onClick={() => setOrderType('Buy')}
-                                    required
-                                />
-                                <label className="custom-control-label" htmlFor="buyOrder">Buy</label>
-                            </div>
-                            <div className="custom-control custom-radio">
-                                <input
-                                    id="sellOrder"
-                                    name="orderType"
-                                    type="radio"
-                                    className="custom-control-input"
-                                    required
-                                    checked={orderType === 'Sell'}
-                                    onClick={() => setOrderType('Sell')}
-                                />
-                                <label className="custom-control-label" htmlFor="sellOrder">Sell</label>
-                            </div>
-                        </div>
-                        <div className="custom-control custom-checkbox">
+                    </div>
+
+
+                    <hr className="mb-4" />
+                    <h4 className="mb-3">Order Type</h4>
+                    <div className="d-block my-3">
+                        <div className="custom-control custom-radio">
                             <input
-                                type="checkbox"
+                                id="buyOrder"
+                                name="orderType"
+                                type="radio"
                                 className="custom-control-input"
-                                id="useCash"
-                                checked={useCash}
-                                onClick={toggleUseCash}
+                                defaultChecked
+                                checked={orderType === 'Buy'}
+                                onClick={() => setOrderType('Buy')}
+                                required
                             />
-                            {orderType ==='Buy' && <label className="custom-control-label" htmlFor="useCash">Use portfolio cash to purchase</label>}
-                            {orderType ==='Sell' && <label className="custom-control-label" htmlFor="useCash">Add sell value to portfolio cash</label>}
+                            <label className="custom-control-label" htmlFor="buyOrder">Buy</label>
                         </div>
+                        <div className="custom-control custom-radio">
+                            <input
+                                id="sellOrder"
+                                name="orderType"
+                                type="radio"
+                                className="custom-control-input"
+                                required
+                                checked={orderType === 'Sell'}
+                                onClick={() => setOrderType('Sell')}
+                            />
+                            <label className="custom-control-label" htmlFor="sellOrder">Sell</label>
+                        </div>
+                    </div>
+                    <div className="custom-control custom-checkbox">
+                        <input
+                            type="checkbox"
+                            className="custom-control-input"
+                            id="useCash"
+                            checked={useCash}
+                            onClick={toggleUseCash}
+                        />
                         <hr className="mb-4" />
-                        <button className="btn btn-primary btn-lg btn-block" type="submit">Submit</button>
-                    </form>
-                </div>
+                        {orderType === 'Buy' && <label className="custom-control-label" htmlFor="useCash">Use portfolio cash to purchase</label>}
+                        {orderType === 'Sell' && <label className="custom-control-label" htmlFor="useCash">Add sell value to portfolio cash</label>}
+                    </div>
+                    <hr className="mb-4" />
+                    <button className="btn btn-primary btn-lg btn-block" type="submit">Submit</button>
+                </form>
             </div>
         </div>
     )
