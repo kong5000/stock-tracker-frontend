@@ -4,10 +4,12 @@ import assetsService from '../services/asset'
 import { setAssets } from '../reducers/assets'
 import Chart from "react-apexcharts"
 import Modal from 'react-bootstrap/Modal'
+import OrderForm from './OrderForm'
 
 const Assets = () => {
     const [selectedStock, setSelectedStock] = useState(null)
     const [showModal, setShowModal] = useState(false)
+    const [showOrderForm, setShowOrderForm] = useState(false)
 
     const assets = useSelector(state => state.assets)
 
@@ -15,12 +17,17 @@ const Assets = () => {
 
     const handleModalClose = () => {
         setShowModal(false)
+        setShowOrderForm(false)
     }
     const chartClick = (event, chartContext, config) => {
         // The last parameter config contains additional information like `seriesIndex` and `dataPointIndex` for cartesian charts
         console.log(config.dataPointIndex, assets.stocks[config.dataPointIndex])
         setSelectedStock(assets.stocks[config.dataPointIndex])
         setShowModal(true)
+    }
+
+    const onOrderClicked = (event) => {
+        setShowOrderForm(true)
     }
 
     const generateChartOptions = () => {
@@ -71,6 +78,14 @@ const Assets = () => {
                     />
                 </div>
 
+                <Modal show={showOrderForm} onHide={handleModalClose}>
+                        <Modal.Body>
+                            <div>
+                                <OrderForm/>
+                            </div>
+                        </Modal.Body>
+                </Modal>
+
                 {selectedStock &&
                     <Modal show={showModal} onHide={handleModalClose}>
                         <Modal.Body>
@@ -90,6 +105,7 @@ const Assets = () => {
                         value:{selectedStock.shares * selectedStock.price}
                     </div>
                 }
+                <button onClick={onOrderClicked}>Buy/Sell</button>
             </div>
         )
     } else {
