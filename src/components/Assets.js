@@ -72,7 +72,6 @@ const Assets = () => {
                 </div>
 
                 {selectedStock &&
-
                     <Modal show={showModal} onHide={handleModalClose}>
                         <Modal.Body>
                             <div>
@@ -83,8 +82,6 @@ const Assets = () => {
                         </Modal.Body>
                     </Modal>
                 }
-
-
 
                 {selectedStock &&
                     <div>

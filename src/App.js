@@ -1,8 +1,11 @@
 import React, { useEffect } from 'react'
 import 'bootstrap/dist/css/bootstrap.min.css';
+import './App.css'
 import Signup from './components/Signup'
 import Assets from './components/Assets'
 import OrderForm from './components/OrderForm'
+import Homepage from './components/Homepage'
+import NavigationBar from './components/NavigationBar'
 import assetService from './services/asset'
 import { useSelector, useDispatch } from 'react-redux'
 import { login } from './reducers/user'
@@ -34,6 +37,8 @@ const App = () => {
 
   return (
     <div>
+      <NavigationBar/>
+      <Homepage/>
       <Signup
       ></Signup>
       {user && <Assets/>}
