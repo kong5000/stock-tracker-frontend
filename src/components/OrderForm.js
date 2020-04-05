@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { useDispatch } from 'react-redux'
 import { setAssets } from '../reducers/assets'
 import assetsService from '../services/asset'
@@ -7,12 +7,18 @@ import '../styles/orderform.css'
 const OrderForm = (props) => {
     const [symbol, setSymbol] = useState('')
     const [assetName, setAssetName] = useState('')
-    const [price, setPrice] = useState(null)
-    const [shares, setShares] = useState(null)
+    const [price, setPrice] = useState('')
+    const [shares, setShares] = useState('')
     const [orderType, setOrderType] = useState('Buy')
     const [useCash, setUseCash] = useState(true)
 
     const dispatch = useDispatch()
+
+    useEffect( () => {
+        if(props.symbol){
+            setSymbol(props.symbol)
+        }
+    }, [props.symbol])
 
     const clearForm = () => {
         setPrice(0)
@@ -88,7 +94,7 @@ const OrderForm = (props) => {
     return (
         <div className="container">
             <div className="py-3 text-center">
-                <i class="fas fa-seedling fa-5x icon"></i>
+                <i className="fas fa-seedling fa-5x icon"></i>
             </div>
             <div className="text-center">
                 <h4 className="mb-3">Order Info</h4>
@@ -150,10 +156,11 @@ const OrderForm = (props) => {
                                 required
                                 value={price}
                                 onChange={onPriceChange}
-                                defaultValue=''
                             />
                         </div>
                     </div>
+
+
                     <hr className="mb-4" />
                     <h4 className="mb-3">Order Type</h4>
                     <div className="d-block my-3">
@@ -163,9 +170,8 @@ const OrderForm = (props) => {
                                 name="orderType"
                                 type="radio"
                                 className="custom-control-input"
-                                defaultChecked
                                 checked={orderType === 'Buy'}
-                                onClick={() => setOrderType('Buy')}
+                                onChange={() => setOrderType('Buy')}
                                 required
                             />
                             <label className="custom-control-label" htmlFor="buyOrder">Buy</label>
@@ -178,7 +184,7 @@ const OrderForm = (props) => {
                                 className="custom-control-input"
                                 required
                                 checked={orderType === 'Sell'}
-                                onClick={() => setOrderType('Sell')}
+                                onChange={() => setOrderType('Sell')}
                             />
                             <label className="custom-control-label" htmlFor="sellOrder">Sell</label>
                         </div>
@@ -189,7 +195,7 @@ const OrderForm = (props) => {
                             className="custom-control-input"
                             id="useCash"
                             checked={useCash}
-                            onClick={toggleUseCash}
+                            onChange={toggleUseCash}
                         />
                         <hr className="mb-4" />
                         {orderType === 'Buy' && <label className="custom-control-label" htmlFor="useCash">Use portfolio cash to purchase</label>}

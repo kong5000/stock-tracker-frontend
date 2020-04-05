@@ -3,11 +3,12 @@ import { useSelector, useDispatch } from 'react-redux'
 import assetsService from '../services/asset'
 import { setAssets } from '../reducers/assets'
 import Chart from "react-apexcharts"
-import Modal from 'react-bootstrap/Modal'
+import {Modal} from 'react-bootstrap'
 import OrderForm from './OrderForm'
 import AssetCardList from './AssetCardList'
 
 const Assets = () => {
+    
     const [selectedStock, setSelectedStock] = useState(null)
     const [showOrderForm, setShowOrderForm] = useState(false)
 
@@ -21,6 +22,7 @@ const Assets = () => {
     }
     const chartClick = (event, chartContext, config) => {
         setSelectedStock(assets.stocks[config.dataPointIndex])
+        setShowOrderForm(true)
     }
 
     const onOrderClicked = (event) => {
@@ -90,13 +92,15 @@ const Assets = () => {
             <AssetCardList assets={assets} />
 
             <Modal
-                show={showOrderForm || selectedStock}
-                onHide={handleModalClose} 
-                symbol={selectedStock && selectedStock.symbol}
-                >
-                <Modal.Body>
+                show={showOrderForm}
+                onHide={handleModalClose}
+            >
+            <Modal.Body>
                     <div>
-                        <OrderForm onSubmissionFinished={onSubmissionFinished} />
+                        {selectedStock
+                            ? <OrderForm onSubmissionFinished={onSubmissionFinished} symbol={selectedStock.ticker} />
+                            : <OrderForm onSubmissionFinished={onSubmissionFinished} />
+                        }
                     </div>
                 </Modal.Body>
             </Modal>
