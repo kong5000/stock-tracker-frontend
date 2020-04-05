@@ -27,8 +27,10 @@ const getAssets = async () => {
     const config = {
         headers: { Authorization: token}
     }
+    await axios.post(baseUrl + '/update', null, config)
     const response = await axios.get(baseUrl, config)
     return response.data
 }
+
 
 export default {setToken, addStock, sellStock, getAssets}

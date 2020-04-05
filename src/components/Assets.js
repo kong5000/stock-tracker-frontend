@@ -5,6 +5,7 @@ import { setAssets } from '../reducers/assets'
 import Chart from "react-apexcharts"
 import Modal from 'react-bootstrap/Modal'
 import OrderForm from './OrderForm'
+import AssetCardList from './AssetCardList'
 
 const Assets = () => {
     const [selectedStock, setSelectedStock] = useState(null)
@@ -20,8 +21,6 @@ const Assets = () => {
         setShowOrderForm(false)
     }
     const chartClick = (event, chartContext, config) => {
-        // The last parameter config contains additional information like `seriesIndex` and `dataPointIndex` for cartesian charts
-        console.log(config.dataPointIndex, assets.stocks[config.dataPointIndex])
         setSelectedStock(assets.stocks[config.dataPointIndex])
         setShowModal(true)
     }
@@ -31,12 +30,20 @@ const Assets = () => {
     }
 
     const onSubmissionFinished = () => {
+        updateAssets()
         setShowOrderForm(false)
+    }
+
+    const updateAssets = () => {
+        assetsService.getAssets().then(
+            assets => {
+                dispatch(setAssets(assets))
+            }
+        )
     }
 
     const generateChartOptions = () => {
         const labels = assets.stocks.map(stock => stock.ticker)
-        console.log('GENERATE', labels)
         return (
             {
                 chart: {
@@ -69,10 +76,9 @@ const Assets = () => {
         )
     }, [dispatch])
 
-    if (assets) {
-        return (
-            <div>
-                {assets.stocks.map(stock => <div key={stock.ticker}>{stock.ticker} {stock.shares} {stock.price}</div>)}
+    return (
+        <div>
+            {assets &&
                 <div className="mixed-chart">
                     <Chart
                         options={generateChartOptions()}
@@ -81,41 +87,42 @@ const Assets = () => {
                         width="500"
                     />
                 </div>
+            }
 
-                <Modal show={showOrderForm} onHide={handleModalClose}>
-                        <Modal.Body>
-                            <div>
-                                <OrderForm onSubmissionFinished={onSubmissionFinished}/>
-                            </div>
-                        </Modal.Body>
-                </Modal>
+            <AssetCardList assets={assets}/>
 
-                {selectedStock &&
-                    <Modal show={showModal} onHide={handleModalClose}>
-                        <Modal.Body>
-                            <div>
-                                {selectedStock.ticker}
-                                shares:{selectedStock.shares}
-                                value:{selectedStock.shares * selectedStock.price}
-                            </div>
-                        </Modal.Body>
-                    </Modal>
-                }
-
-                {selectedStock &&
+            <Modal show={showOrderForm} onHide={handleModalClose}>
+                <Modal.Body>
                     <div>
-                        {selectedStock.ticker}
-                        shares:{selectedStock.shares}
-                        value:{selectedStock.shares * selectedStock.price}
+                        <OrderForm onSubmissionFinished={onSubmissionFinished} />
                     </div>
-                }
-                <button onClick={onOrderClicked}>Buy/Sell</button>
-            <div>User cash: {assets.cash}</div>
-            </div>
-        )
-    } else {
-        return (null)
-    }
+                </Modal.Body>
+            </Modal>
+
+            {selectedStock &&
+                <Modal show={showModal} onHide={handleModalClose}>
+                    <Modal.Body>
+                        <div>
+                            {selectedStock.ticker}
+                            shares:{selectedStock.shares}
+                            value:{selectedStock.shares * selectedStock.price}
+                        </div>
+                    </Modal.Body>
+                </Modal>
+            }
+
+            {selectedStock &&
+                <div>
+                    {selectedStock.ticker}
+                    shares:{selectedStock.shares}
+                    value:{selectedStock.shares * selectedStock.price}
+                </div>
+            }
+            <button onClick={onOrderClicked}>Buy/Sell</button>
+            {assets && <div>User cash: {assets.cash}</div>}
+        </div>
+    )
+
 }
 
 export default Assets

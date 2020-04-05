@@ -37,3 +37,10 @@
   }
 }
 
+.profit-percent {
+  color: green;
+}
+
+.loss-percent {
+  color: red;
+}

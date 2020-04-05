@@ -18,7 +18,8 @@ const Homepage = () => {
         },
         seriesLabels: {
             enabled: false
-        }
+        },
+        tooltip: {enabled: false},
     }
 
     return (
