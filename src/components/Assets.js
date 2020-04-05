@@ -30,6 +30,10 @@ const Assets = () => {
         setShowOrderForm(true)
     }
 
+    const onSubmissionFinished = () => {
+        setShowOrderForm(false)
+    }
+
     const generateChartOptions = () => {
         const labels = assets.stocks.map(stock => stock.ticker)
         console.log('GENERATE', labels)
@@ -81,7 +85,7 @@ const Assets = () => {
                 <Modal show={showOrderForm} onHide={handleModalClose}>
                         <Modal.Body>
                             <div>
-                                <OrderForm/>
+                                <OrderForm onSubmissionFinished={onSubmissionFinished}/>
                             </div>
                         </Modal.Body>
                 </Modal>
@@ -106,6 +110,7 @@ const Assets = () => {
                     </div>
                 }
                 <button onClick={onOrderClicked}>Buy/Sell</button>
+            <div>User cash: {assets.cash}</div>
             </div>
         )
     } else {

@@ -4,11 +4,11 @@ import { setAssets } from '../reducers/assets'
 import assetsService from '../services/asset'
 import '../styles/orderform.css'
 
-const OrderForm = () => {
+const OrderForm = (props) => {
     const [symbol, setSymbol] = useState('')
     const [assetName, setAssetName] = useState('')
-    const [price, setPrice] = useState(0)
-    const [shares, setShares] = useState(0)
+    const [price, setPrice] = useState(null)
+    const [shares, setShares] = useState(null)
     const [orderType, setOrderType] = useState('Buy')
     const [useCash, setUseCash] = useState(true)
 
@@ -32,18 +32,20 @@ const OrderForm = () => {
         } else {
             await submitSellOrder()
         }
+        props.onSubmissionFinished()
         clearForm()
     }
 
     const submitBuyOrder = async () => {
         try {
-            const stock = {
+            const order = {
                 ticker: symbol,
                 price,
                 shares,
-                name: assetName
+                name: assetName,
+                useCash
             }
-            const updatedAssets = await assetsService.addStock(stock)
+            const updatedAssets = await assetsService.addStock(order)
             dispatch(setAssets(
                 updatedAssets
             ))
@@ -58,6 +60,7 @@ const OrderForm = () => {
                 ticker: symbol,
                 price,
                 shares,
+                useCash
             }
             const updatedPortfolio = await assetsService.sellStock(order)
             dispatch(setAssets(
