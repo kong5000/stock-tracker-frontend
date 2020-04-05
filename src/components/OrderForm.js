@@ -55,8 +55,8 @@ const OrderForm = (props) => {
             dispatch(setAssets(
                 updatedAssets
             ))
-        } catch (exception) {
-            console.log(exception)
+        } catch (error) {
+            console.log(error.response.data.error)
         }
     }
 

@@ -2,7 +2,7 @@ import React from 'react'
 import Chart from "react-apexcharts"
 import '../styles/homepage.css'
 import { Link } from 'react-router-dom'
-import Button from 'react-bootstrap/Button'
+
 const Homepage = () => {
     const exampleData = [100, 100, 100]
 
