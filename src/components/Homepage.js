@@ -2,7 +2,7 @@ import React from 'react'
 import Chart from "react-apexcharts"
 import '../styles/homepage.css'
 import { Link } from 'react-router-dom'
-
+import Button from 'react-bootstrap/Button'
 const Homepage = () => {
     const exampleData = [100, 100, 100]
 
@@ -41,8 +41,8 @@ const Homepage = () => {
                 </li>
                 </ul>
                 <div>
-                    <Link to='/login' className="homepage-btn">Login</Link>
-                    <Link to='/signup' className="homepage-btn">Signup</Link>
+                    <Link to='/login' className="homepage-btn btn btn-primary">Login</Link>
+                    <Link to='/signup' className="homepage-btn btn btn-primary">Signup</Link>
                 </div>
             </div>
             <div className="homepage-right-half">

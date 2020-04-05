@@ -154,8 +154,6 @@ const OrderForm = (props) => {
                             />
                         </div>
                     </div>
-
-
                     <hr className="mb-4" />
                     <h4 className="mb-3">Order Type</h4>
                     <div className="d-block my-3">

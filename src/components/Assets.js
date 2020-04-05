@@ -9,7 +9,6 @@ import AssetCardList from './AssetCardList'
 
 const Assets = () => {
     const [selectedStock, setSelectedStock] = useState(null)
-    const [showModal, setShowModal] = useState(false)
     const [showOrderForm, setShowOrderForm] = useState(false)
 
     const assets = useSelector(state => state.assets)
@@ -17,12 +16,11 @@ const Assets = () => {
     const dispatch = useDispatch()
 
     const handleModalClose = () => {
-        setShowModal(false)
         setShowOrderForm(false)
+        setSelectedStock(false)
     }
     const chartClick = (event, chartContext, config) => {
         setSelectedStock(assets.stocks[config.dataPointIndex])
-        setShowModal(true)
     }
 
     const onOrderClicked = (event) => {
@@ -89,9 +87,13 @@ const Assets = () => {
                 </div>
             }
 
-            <AssetCardList assets={assets}/>
+            <AssetCardList assets={assets} />
 
-            <Modal show={showOrderForm} onHide={handleModalClose}>
+            <Modal
+                show={showOrderForm || selectedStock}
+                onHide={handleModalClose} 
+                symbol={selectedStock && selectedStock.symbol}
+                >
                 <Modal.Body>
                     <div>
                         <OrderForm onSubmissionFinished={onSubmissionFinished} />
@@ -99,17 +101,8 @@ const Assets = () => {
                 </Modal.Body>
             </Modal>
 
-            {selectedStock &&
-                <Modal show={showModal} onHide={handleModalClose}>
-                    <Modal.Body>
-                        <div>
-                            {selectedStock.ticker}
-                            shares:{selectedStock.shares}
-                            value:{selectedStock.shares * selectedStock.price}
-                        </div>
-                    </Modal.Body>
-                </Modal>
-            }
+
+
 
             {selectedStock &&
                 <div>

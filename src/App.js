@@ -12,7 +12,6 @@ import { login } from './reducers/user'
 import { BrowserRouter, Switch, Route } from 'react-router-dom'
 
 const App = () => {
-  // const [user, setUser] = useState(null)
   const user = useSelector(state => state.user)
   const dispatch = useDispatch()
 
@@ -24,17 +23,6 @@ const App = () => {
       assetService.setToken(userObj.token)
     }
   }, [dispatch])
-
-  const testBuy = async () => {
-    const stock = {
-      ticker: 'O',
-      name: 'Some Company',
-      shares: 5,
-      price: 10.2
-    }
-    const bought = await assetService.addStock(stock)
-    console.log(bought)
-  }
 
   return (
     <div>
@@ -58,7 +46,6 @@ const App = () => {
       </BrowserRouter>
     </div>
   )
-
 }
 
 

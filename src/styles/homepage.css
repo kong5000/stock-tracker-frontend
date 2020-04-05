@@ -32,6 +32,12 @@
     align-items: center;
   }
   
+  .homepage-btn{
+    margin: 20px;
+    display: inline;
+    font-size: 1.75em;
+  }
+
   li {
     font-size: 1.5em;
     margin: 1em;
