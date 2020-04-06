@@ -11,20 +11,54 @@ const AssetCardList = (props) => {
             return <div className="loss-percent">{((1 - ratio) * 100).toFixed(1) + '%'}</div>
         }
     }
+
+    const getProfitAbsolute = (stock) => {
+        const delta = stock.shares * (stock.price - stock.costBasis)
+        if(delta > 0){
+            return <div className="profit-percent">{`$${delta}`}</div>
+        }else{
+            return <div className="loss-percent">{`$${delta}`}</div>
+        }
+    }
     return (
-        <ul className="list-group mb-3">
-            {assets && assets.stocks.map(stock => <li key={stock.ticker} className="list-group-item d-flex justify-content-between lh-condensed">
-                <div>
-                    <h6 className="my-0">{stock.ticker}</h6>
-                    <small className="text-muted">{stock.name}</small>
-                </div>
-                <span className="text-muted">{stock.price * stock.shares}</span>
-                <span className="text-muted">{getProfitPercentage(stock)} %</span>
-                <div>basis{stock.costBasis}</div>
-                <div>price{stock.price}</div>
-                <div>share{stock.shares}</div>
-            </li>)}
-        </ul>
+            <table className="stock-table">
+                <tr>
+                    <th className="info-header">Symbol</th>
+                    <th className="info-header">Shares</th>
+                    <th className="info-header">Avg Buy Price</th>
+                    <th className="info-header">Latest Price</th>
+                    <th>Value</th>
+                    <th>Weight</th>
+                    <th>Profit/Loss</th>
+                </tr>
+                {assets && assets.stocks.map(stock =>
+                    <tr key={stock.ticker}>
+                        <td>
+                            <div>
+                                <h6 className="my-0">{stock.ticker}</h6>
+                                <small className="text-muted">{stock.name}</small>
+                            </div>
+                        </td>
+                        <td>
+                            <span className="text-muted">${stock.price * stock.shares}</span>
+                        </td>
+                        <td>
+                            <span className="text-muted">{getProfitPercentage(stock)}</span>
+                        </td>
+                        <td>
+                            {stock.price}
+                        </td>
+                        <td>
+                            <div>{stock.shares}</div>
+                        </td>
+                        <td>
+                            100%
+                        </td>
+                        <td>
+                             {getProfitAbsolute(stock)}
+                        </td>
+                    </tr>)}
+            </table>
     )
 }
 

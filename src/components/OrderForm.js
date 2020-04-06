@@ -10,12 +10,12 @@ const OrderForm = (props) => {
     const [price, setPrice] = useState('')
     const [shares, setShares] = useState('')
     const [orderType, setOrderType] = useState('Buy')
-    const [useCash, setUseCash] = useState(true)
+    const [useCash, setUseCash] = useState(false)
 
     const dispatch = useDispatch()
 
-    useEffect( () => {
-        if(props.symbol){
+    useEffect(() => {
+        if (props.symbol) {
             setSymbol(props.symbol)
         }
     }, [props.symbol])
@@ -89,6 +89,15 @@ const OrderForm = (props) => {
 
     const onAssetNameChange = (event) => {
         setAssetName(event.target.value)
+    }
+
+    const onOrderTypeChange = () => {
+            toggleUseCash()
+            if(orderType === 'Buy'){
+                setOrderType('Sell')
+            }else{
+                setOrderType('Buy')
+            }
     }
 
     return (
@@ -171,7 +180,7 @@ const OrderForm = (props) => {
                                 type="radio"
                                 className="custom-control-input"
                                 checked={orderType === 'Buy'}
-                                onChange={() => setOrderType('Buy')}
+                                onChange={onOrderTypeChange}
                                 required
                             />
                             <label className="custom-control-label" htmlFor="buyOrder">Buy</label>
@@ -184,7 +193,7 @@ const OrderForm = (props) => {
                                 className="custom-control-input"
                                 required
                                 checked={orderType === 'Sell'}
-                                onChange={() => setOrderType('Sell')}
+                                onChange={onOrderTypeChange}
                             />
                             <label className="custom-control-label" htmlFor="sellOrder">Sell</label>
                         </div>

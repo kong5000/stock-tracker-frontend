@@ -34,7 +34,6 @@ const App = () => {
           </Route>
           <Route path="/portfolio">
             {user && <Assets />}
-            {user && <div>Logged in as {user.username}</div>}
           </Route>
           <Route path='/login'>
             <Login/>

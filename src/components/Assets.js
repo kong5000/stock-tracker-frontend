@@ -79,26 +79,23 @@ const Assets = () => {
     }, [dispatch])
 
     if (pageIsLoading) {
-        return <Spinner />
+        return <Spinner className="spinner"/>
     } else {
         return (
             <div>
-
-                    <div className="mixed-chart">
-                        <Chart
-                            options={generateChartOptions()}
-                            series={assets.stocks.map(stock => stock.shares * stock.price)}
-                            type="pie"
-                            width="500"
-                        />
-                    </div>
-
+                <div className="mixed-chart">
+                    <Chart
+                        options={generateChartOptions()}
+                        series={assets.stocks.map(stock => stock.shares * stock.price)}
+                        type="pie"
+                        width="500"
+                    />
+                </div>
                 <AssetCardList assets={assets} />
 
                 <Modal
                     show={showOrderForm}
-                    onHide={handleModalClose}
-                >
+                    onHide={handleModalClose}>
                     <Modal.Body>
                         <div>
                             {selectedStock
@@ -108,17 +105,6 @@ const Assets = () => {
                         </div>
                     </Modal.Body>
                 </Modal>
-
-
-
-
-                {selectedStock &&
-                    <div>
-                        {selectedStock.ticker}
-                        shares:{selectedStock.shares}
-                        value:{selectedStock.shares * selectedStock.price}
-                    </div>
-                }
                 <button onClick={onOrderClicked}>Buy/Sell</button>
                 {assets && <div>User cash: {assets.cash}</div>}
             </div>
