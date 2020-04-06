@@ -11,25 +11,37 @@ const AssetCardList = (props) => {
             return <div className="loss-percent">{((1 - ratio) * 100).toFixed(1) + '%'}</div>
         }
     }
-
     const getProfitAbsolute = (stock) => {
-        const delta = stock.shares * (stock.price - stock.costBasis)
-        if(delta > 0){
-            return <div className="profit-percent">{`$${delta}`}</div>
-        }else{
-            return <div className="loss-percent">{`$${delta}`}</div>
+        let profit = stock.shares * (stock.price - stock.costBasis)
+        if (profit > 0) {
+            return <div className="profit-percent">{`$${profit.toFixed(2)}`}</div>
+        } else {
+            profit *= -1
+            return <div className="loss-percent">{`$${profit.toFixed(2)}`}</div>
         }
     }
+    const getStockWeight = (stock) => {
+        const threshold = 5
+        const weightString = `${stock.currentWeight.toFixed(3) * 100}%`
+        if(stock.targetWeight){
+            if(Math.abs(stock.currentWeight - stock.targetWeight) > threshold){
+                return <div className="loss-percent">{weightString}</div>
+            }
+        }
+        return <div className="profit-percent">{weightString}</div>
+    }
+
     return (
-            <table className="stock-table">
+        <table className="stock-table">
+            <tbody>
                 <tr>
                     <th className="info-header">Symbol</th>
-                    <th className="info-header">Shares</th>
-                    <th className="info-header">Avg Buy Price</th>
+                    <th className="info-header">Value</th>
+                    <th className="info-header">Profit %</th>
                     <th className="info-header">Latest Price</th>
-                    <th>Value</th>
-                    <th>Weight</th>
-                    <th>Profit/Loss</th>
+                    <th className="info-header">Shares</th>
+                    <th className="info-header">Weight</th>
+                    <th className="info-header">Total Profit/Loss</th>
                 </tr>
                 {assets && assets.stocks.map(stock =>
                     <tr key={stock.ticker}>
@@ -49,16 +61,17 @@ const AssetCardList = (props) => {
                             {stock.price}
                         </td>
                         <td>
-                            <div>{stock.shares}</div>
+                            {stock.shares}
                         </td>
                         <td>
-                            100%
+                            {getStockWeight(stock)}
                         </td>
                         <td>
-                             {getProfitAbsolute(stock)}
+                            {getProfitAbsolute(stock)}
                         </td>
                     </tr>)}
-            </table>
+            </tbody>
+        </table>
     )
 }
 

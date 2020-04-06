@@ -28,7 +28,10 @@ const getAssets = async () => {
         headers: { Authorization: token}
     }
     await axios.post(baseUrl + '/update', null, config)
+
     const response = await axios.get(baseUrl, config)
+
+    console.log(response.data)
     return response.data
 }
 

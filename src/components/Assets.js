@@ -79,32 +79,32 @@ const Assets = () => {
     }, [dispatch])
 
     if (pageIsLoading) {
-        return <Spinner className="spinner"/>
+        return <Spinner className="spinner" />
     } else {
         return (
             <div>
-                <div className="mixed-chart">
-                    <Chart
+                <div className="asset-page">
+                    <Chart className="mixed-chart"
                         options={generateChartOptions()}
                         series={assets.stocks.map(stock => stock.shares * stock.price)}
                         type="pie"
                         width="500"
                     />
-                </div>
-                <AssetCardList assets={assets} />
+                    <AssetCardList assets={assets} className="asset-table" />
 
-                <Modal
-                    show={showOrderForm}
-                    onHide={handleModalClose}>
-                    <Modal.Body>
-                        <div>
-                            {selectedStock
-                                ? <OrderForm onSubmissionFinished={onSubmissionFinished} symbol={selectedStock.ticker} />
-                                : <OrderForm onSubmissionFinished={onSubmissionFinished} />
-                            }
-                        </div>
-                    </Modal.Body>
-                </Modal>
+                    <Modal
+                        show={showOrderForm}
+                        onHide={handleModalClose}>
+                        <Modal.Body>
+                            <div>
+                                {selectedStock
+                                    ? <OrderForm onSubmissionFinished={onSubmissionFinished} symbol={selectedStock.ticker} />
+                                    : <OrderForm onSubmissionFinished={onSubmissionFinished} />
+                                }
+                            </div>
+                        </Modal.Body>
+                    </Modal>
+                </div>
                 <button onClick={onOrderClicked}>Buy/Sell</button>
                 {assets && <div>User cash: {assets.cash}</div>}
             </div>

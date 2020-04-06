@@ -45,6 +45,10 @@
   color: red;
 }
 
+.asset-page{
+  display: flex;
+  width: 100%;
+}
 .spinner {
   position: absolute;
   height: 50vh;
@@ -53,12 +57,24 @@
   left: 50%;
   transform: translateX(-50%) translateY(-50%);
 }
-
+.mixed-chart{
+  display: inline-block;
+  width: 40%;
+}
 .stock-table{
   table-layout: auto;
-  width: 900px; 
+  width: 60%;
+}
+
+.stock-table{
+  padding-right: 100px;
 }
 
 tr{
+  font-size: 1.25rem;
   border-bottom: 0.5px solid lightgrey;
+}
+
+.asset-page{
+  padding: 0 5%
 }
