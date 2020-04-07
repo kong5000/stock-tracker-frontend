@@ -9,6 +9,7 @@ const OrderForm = (props) => {
     const [assetName, setAssetName] = useState('')
     const [price, setPrice] = useState('')
     const [shares, setShares] = useState('')
+    const [targetWeighting, setTargetWeighting] = useState('')
     const [orderType, setOrderType] = useState('Buy')
     const [useCash, setUseCash] = useState(false)
 
@@ -49,7 +50,8 @@ const OrderForm = (props) => {
                 price,
                 shares,
                 name: assetName,
-                useCash
+                useCash,
+                targetWeight: targetWeighting / 100
             }
             const updatedAssets = await assetsService.addStock(order)
             dispatch(setAssets(
@@ -91,13 +93,17 @@ const OrderForm = (props) => {
         setAssetName(event.target.value)
     }
 
+    const onTargetWeightingChange = (event) => {
+        setTargetWeighting(event.target.value)
+    }
+
     const onOrderTypeChange = () => {
-            toggleUseCash()
-            if(orderType === 'Buy'){
-                setOrderType('Sell')
-            }else{
-                setOrderType('Buy')
-            }
+        toggleUseCash()
+        if (orderType === 'Buy') {
+            setOrderType('Sell')
+        } else {
+            setOrderType('Buy')
+        }
     }
 
     return (
@@ -168,7 +174,23 @@ const OrderForm = (props) => {
                             />
                         </div>
                     </div>
-
+                    <div className="row">
+                        <div className="col-md-6 mb-3">
+                            <label htmlFor="targetWeight">Target Portfolio Weight %</label>
+                            <input
+                                type="number"
+                                min="0"
+                                max="100"
+                                className="form-control"
+                                id="shareQuantity"
+                                value={targetWeighting}
+                                onChange={onTargetWeightingChange}
+                            />
+                            <div className="invalid-feedback">
+                                Must buy or sell at least one share
+                            </div>
+                        </div>
+                    </div>
 
                     <hr className="mb-4" />
                     <h4 className="mb-3">Order Type</h4>

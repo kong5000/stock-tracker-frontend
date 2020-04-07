@@ -45,10 +45,7 @@
   color: red;
 }
 
-.asset-page{
-  display: flex;
-  width: 100%;
-}
+
 .spinner {
   position: absolute;
   height: 50vh;
@@ -57,13 +54,26 @@
   left: 50%;
   transform: translateX(-50%) translateY(-50%);
 }
-.mixed-chart{
+
+.charts-container{
+  display: flex;
+  width: 100%;
+}
+
+.pie-chart{
   display: inline-block;
-  width: 40%;
+  width: 50%;
+  padding-left: 3%;
+}
+
+.line-chart{
+  display: inline-block;
+  width: 50%;
 }
 .stock-table{
   table-layout: auto;
-  width: 60%;
+  width: 100%;
+  margin: 30px;
 }
 
 .stock-table{
@@ -75,6 +85,6 @@ tr{
   border-bottom: 0.5px solid lightgrey;
 }
 
-.asset-page{
+.charts-container{
   padding: 0 5%
 }

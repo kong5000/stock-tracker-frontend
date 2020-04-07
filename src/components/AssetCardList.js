@@ -21,8 +21,8 @@ const AssetCardList = (props) => {
         }
     }
     const getStockWeight = (stock) => {
-        const threshold = 5
-        const weightString = `${stock.currentWeight.toFixed(3) * 100}%`
+        const threshold = 0.05
+        const weightString = `${(stock.currentWeight * 100).toFixed(1)}%`
         if(stock.targetWeight){
             if(Math.abs(stock.currentWeight - stock.targetWeight) > threshold){
                 return <div className="loss-percent">{weightString}</div>
@@ -52,7 +52,7 @@ const AssetCardList = (props) => {
                             </div>
                         </td>
                         <td>
-                            <span className="text-muted">${stock.price * stock.shares}</span>
+                            <span className="text-muted">${(stock.price * stock.shares).toFixed(2)}</span>
                         </td>
                         <td>
                             <span className="text-muted">{getProfitPercentage(stock)}</span>
