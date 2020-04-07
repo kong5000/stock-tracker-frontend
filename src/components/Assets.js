@@ -7,6 +7,7 @@ import { Modal } from 'react-bootstrap'
 import OrderForm from './OrderForm'
 import AssetCardList from './AssetCardList'
 import { ReactComponent as Spinner } from '../Assets/spinner.svg'
+import Button from 'react-bootstrap/Button'
 
 const Assets = () => {
     const [selectedStock, setSelectedStock] = useState(null)
@@ -145,23 +146,64 @@ const Assets = () => {
                         </div>
                     </Modal.Body>
                 </Modal>
-                <div className="charts-container">
-                    <Chart className="pie-chart"
-                        options={generateChartOptions()}
-                        series={assets.stocks.map(stock => stock.shares * stock.price)}
-                        type="pie"
-                        width="70%"
-                    />
-                    <Chart className="line-chart"
-                        options={generateLineChartOptions()}
-                        series={testSeries}
-                        type="line"
-                        width="100%"
-                    />
+
+                <div id="asset-page-container">
+                    <div >
+                        <div className="row top-row">
+                            <div className="col-lg-5 col-md-12">
+                                <div class="box">
+                                    <Chart className="pie-chart"
+                                        options={generateChartOptions()}
+                                        series={assets.stocks.map(stock => stock.shares * stock.price)}
+                                        type="pie"
+                                        height='100%'
+                                    />
+                                </div>
+                            </div>
+                            <div className="col-lg-7  col-md-12 line">
+                                <div class="box">
+                                    <Chart className="line-chart"
+                                        options={generateLineChartOptions()}
+                                        series={testSeries}
+                                        type="line"
+                                        height='100%'
+                                    />
+                                </div>
+                            </div>
+                        </div>
+                        <div className="row bottom-row">
+                            <div className="col-lg-5  col-md-12 order">
+                                <div className="box">
+                                    <div className="button-holder">
+                                        <div className="row">
+                                            <div className="col text-center">
+                                                <button className="my-btn" onClick={onOrderClicked}>Buy</button>
+                                            </div>
+                                            <div className="col text-center">
+                                                <button className="my-btn" onClick={onOrderClicked}>Sell</button>
+                                            </div>
+                                        </div>
+                                        <div className="row">
+                                            <div className="col text-center">
+                                                <button className="my-btn" onClick={onOrderClicked}>Add Cash</button>
+                                            </div>
+                                            <div className="col text-center">
+                                                <button className="my-btn" onClick={onOrderClicked}>Allocation</button>
+                                            </div>
+                                        </div>
+                                        {assets && <div>User cash: {assets.cash}</div>}
+                                    </div>
+                                </div>
+                            </div>
+                            <div className="col-lg-7  col-md-12  stocks">
+                                <div className="box">
+                                    <AssetCardList assets={assets} className="asset-table" />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-                <AssetCardList assets={assets} className="asset-table" />
-                <button onClick={onOrderClicked}>Buy/Sell</button>
-                {assets && <div>User cash: {assets.cash}</div>}
+
             </div>
         )
     }

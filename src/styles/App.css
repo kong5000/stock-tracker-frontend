@@ -26,65 +26,66 @@
 
 .App-link {
   color: #61dafb;
-}
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
-}
-
-.profit-percent {
-  color: green;
-}
-
-.loss-percent {
-  color: red;
-}
-
-
-.spinner {
-  position: absolute;
-  height: 50vh;
-  width: 100%;
-  top: 50%;
-  left: 50%;
-  transform: translateX(-50%) translateY(-50%);
-}
-
-.charts-container{
-  display: flex;
-  width: 100%;
-}
-
-.pie-chart{
-  display: inline-block;
-  width: 50%;
-  padding-left: 3%;
-}
-
-.line-chart{
-  display: inline-block;
-  width: 50%;
-}
-.stock-table{
-  table-layout: auto;
   width: 100%;
   margin: 30px;
 }
 
-.stock-table{
-  padding-right: 100px;
-}
 
 tr{
   font-size: 1.25rem;
   border-bottom: 0.5px solid lightgrey;
 }
-
-.charts-container{
-  padding: 0 5%
+.container{
+  max-width: 100%;
 }
+
+.line-chart{
+  height: 50vh;
+}
+.side-bar{
+  box-shadow: 0px 1px 22px -12px #607D8B;
+  text-align: center;
+  width: 200px;
+}
+
+.side-bar-button{
+  display: block;
+  margin: 10px auto;
+  width: 100px;
+}
+#asset-page-container{
+  /* max-width: none; */
+  height: 100vh;
+}
+
+.box{
+  height: 400px;
+  box-shadow: 0px 1px 22px -12px #607D8B;
+  outline: burlywood 3px;
+  padding: 25px 35px 25px 30px;
+  box-sizing: border-box;
+}
+
+
+.bottom-row{
+  margin-top: 20px;
+}
+.pie-chart{
+  height: 100%;
+}
+
+.stock-table{
+  width: 100%;
+}
+
+.profit-text{
+  color: green;
+}
+.loss-text{
+  color:red
+}
+
+.my-btn{
+  margin: 10px;
+}
+.button-holder{}
