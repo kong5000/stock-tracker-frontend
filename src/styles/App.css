@@ -89,3 +89,16 @@ tr{
   margin: 10px;
 }
 .button-holder{}
+
+.clickable-font{
+  cursor: pointer;
+  color: gray;
+}
+.clickable-font:hover{
+  color:black;
+}
+
+
+.labeled-font{
+  margin: 10px;
+}

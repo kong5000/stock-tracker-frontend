@@ -24,7 +24,6 @@ const Assets = () => {
     }
     const chartClick = (event, chartContext, config) => {
         setSelectedStock(assets.stocks[config.dataPointIndex])
-        setShowOrderForm(true)
     }
 
     const onOrderClicked = (event) => {
@@ -74,7 +73,7 @@ const Assets = () => {
         data: [10, 41, 35, 51, 49, 62, 69, 91, 148]
     }]
 
-    const generateLineChartOptions = () => {
+    const generateLineChartOptions = (symbol) => {
         return (
             {
                 chart: {
@@ -91,7 +90,7 @@ const Assets = () => {
                     curve: 'straight'
                 },
                 title: {
-                    text: 'AAPL',
+                    text: symbol,
                     align: 'left'
                 },
 
@@ -163,7 +162,10 @@ const Assets = () => {
                             <div className="col-lg-7  col-md-12 line">
                                 <div class="box">
                                     <Chart className="line-chart"
-                                        options={generateLineChartOptions()}
+                                        options={
+                                            selectedStock
+                                                ? generateLineChartOptions(selectedStock.ticker)
+                                                : generateLineChartOptions('click a stock')}
                                         series={testSeries}
                                         type="line"
                                         height='100%'
@@ -176,27 +178,39 @@ const Assets = () => {
                                 <div className="box">
                                     <div className="button-holder">
                                         <div className="row">
-                                            <div className="col text-center">
-                                                <button className="my-btn" onClick={onOrderClicked}>Buy</button>
+                                            <div className="col text-center labeled-font">
+                                                <span onClick={onOrderClicked} className="clickable-font">
+                                                    <i class="fas fa-cash-register fa-4x"></i>
+                                                </span>
+                                                <div className="btn-label">Order</div>
                                             </div>
-                                            <div className="col text-center">
-                                                <button className="my-btn" onClick={onOrderClicked}>Sell</button>
+                                            <div className="col text-center labeled-font">
+                                                <span onClick={() => { console.log('test') }} className="clickable-font">
+                                                    <i class="fas fa-bell fa-4x"></i>
+                                                </span>
+                                                <div className="btn-label">Set Alerts</div>
                                             </div>
                                         </div>
                                         <div className="row">
-                                            <div className="col text-center">
-                                                <button className="my-btn" onClick={onOrderClicked}>Add Cash</button>
+                                            <div className="col text-center labeled-font">
+                                                <span onClick={() => { console.log('test') }} className="clickable-font">
+                                                    <i class="far fa-money-bill-alt fa-4x"></i>
+                                                </span>
+                                                <div className="btn-label">Add/Remove Cash</div>
                                             </div>
-                                            <div className="col text-center">
-                                                <button className="my-btn" onClick={onOrderClicked}>Allocation</button>
+                                            <div className="col text-center labeled-font">
+                                                <span onClick={() => { console.log('test') }} className="clickable-font">
+                                                    <i class="fas fa-chart-pie fa-4x"></i>
+                                                </span>
+                                                <div className="btn-label">Set Target Allocation</div>
                                             </div>
                                         </div>
-                                        {assets && <div>User cash: {assets.cash}</div>}
                                     </div>
                                 </div>
                             </div>
                             <div className="col-lg-7  col-md-12  stocks">
                                 <div className="box">
+                                    {assets && <div>Cash Balance: {assets.cash}</div>}
                                     <AssetCardList assets={assets} className="asset-table" />
                                 </div>
                             </div>
