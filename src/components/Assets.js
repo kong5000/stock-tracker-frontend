@@ -5,7 +5,7 @@ import { setAssets } from '../reducers/assets'
 import Chart from "react-apexcharts"
 import { Modal } from 'react-bootstrap'
 import OrderForm from './OrderForm'
-import AssetCardList from './AssetCardList'
+import AssetTable from './AssetTable'
 import { ReactComponent as Spinner } from '../Assets/spinner.svg'
 import Button from 'react-bootstrap/Button'
 import LineChart from './LineChart'
@@ -101,7 +101,7 @@ const Assets = () => {
                     <div >
                         <div className="row top-row">
                             <div className="col-lg-5 col-md-12">
-                                <div class="box">
+                                <div className="box">
                                     <Chart className="pie-chart"
                                         options={generateChartOptions()}
                                         series={assets.stocks.map(stock => stock.shares * stock.price)}
@@ -111,8 +111,8 @@ const Assets = () => {
                                 </div>
                             </div>
                             <div className="col-lg-7  col-md-12 line">
-                                <div class="box">
-                                    <LineChart symbol={selectedStock}/>
+                                <div className="box">
+                                    <LineChart stock={selectedStock}/>
                                 </div>
                             </div>
                         </div>
@@ -123,13 +123,13 @@ const Assets = () => {
                                         <div className="row">
                                             <div className="col text-center labeled-font">
                                                 <span onClick={onOrderClicked} className="clickable-font">
-                                                    <i class="fas fa-cash-register fa-4x"></i>
+                                                    <i className="fas fa-cash-register fa-4x"></i>
                                                 </span>
                                                 <div className="btn-label">Order</div>
                                             </div>
                                             <div className="col text-center labeled-font">
                                                 <span onClick={() => { console.log('test') }} className="clickable-font">
-                                                    <i class="fas fa-bell fa-4x"></i>
+                                                    <i className="fas fa-bell fa-4x"></i>
                                                 </span>
                                                 <div className="btn-label">Set Alerts</div>
                                             </div>
@@ -137,13 +137,13 @@ const Assets = () => {
                                         <div className="row">
                                             <div className="col text-center labeled-font">
                                                 <span onClick={() => { console.log('test') }} className="clickable-font">
-                                                    <i class="far fa-money-bill-alt fa-4x"></i>
+                                                    <i className="far fa-money-bill-alt fa-4x"></i>
                                                 </span>
                                                 <div className="btn-label">Add/Remove Cash</div>
                                             </div>
                                             <div className="col text-center labeled-font">
                                                 <span onClick={() => { console.log('test') }} className="clickable-font">
-                                                    <i class="fas fa-chart-pie fa-4x"></i>
+                                                    <i className="fas fa-chart-pie fa-4x"></i>
                                                 </span>
                                                 <div className="btn-label">Set Target Allocation</div>
                                             </div>
@@ -152,9 +152,9 @@ const Assets = () => {
                                 </div>
                             </div>
                             <div className="col-lg-7  col-md-12  stocks">
-                                <div className="box">
+                                <div className="box my-custom-scrollbar">
                                     {assets && <div>Cash Balance: {assets.cash}</div>}
-                                    <AssetCardList assets={assets} className="asset-table" />
+                                    <AssetTable assets={assets} className="asset-table" />
                                 </div>
                             </div>
                         </div>

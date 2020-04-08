@@ -109,3 +109,7 @@ body{
   background-color: #343E59;
   color: grey;
 }
+.my-custom-scrollbar {
+  position: relative;
+  overflow: auto;
+}

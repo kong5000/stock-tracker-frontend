@@ -1,7 +1,7 @@
 import React from 'react'
 
 
-const AssetCardList = (props) => {
+const AssetTable = (props) => {
     const assets = props.assets
     const getProfitPercentage = (stock) => {
         let ratio = stock.price / stock.costBasis
@@ -75,4 +75,4 @@ const AssetCardList = (props) => {
     )
 }
 
-export default AssetCardList
+export default AssetTable

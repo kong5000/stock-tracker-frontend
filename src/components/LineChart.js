@@ -1,6 +1,30 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import Chart from "react-apexcharts"
+import assetsService from '../services/asset'
+
 const LineChart = ({ stock }) => {
+    const [dataPoints, setDataPoints] = useState(null)
+
+    useEffect(() => {
+        console.log(stock)
+        if (stock) {
+            console.log("EFFECT")
+            assetsService.getChart(stock.ticker).then(
+                quotes => {
+                    const chart = quotes.chart
+                    const points = [chart.length]
+                    for (let i = 0; i < chart.length; i++) {
+                        const dataPoint = [chart[i].date, chart[i].close]
+                        points[i] = dataPoint
+                    }
+                    const series = [{
+                        data: points
+                    }]
+                    setDataPoints(series)
+                }
+            )
+        }
+    }, [stock])
 
     const generateLineChartOptions = (stock) => {
         return (
@@ -23,12 +47,7 @@ const LineChart = ({ stock }) => {
                     align: 'left'
                 },
                 xaxis: {
-                    categories: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep'],
-                    labels: {
-                        style: {
-                            fontSize: '1rem'
-                        }
-                    }
+                    type: 'datetime',
                 },
                 yaxis: {
                     labels: {
@@ -41,9 +60,9 @@ const LineChart = ({ stock }) => {
         )
     }
 
-    const testSeries = [{
-        name: "Desktops",
-        data: [10, 41, 35, 51, 49, 62, 69, 91, 148]
+    const emptySeries = [{
+        name: "6 Month",
+        data: [0, 0, 0, 0, 0, 0]
     }]
 
     return (
@@ -52,8 +71,9 @@ const LineChart = ({ stock }) => {
                 stock
                     ? generateLineChartOptions(stock)
                     : generateLineChartOptions('click a stock')}
-            series={testSeries}
-            type="line"
+            series={dataPoints
+                ? dataPoints
+                : emptySeries}
             type="area"
             height='100%'
         />

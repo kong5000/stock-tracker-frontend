@@ -30,10 +30,20 @@ const getAssets = async () => {
     await axios.post(baseUrl + '/update', null, config)
 
     const response = await axios.get(baseUrl, config)
+    
+    return response.data
+}
 
-    console.log(response.data)
+const getChart = async (symbol) => {
+    const config = {
+        headers: { Authorization: token}
+    }
+    const stock = {
+        ticker: symbol
+    }
+    const response = await axios.post(baseUrl + '/chart', stock, config)
     return response.data
 }
 
 
-export default {setToken, addStock, sellStock, getAssets}
+export default {setToken, addStock, sellStock, getAssets, getChart}
