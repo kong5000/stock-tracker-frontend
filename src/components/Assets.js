@@ -8,6 +8,7 @@ import OrderForm from './OrderForm'
 import AssetCardList from './AssetCardList'
 import { ReactComponent as Spinner } from '../Assets/spinner.svg'
 import Button from 'react-bootstrap/Button'
+import LineChart from './LineChart'
 
 const Assets = () => {
     const [selectedStock, setSelectedStock] = useState(null)
@@ -68,56 +69,6 @@ const Assets = () => {
             }
         )
     }
-    const testSeries = [{
-        name: "Desktops",
-        data: [10, 41, 35, 51, 49, 62, 69, 91, 148]
-    }]
-
-    const generateLineChartOptions = (symbol) => {
-        return (
-            {
-                chart: {
-                    height: 350,
-                    type: 'line',
-                    zoom: {
-                        enabled: false
-                    }
-                },
-                dataLabels: {
-                    enabled: false
-                },
-                stroke: {
-                    curve: 'straight'
-                },
-                title: {
-                    text: symbol,
-                    align: 'left'
-                },
-
-                // grid: {
-                //     row: {
-                //         colors: ['#f3f3f3', 'transparent'], // takes an array which will be repeated on columns
-                //         opacity: 0.5
-                //     },
-                // },
-                xaxis: {
-                    categories: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep'],
-                    labels: {
-                        style: {
-                            fontSize: '1rem'
-                        }
-                    }
-                },
-                yaxis: {
-                    labels: {
-                        style: {
-                            fontSize: '1rem'
-                        }
-                    }
-                }
-            }
-        )
-    }
 
     useEffect(() => {
         assetsService.getAssets().then(
@@ -161,15 +112,7 @@ const Assets = () => {
                             </div>
                             <div className="col-lg-7  col-md-12 line">
                                 <div class="box">
-                                    <Chart className="line-chart"
-                                        options={
-                                            selectedStock
-                                                ? generateLineChartOptions(selectedStock.ticker)
-                                                : generateLineChartOptions('click a stock')}
-                                        series={testSeries}
-                                        type="line"
-                                        height='100%'
-                                    />
+                                    <LineChart symbol={selectedStock}/>
                                 </div>
                             </div>
                         </div>

@@ -56,6 +56,7 @@ tr{
 #asset-page-container{
   /* max-width: none; */
   height: 100vh;
+  padding: 0 20px;
 }
 
 .box{
@@ -64,6 +65,7 @@ tr{
   outline: burlywood 3px;
   padding: 25px 35px 25px 30px;
   box-sizing: border-box;
+  background-color: #2B2D3E;
 }
 
 
@@ -95,10 +97,15 @@ tr{
   color: gray;
 }
 .clickable-font:hover{
-  color:black;
+  color:white;
 }
 
 
 .labeled-font{
   margin: 10px;
+}
+
+body{
+  background-color: #343E59;
+  color: grey;
 }

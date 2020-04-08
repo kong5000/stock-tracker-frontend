@@ -48,14 +48,14 @@ const AssetCardList = (props) => {
                         <td>
                             <div>
                                 <h6 className="my-0">{stock.ticker}</h6>
-                                <small className="text-muted">{stock.name}</small>
+                                <small >{stock.name}</small>
                             </div>
                         </td>
                         <td>
-                            <span className="text-muted">${(stock.price * stock.shares).toFixed(2)}</span>
+                            <span >${(stock.price * stock.shares).toFixed(2)}</span>
                         </td>
                         <td>
-                            <span className="text-muted">{getProfitPercentage(stock)}</span>
+                            <span >{getProfitPercentage(stock)}</span>
                         </td>
                         <td>
                             {stock.price}
