@@ -8,7 +8,7 @@ import Homepage from './components/Homepage'
 import NavigationBar from './components/NavigationBar'
 import assetService from './services/asset'
 import { useSelector, useDispatch } from 'react-redux'
-import { login } from './reducers/user'
+import { login, logout } from './reducers/user'
 import { BrowserRouter, Switch, Route } from 'react-router-dom'
 
 const App = () => {
@@ -25,10 +25,15 @@ const App = () => {
     }
   }, [dispatch])
 
+
+  const onLogout = () => {
+    dispatch(logout())
+  }
+
   return (
     <div>
       <BrowserRouter>
-        <NavigationBar user={user}/>
+        <NavigationBar user={user} onLogout={onLogout}/>
         <Switch>
           <Route exact path="/">
             <Homepage />
@@ -37,10 +42,10 @@ const App = () => {
             {user && <Assets />}
           </Route>
           <Route path='/login'>
-            <Login/>
+            <Login />
           </Route>
           <Route path='/signup'>
-            <Signup/>
+            <Signup />
           </Route>
         </Switch>
       </BrowserRouter>

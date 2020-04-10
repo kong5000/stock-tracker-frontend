@@ -2,15 +2,9 @@ import React from 'react'
 import Navbar from 'react-bootstrap/Navbar'
 import Nav from 'react-bootstrap/Nav'
 import { Link } from 'react-router-dom'
-import { useDispatch } from 'react-redux'
-import { logout } from '../reducers/user'
 import '../styles/NavigationBar.css'
 
-const NavigationBar = ({user}) => {
-    const dispatch = useDispatch()
-    const onLogout = () => {
-        dispatch(logout())
-    }
+const NavigationBar = ({user, onLogout}) => {
     return (
         <Navbar expand="lg" className='navigation-bar'>
             <Navbar.Brand>
