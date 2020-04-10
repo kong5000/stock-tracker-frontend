@@ -3,11 +3,11 @@ import { useSelector, useDispatch } from 'react-redux'
 import assetsService from '../services/asset'
 import { setAssets } from '../reducers/assets'
 import Chart from "react-apexcharts"
+import PieChart from './PieChart'
 import { Modal } from 'react-bootstrap'
 import OrderForm from './OrderForm'
 import AssetTable from './AssetTable'
 import { ReactComponent as Spinner } from '../Assets/spinner.svg'
-import Button from 'react-bootstrap/Button'
 import LineChart from './LineChart'
 
 const Assets = () => {
@@ -52,9 +52,14 @@ const Assets = () => {
                     type: 'pie',
                     events: {
                         dataPointSelection: chartClick
-                    }
+                    },
+                    foreColor: 'white'
                 },
                 labels,
+                legend: {
+                    show: true,
+                    fontSize: '20px'
+                },
                 responsive: [{
                     breakpoint: 40,
                     options: {
@@ -101,19 +106,10 @@ const Assets = () => {
                     <div >
                         <div className="row top-row">
                             <div className="col-lg-5 col-md-12">
-                                <div className="box">
-                                    <Chart className="pie-chart"
-                                        options={generateChartOptions()}
-                                        series={assets.stocks.map(stock => stock.shares * stock.price)}
-                                        type="pie"
-                                        height='100%'
-                                    />
-                                </div>
+                                <PieChart assets={assets} chartClick={chartClick} />
                             </div>
                             <div className="col-lg-7  col-md-12 line">
-                                <div className="box">
-                                    <LineChart stock={selectedStock}/>
-                                </div>
+                                <LineChart stock={selectedStock} />
                             </div>
                         </div>
                         <div className="row bottom-row">

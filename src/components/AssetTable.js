@@ -37,25 +37,21 @@ const AssetTable = (props) => {
                 <tr>
                     <th className="info-header">Symbol</th>
                     <th className="info-header">Value</th>
-                    <th className="info-header">Profit %</th>
-                    <th className="info-header">Latest Price</th>
+                    <th className="info-header">Price</th>
                     <th className="info-header">Shares</th>
                     <th className="info-header">Weight</th>
-                    <th className="info-header">Total Profit/Loss</th>
+                    <th className="info-header">Profit</th>
                 </tr>
                 {assets && assets.stocks.map(stock =>
                     <tr key={stock.ticker}>
                         <td>
                             <div>
-                                <h6 className="my-0">{stock.ticker}</h6>
-                                <small >{stock.name}</small>
+                                <div>{stock.ticker}</div>
+                                <small>{stock.name}</small>
                             </div>
                         </td>
                         <td>
                             <span >${(stock.price * stock.shares).toFixed(2)}</span>
-                        </td>
-                        <td>
-                            <span >{getProfitPercentage(stock)}</span>
                         </td>
                         <td>
                             {stock.price}

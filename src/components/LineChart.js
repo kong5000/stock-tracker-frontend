@@ -18,6 +18,7 @@ const LineChart = ({ stock }) => {
                         points[i] = dataPoint
                     }
                     const series = [{
+                        name: stock.ticker,
                         data: points
                     }]
                     setDataPoints(series)
@@ -34,7 +35,8 @@ const LineChart = ({ stock }) => {
                     type: 'area',
                     zoom: {
                         enabled: false
-                    }
+                    },
+                    foreColor: 'white'
                 },
                 dataLabels: {
                     enabled: false
@@ -65,19 +67,33 @@ const LineChart = ({ stock }) => {
         data: [0, 0, 0, 0, 0, 0]
     }]
 
+    if (stock) {
+        return (
+            <div className="box">
+                <Chart className="line-chart"
+                    options={
+                        stock
+                            ? generateLineChartOptions(stock)
+                            : generateLineChartOptions('click a stock')}
+                    series={dataPoints
+                        ? dataPoints
+                        : emptySeries}
+                    type="area"
+                    height='100%'
+                />
+            </div>
+        )
+    }
+
     return (
-        <Chart className="line-chart"
-            options={
-                stock
-                    ? generateLineChartOptions(stock)
-                    : generateLineChartOptions('click a stock')}
-            series={dataPoints
-                ? dataPoints
-                : emptySeries}
-            type="area"
-            height='100%'
-        />
+        <div className="placeholder-box box">
+            <div className="placeholder-text">
+                Select a stock from pie chart to chart
+            </div>
+        </div>
     )
+
+
 }
 
 export default LineChart

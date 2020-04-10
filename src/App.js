@@ -15,6 +15,7 @@ const App = () => {
   const user = useSelector(state => state.user)
   const dispatch = useDispatch()
 
+  console.log(user)
   useEffect(() => {
     const loggedInUser = window.localStorage.getItem('loggedInUser')
     if (loggedInUser) {
@@ -27,7 +28,7 @@ const App = () => {
   return (
     <div>
       <BrowserRouter>
-        <NavigationBar />
+        <NavigationBar user={user}/>
         <Switch>
           <Route exact path="/">
             <Homepage />

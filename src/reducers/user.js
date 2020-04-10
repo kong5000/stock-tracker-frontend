@@ -7,6 +7,7 @@ export const login = (user) => {
 }
 
 export const logout = () => {
+    window.localStorage.removeItem('loggedInUser')
     return({
         type: 'LOGOUT'
     })

@@ -32,7 +32,7 @@
 
 
 tr{
-  font-size: 1.25rem;
+  font-size: 1rem;
   border-bottom: 0.5px solid lightgrey;
 }
 .container{
@@ -41,6 +41,7 @@ tr{
 
 .line-chart{
   height: 50vh;
+  color: white;
 }
 .side-bar{
   box-shadow: 0px 1px 22px -12px #607D8B;
@@ -78,6 +79,7 @@ tr{
 
 .stock-table{
   width: 100%;
+  font-size: 0.6rem;
 }
 
 .profit-text{
@@ -107,9 +109,28 @@ tr{
 
 body{
   background-color: #343E59;
-  color: grey;
+  color: rgb(160, 160, 160);
 }
 .my-custom-scrollbar {
   position: relative;
   overflow: auto;
+}
+
+.apexcharts-tooltip {
+  background: #f3f3f3;
+  color: black;
+}
+
+
+.placeholder-text{
+  margin: 0;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.placeholder-box{
+  
+  text-align: center;
 }
