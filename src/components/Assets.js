@@ -2,13 +2,14 @@ import React, { useEffect, useState } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import assetsService from '../services/asset'
 import { setAssets } from '../reducers/assets'
-import Chart from "react-apexcharts"
 import PieChart from './PieChart'
 import { Modal } from 'react-bootstrap'
 import OrderForm from './OrderForm'
 import AssetTable from './AssetTable'
 import { ReactComponent as Spinner } from '../Assets/spinner.svg'
 import LineChart from './LineChart'
+import ButtonBox from './ButtonBox'
+
 
 const Assets = () => {
     const [selectedStock, setSelectedStock] = useState(null)
@@ -40,37 +41,6 @@ const Assets = () => {
         assetsService.getAssets().then(
             assets => {
                 dispatch(setAssets(assets))
-            }
-        )
-    }
-
-    const generateChartOptions = () => {
-        const labels = assets.stocks.map(stock => stock.ticker)
-        return (
-            {
-                chart: {
-                    type: 'pie',
-                    events: {
-                        dataPointSelection: chartClick
-                    },
-                    foreColor: 'white'
-                },
-                labels,
-                legend: {
-                    show: true,
-                    fontSize: '20px'
-                },
-                responsive: [{
-                    breakpoint: 40,
-                    options: {
-                        chart: {
-                            width: 200
-                        },
-                        legend: {
-                            position: 'bottom'
-                        }
-                    }
-                }]
             }
         )
     }
@@ -114,38 +84,7 @@ const Assets = () => {
                         </div>
                         <div className="row bottom-row">
                             <div className="col-lg-5  col-md-12 order">
-                                <div className="box">
-                                    <div className="button-holder">
-                                        <div className="row">
-                                            <div className="col text-center labeled-font">
-                                                <span onClick={onOrderClicked} className="clickable-font">
-                                                    <i className="fas fa-cash-register fa-4x"></i>
-                                                </span>
-                                                <div className="btn-label">Order</div>
-                                            </div>
-                                            <div className="col text-center labeled-font">
-                                                <span onClick={() => { console.log('test') }} className="clickable-font">
-                                                    <i className="fas fa-bell fa-4x"></i>
-                                                </span>
-                                                <div className="btn-label">Set Alerts</div>
-                                            </div>
-                                        </div>
-                                        <div className="row">
-                                            <div className="col text-center labeled-font">
-                                                <span onClick={() => { console.log('test') }} className="clickable-font">
-                                                    <i className="far fa-money-bill-alt fa-4x"></i>
-                                                </span>
-                                                <div className="btn-label">Add/Remove Cash</div>
-                                            </div>
-                                            <div className="col text-center labeled-font">
-                                                <span onClick={() => { console.log('test') }} className="clickable-font">
-                                                    <i className="fas fa-chart-pie fa-4x"></i>
-                                                </span>
-                                                <div className="btn-label">Set Target Allocation</div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
+                                <ButtonBox onOrderClicked={onOrderClicked} />
                             </div>
                             <div className="col-lg-7  col-md-12  stocks">
                                 <div className="box my-custom-scrollbar">
