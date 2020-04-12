@@ -45,5 +45,15 @@ const getChart = async (symbol) => {
     return response.data
 }
 
+const updateAllocations = async (stocks) =>{
+    const config = {
+        headers: { Authorization: token}
+    }
+    const stocksToUpdate = {
+        stocks
+    }
+    const response = await axios.post(baseUrl + '/allocation', stocksToUpdate, config)
+    return response.data
+}
 
-export default {setToken, addStock, sellStock, getAssets, getChart}
+export default {setToken, addStock, sellStock, getAssets, getChart, updateAllocations}

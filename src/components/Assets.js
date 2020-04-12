@@ -9,11 +9,12 @@ import AssetTable from './AssetTable'
 import { ReactComponent as Spinner } from '../Assets/spinner.svg'
 import LineChart from './LineChart'
 import ButtonBox from './ButtonBox'
-
+import AllocationForm from './AllocationForm'
 
 const Assets = () => {
     const [selectedStock, setSelectedStock] = useState(null)
     const [showOrderForm, setShowOrderForm] = useState(false)
+    const [showAllocationForm, setShowAllocationForm] = useState(false)
     const [pageIsLoading, setPageIsLoading] = useState(true)
 
     const assets = useSelector(state => state.assets)
@@ -23,6 +24,7 @@ const Assets = () => {
     const handleModalClose = () => {
         setShowOrderForm(false)
         setSelectedStock(false)
+        setShowAllocationForm(false)
     }
     const chartClick = (event, chartContext, config) => {
         setSelectedStock(assets.stocks[config.dataPointIndex])
@@ -30,6 +32,10 @@ const Assets = () => {
 
     const onOrderClicked = (event) => {
         setShowOrderForm(true)
+    }
+
+    const onAllocationClicked = (event) => {
+        setShowAllocationForm(true)
     }
 
     const onSubmissionFinished = () => {
@@ -72,6 +78,15 @@ const Assets = () => {
                     </Modal.Body>
                 </Modal>
 
+                <Modal
+                    show={showAllocationForm}
+                    onHide={handleModalClose}>
+                    <Modal.Body>
+                            <div>TESTTEST</div>
+                            <AllocationForm stocks={assets.stocks}/>
+                    </Modal.Body>
+                </Modal>
+
                 <div id="asset-page-container">
                     <div >
                         <div className="row top-row">
@@ -84,7 +99,7 @@ const Assets = () => {
                         </div>
                         <div className="row bottom-row">
                             <div className="col-lg-5  col-md-12 order">
-                                <ButtonBox onOrderClicked={onOrderClicked} />
+                                <ButtonBox onOrderClicked={onOrderClicked} onAllocationClicked={onAllocationClicked} />
                             </div>
                             <div className="col-lg-7  col-md-12  stocks">
                                 <div className="box my-custom-scrollbar">
@@ -95,7 +110,6 @@ const Assets = () => {
                         </div>
                     </div>
                 </div>
-
             </div>
         )
     }
