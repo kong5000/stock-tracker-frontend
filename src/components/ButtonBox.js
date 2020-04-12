@@ -1,8 +1,10 @@
 import React from 'react'
+import '../Assets/css/all.css'
 
 const ButtonBox = ({onOrderClicked, onAllocationClicked}) => {
     return (
         <div className="box">
+            <div className="testing">TEst</div>
             <div className="button-holder">
                 <div className="row">
                     <div onClick={onOrderClicked} className="col text-center labeled-font">
