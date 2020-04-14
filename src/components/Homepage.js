@@ -28,11 +28,10 @@ const Homepage = () => {
                 <h1 className="tagline">Watch Your Stocks Grow</h1>
                 <ul>
                     <li>
-                        BeanStock is a stock portfolio tracking app I built to practice web devlopment.
+                        BeanStock is an asset allocation app that will notify you 
+                        if your portfolio goes out of your target balance. 
                 </li>
-                    <li>
-                        Try making an account and add some stocks to your portfolio.
-                </li>
+
                     <li>
                         Built using React, Redux, Express , Boostrap and MongoDB
                 </li>

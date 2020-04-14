@@ -48,7 +48,7 @@ const Login = () => {
     }
 
     return (
-        <div className="container text-center">
+        <div className="text-center">
             <form className="form-signin" onSubmit={handleLogin}>
                 <i class="fas fa-seedling fa-7x icon"></i>
                 <h1 className="h3 mb-3 font-weight-normal">Log In</h1>

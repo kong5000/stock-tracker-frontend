@@ -46,7 +46,10 @@ const LineChart = ({ stock }) => {
                 },
                 title: {
                     text: stock.ticker,
-                    align: 'left'
+                    align: 'center',
+                    style: {
+                        fontSize: '30px'
+                    }
                 },
                 xaxis: {
                     type: 'datetime',

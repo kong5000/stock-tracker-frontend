@@ -8,7 +8,7 @@ const NavigationBar = ({user, onLogout}) => {
     return (
         <Navbar expand="lg" className='navigation-bar'>
             <Navbar.Brand>
-                <h1>BeanS
+                <h1 className="logo-text">BeanS
                 <i className="fas fa-seedling fa-1x icon"></i>
                     ock
             </h1>

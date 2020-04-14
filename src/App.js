@@ -39,7 +39,7 @@ const App = () => {
             <Homepage />
           </Route>
           <Route path="/portfolio">
-            {user && <Assets />}
+            {user && <Assets/>}
           </Route>
           <Route path='/login'>
             <Login />

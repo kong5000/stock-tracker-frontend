@@ -1,3 +1,14 @@
 .my-link{
     margin: 5px;
 }
+
+.navigation-bar{
+    height: 10vh;
+    padding-bottom: 0;
+}
+
+.logo-text{
+    padding: 0;
+    font-size: 1.75rem;
+    color: white;
+}

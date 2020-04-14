@@ -51,7 +51,7 @@ const Signup = () => {
   }
 
   return (
-    <div className="container text-center">
+    <div className="text-center">
       <form className="form-signin" onSubmit={handleSignup}>
         <i class="fas fa-seedling fa-7x icon"></i>
         <h1 className="h3 mb-3 font-weight-normal">Sign Up</h1>

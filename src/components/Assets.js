@@ -64,7 +64,7 @@ const Assets = () => {
         return <Spinner className="spinner" />
     } else {
         return (
-            <div>
+            <div className="assets-page">
                 <Modal
                     show={showOrderForm}
                     onHide={handleModalClose}>
@@ -82,7 +82,6 @@ const Assets = () => {
                     show={showAllocationForm}
                     onHide={handleModalClose}>
                     <Modal.Body>
-                            <div>TESTTEST</div>
                             <AllocationForm stocks={assets.stocks}/>
                     </Modal.Body>
                 </Modal>
