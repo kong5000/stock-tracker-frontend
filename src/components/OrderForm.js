@@ -9,7 +9,6 @@ const OrderForm = (props) => {
     const [assetName, setAssetName] = useState('')
     const [price, setPrice] = useState('')
     const [shares, setShares] = useState('')
-    const [targetWeighting, setTargetWeighting] = useState('')
     const [orderType, setOrderType] = useState('Buy')
     const [useCash, setUseCash] = useState(false)
 
@@ -51,7 +50,6 @@ const OrderForm = (props) => {
                 shares,
                 name: assetName,
                 useCash,
-                targetWeight: targetWeighting / 100
             }
             const updatedAssets = await assetsService.addStock(order)
             dispatch(setAssets(
@@ -93,10 +91,6 @@ const OrderForm = (props) => {
         setAssetName(event.target.value)
     }
 
-    const onTargetWeightingChange = (event) => {
-        setTargetWeighting(event.target.value)
-    }
-
     const onOrderTypeChange = () => {
         toggleUseCash()
         if (orderType === 'Buy') {
@@ -107,15 +101,15 @@ const OrderForm = (props) => {
     }
 
     return (
-        <div className="container">
+        <div className="form-container">
             <div className="py-3 text-center">
-                <i className="fas fa-seedling fa-5x icon"></i>
+                <i className="fas fa-seedling fa-3x icon"></i>
             </div>
             <div className="text-center">
-                <h4 className="mb-3">Order Info</h4>
+                <h4 className="mb-1">Order Info</h4>
                 <form onSubmit={onOrderSubmit}>
                     <div className="row">
-                        <div className="col-md-6 mb-3">
+                        <div className="col-md-6 mb-1 form-input-container">
                             <label htmlFor="symbol">Ticker Symbol</label>
                             <input
                                 type="text"
@@ -129,8 +123,8 @@ const OrderForm = (props) => {
                                 A symbol is required
                                 </div>
                         </div>
-                        <div className="col-md-6 mb-3">
-                            <label htmlFor="assetName">Asset name</label>
+                        <div className="col-md-6 mb-1 form-input-container">
+                            <label htmlFor="assetName">Name (optional)</label>
                             <input
                                 type="text"
                                 className="form-control"
@@ -145,7 +139,7 @@ const OrderForm = (props) => {
                         </div>
                     </div>
                     <div className="row">
-                        <div className="col-md-6 mb-3">
+                        <div className="col-md-6 mb-1 form-input-container">
                             <label htmlFor="shareQuantity">Share Quantity</label>
                             <input
                                 type="number"
@@ -160,7 +154,7 @@ const OrderForm = (props) => {
                                 Must buy or sell at least one share
                             </div>
                         </div>
-                        <div className="col-md-6 mb-3">
+                        <div className="col-md-6 mb-1 form-input-container">
                             <label htmlFor="price">Price</label>
                             <input
                                 type="number"
@@ -175,25 +169,12 @@ const OrderForm = (props) => {
                         </div>
                     </div>
                     <div className="row">
-                        <div className="col-md-6 mb-3">
-                            <label htmlFor="targetWeight">Target Portfolio Weight %</label>
-                            <input
-                                type="number"
-                                min="0"
-                                max="100"
-                                className="form-control"
-                                id="shareQuantity"
-                                value={targetWeighting}
-                                onChange={onTargetWeightingChange}
-                            />
+                        <div className="col-md-6 mb-1">
                             <div className="invalid-feedback">
                                 Must buy or sell at least one share
                             </div>
                         </div>
                     </div>
-
-                    <hr className="mb-4" />
-                    <h4 className="mb-3">Order Type</h4>
                     <div className="d-block my-3">
                         <div className="custom-control custom-radio">
                             <input
@@ -228,12 +209,10 @@ const OrderForm = (props) => {
                             checked={useCash}
                             onChange={toggleUseCash}
                         />
-                        <hr className="mb-4" />
                         {orderType === 'Buy' && <label className="custom-control-label" htmlFor="useCash">Use portfolio cash to purchase</label>}
                         {orderType === 'Sell' && <label className="custom-control-label" htmlFor="useCash">Add sell value to portfolio cash</label>}
                     </div>
-                    <hr className="mb-4" />
-                    <button className="btn btn-primary btn-lg btn-block" type="submit">Submit</button>
+                    <button className="btn btn-primary btn-lg btn-block submit-btn" type="submit">Submit</button>
                 </form>
             </div>
         </div>

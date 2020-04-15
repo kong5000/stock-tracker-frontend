@@ -22,19 +22,30 @@ const AllocationForm = ({ stocks }) => {
 
     const inputRefs = useRef([])
 
+    const formatStockWeight = (stock) => {
+        if(stock.targetWeight){
+            return Math.floor(stock.targetWeight * 100) + '%'
+        }
+        return 'Not Set'
+    }
+
+    if(stocks.length <= 0){
+        return (<div>No Stocks Available</div>)
+    }
+
     return (
         <div className="allocation-form">
             <form onSubmit={onSubmit}>
                 <h2>Set Allocations</h2>
                 <div className="row">
                     <div className="col-md-4">Symbol</div>
-                    <div className="col-md-4">Current</div>
+                    <div className="col-md-4">Current Target</div>
                     <div className="col-md-4">New (%)</div>
                 </div>
                 {stocks.map((stock, index) =>
                     <div className="row">
                         <div className="col-md-4">{stock.ticker}</div>
-                        <div className="col-md-4">{Math.floor(stock.targetWeight * 100) + '%'}</div>
+                        <div className="col-md-4">{formatStockWeight(stock)}</div>
                         <input
                             className="col-md-4"
                             ref={(inputElement) => inputRefs.current[index] = inputElement}

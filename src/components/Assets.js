@@ -80,8 +80,10 @@ const Assets = () => {
 
                 <Modal
                     show={showAllocationForm}
-                    onHide={handleModalClose}>
-                    <Modal.Body>
+                    onHide={handleModalClose}
+                    className="form-modal"
+                    >
+                    <Modal.Body   className="form-modal">
                             <AllocationForm stocks={assets.stocks}/>
                     </Modal.Body>
                 </Modal>
