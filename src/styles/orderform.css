@@ -35,3 +35,16 @@
   width: 50%;
   margin: 20px auto;
 }
+
+.company-name{
+  font-size: 0.75rem;
+}
+
+#symbol-auto-input{
+  width: 50% !important;
+}
+
+.symbol-input{
+  background-color: white;
+  width: 50%;
+}

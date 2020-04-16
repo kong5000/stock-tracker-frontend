@@ -1,8 +1,11 @@
 import React, { useState, useEffect } from 'react'
 import { useDispatch } from 'react-redux'
-import { setAssets } from '../reducers/assets'
-import assetsService from '../services/asset'
-import '../styles/orderform.css'
+import { setAssets } from '../../reducers/assets'
+import assetsService from '../../services/asset'
+import TextField from '@material-ui/core/TextField';
+import Autocomplete from '@material-ui/lab/Autocomplete';
+import '../../styles/orderform.css'
+import NYSE from './NYSE_SYMBOLS.json'
 
 const OrderForm = (props) => {
     const [symbol, setSymbol] = useState('')
@@ -11,6 +14,7 @@ const OrderForm = (props) => {
     const [shares, setShares] = useState('')
     const [orderType, setOrderType] = useState('Buy')
     const [useCash, setUseCash] = useState(false)
+    const [filteredSymbols, setFilteredSymbols] = useState([])
 
     const dispatch = useDispatch()
 
@@ -78,7 +82,11 @@ const OrderForm = (props) => {
     }
 
     const onSymbolChange = (event) => {
-        setSymbol(event.target.value)
+        const symbolString = event.target.value.toUpperCase()
+        setSymbol(symbolString)
+        if (symbolString.length > 1) {
+            setFilteredSymbols(NYSE.filter((stock) => stock.Symbol.includes(symbolString)))
+        }
     }
     const onSharesChange = (event) => {
         setShares(event.target.value)
@@ -111,13 +119,42 @@ const OrderForm = (props) => {
                     <div className="row">
                         <div className="col-md-6 mb-1 form-input-container">
                             <label htmlFor="symbol">Ticker Symbol</label>
-                            <input
-                                type="text"
-                                className="form-control"
-                                id="symbol"
-                                required
-                                value={symbol}
-                                onChange={onSymbolChange}
+                            <Autocomplete
+                       
+                                freeSolo
+                                className="symbol-input"
+                                options={filteredSymbols}
+                                autoHighlight
+                                getOptionLabel={(option) => {
+                                    if (option.Name) {
+                                        return (option.Symbol)
+                                    }
+                                    return symbol
+                                }}
+                                style={{ width: 200,
+                                         margin: "auto",
+                                         borderRadius: 5
+                                         }}
+                                renderOption={(option) => {
+                                    if (option.Name) {
+                                        return (
+                                            <div>
+                                                <div>{(option.Symbol)}</div>
+                                                <div className="company-name"> {option.Name}</div>
+                                            </div>
+                                        )
+                                    }
+                                    return (null)
+                                }}
+                                renderInput={(params) => (
+                                    <TextField
+                                        value={symbol}
+                                        onChange={onSymbolChange}
+                                        {...params}
+                                        variant="outlined"
+
+                                    />
+                                )}
                             />
                             <div className="invalid-feedback">
                                 A symbol is required
