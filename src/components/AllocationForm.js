@@ -1,64 +1,86 @@
-import React, { useRef } from 'react'
+import React, { useRef, useState } from 'react'
 import { useDispatch } from 'react-redux'
 import { setAssets } from '../reducers/assets'
 import assetsService from '../services/asset'
 import '../styles/orderform.css'
 import './StockWeightSelector'
+import Button from 'react-bootstrap/Button'
 
 const AllocationForm = ({ stocks }) => {
-    const onSubmit = (event) => {
+    const [showError, setShowError] = useState(null)
+
+    const dispatch = useDispatch()
+    
+    const onSubmit = async (event) => {
         event.preventDefault()
         const totalAllocation = inputRefs.current.reduce((total, input) => total + Number(input.value), 0)
         if (totalAllocation > 100) {
-            //Make an error message, total allocation is greater than 100%
+            setShowError(true)
+            setTimeout(() => {
+                setShowError(false)
+            }, 3000)
         } else {
-            const updatedStocks = [...stocks]
-            for (let i = 0; i < updatedStocks.length; i++) {
-                updatedStocks[i].targetWeight = inputRefs.current[i].value / 100
+            const stocksToUpdate = [...stocks]
+            for (let i = 0; i < stocksToUpdate.length; i++) {
+                stocksToUpdate[i].targetWeight = inputRefs.current[i].value / 100
             }
-            assetsService.updateAllocations(updatedStocks)
+            const update = await assetsService.updateAllocations(stocksToUpdate)
+            dispatch(setAssets(update))
         }
     }
 
     const inputRefs = useRef([])
 
     const formatStockWeight = (stock) => {
-        if(stock.targetWeight){
+        if (stock.targetWeight) {
             return Math.floor(stock.targetWeight * 100) + '%'
         }
         return 'Not Set'
     }
 
-    if(stocks.length <= 0){
+    if (stocks.length <= 0) {
         return (<div>No Stocks Available</div>)
     }
 
+    let errorMessage = <div className="error-message-invisible">Placeholder</div>
+    if(showError){
+        errorMessage = <div className="error-message">Total allocation must be less than 100%</div>
+    }
+
     return (
-        <div className="allocation-form">
-            <form onSubmit={onSubmit}>
-                <h2>Set Allocations</h2>
-                <div className="row">
-                    <div className="col-md-4">Symbol</div>
-                    <div className="col-md-4">Current Target</div>
-                    <div className="col-md-4">New (%)</div>
-                </div>
-                {stocks.map((stock, index) =>
-                    <div className="row">
-                        <div className="col-md-4">{stock.ticker}</div>
-                        <div className="col-md-4">{formatStockWeight(stock)}</div>
-                        <input
-                            className="col-md-4"
-                            ref={(inputElement) => inputRefs.current[index] = inputElement}
-                            type="number"
-                            min="0"
-                            max="100"
-                            defaultValue={stock.targetWeight * 100}
-                        />
-                    </div>
-                )}
-                <button type="submit">Update</button>
-            </form>
-        </div >
+        <form onSubmit={onSubmit} className="allocation-form">
+            <table className="allocation-form">
+                <tbody>
+                    <tr>
+                        <th className="info-header">Symbol</th>
+                        <th className="info-header">Current Target</th>
+                        <th className="info-header">New Target %</th>
+                    </tr>
+                    {stocks.map((stock, index) =>
+                        <tr className="">
+                            <td>
+                                <div className="">{stock.ticker}</div>
+                            </td>
+                            <td>
+                                <div className="">{formatStockWeight(stock)}</div>
+                            </td>
+                            <td>
+                                <input
+                                    className="allocation-input"
+                                    ref={(inputElement) => inputRefs.current[index] = inputElement}
+                                    type="number"
+                                    min="0"
+                                    max="100"
+                                    defaultValue={stock.targetWeight * 100}
+                                />
+                            </td>
+                        </tr>
+                    )}
+                </tbody>
+            </table>
+            {errorMessage}
+            <Button type="allocation-button">Update</Button>
+        </form>
     )
 }
 

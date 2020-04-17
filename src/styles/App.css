@@ -109,7 +109,7 @@ tr{
 
 body{
   background-color: #343E59;
-  color: rgb(160, 160, 160);
+  color: rgb(209, 209, 209);
 }
 .my-custom-scrollbar {
   position: relative;
@@ -147,4 +147,29 @@ body{
 
 .error-message-invisible{
   visibility: hidden;
+}
+
+.allocation-input{
+  width: 100px;
+}
+
+.allocation-form{
+  width: 100%;
+  background-color: #2B2D3E;
+  height: 100%;
+  text-align: center;
+  padding-bottom: 20px;
+}
+
+.allocation-form th {
+  text-align: center;
+}
+
+.allocation-form td{
+  text-align: center;
+  padding: 5px;
+}
+
+.allocation-button{
+  margin: 10px;
 }
