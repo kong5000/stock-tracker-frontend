@@ -15,6 +15,7 @@ const OrderForm = (props) => {
     const [orderType, setOrderType] = useState('Buy')
     const [useCash, setUseCash] = useState(false)
     const [filteredSymbols, setFilteredSymbols] = useState([])
+    const [showError, setShowError] = useState(false)
 
     const dispatch = useDispatch()
 
@@ -42,8 +43,6 @@ const OrderForm = (props) => {
         } else {
             await submitSellOrder()
         }
-        props.onSubmissionFinished()
-        clearForm()
     }
 
     const submitBuyOrder = async () => {
@@ -59,8 +58,14 @@ const OrderForm = (props) => {
             dispatch(setAssets(
                 updatedAssets
             ))
+            props.onSubmissionFinished()
+            clearForm()
         } catch (error) {
-            console.log(error.response.data.error)
+            console.log(error)
+            setShowError(true)
+            setTimeout(() => {
+                setShowError(false)
+            }, 3000)
         }
     }
 
@@ -76,8 +81,14 @@ const OrderForm = (props) => {
             dispatch(setAssets(
                 updatedPortfolio
             ))
-        } catch (exception) {
-            console.log(exception)
+            props.onSubmissionFinished()
+            clearForm()
+        } catch (error) {
+            console.log(error)
+            setShowError(true)
+            setTimeout(() => {
+                setShowError(false)
+            }, 3000)
         }
     }
 
@@ -108,6 +119,11 @@ const OrderForm = (props) => {
         }
     }
 
+    let errorMessage = <div className="error-message-invisible">Placeholder</div>
+    if(showError){
+        errorMessage = <div className="error-message">Insufficient funds</div>
+    }
+
     return (
         <div className="form-container">
             <div className="py-3 text-center">
@@ -120,7 +136,6 @@ const OrderForm = (props) => {
                         <div className="col-md-6 mb-1 form-input-container">
                             <label htmlFor="symbol">Ticker Symbol</label>
                             <Autocomplete
-                       
                                 freeSolo
                                 className="symbol-input"
                                 options={filteredSymbols}
@@ -152,7 +167,6 @@ const OrderForm = (props) => {
                                         onChange={onSymbolChange}
                                         {...params}
                                         variant="outlined"
-
                                     />
                                 )}
                             />
@@ -249,6 +263,7 @@ const OrderForm = (props) => {
                         {orderType === 'Buy' && <label className="custom-control-label" htmlFor="useCash">Use portfolio cash to purchase</label>}
                         {orderType === 'Sell' && <label className="custom-control-label" htmlFor="useCash">Add sell value to portfolio cash</label>}
                     </div>
+                    {errorMessage}
                     <button className="btn btn-primary btn-lg btn-block submit-btn" type="submit">Submit</button>
                 </form>
             </div>
