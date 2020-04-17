@@ -41,8 +41,13 @@ const getChart = async (symbol) => {
     const stock = {
         ticker: symbol
     }
-    const response = await axios.post(baseUrl + '/chart', stock, config)
-    return response.data
+    try{
+        const response = await axios.post(baseUrl + '/chart', stock, config)
+        return response.data
+    } catch(error){
+        return null
+    }
+
 }
 
 const updateAllocations = async (stocks) =>{

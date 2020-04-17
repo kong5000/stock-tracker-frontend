@@ -6,22 +6,26 @@ const LineChart = ({ stock }) => {
     const [dataPoints, setDataPoints] = useState(null)
 
     useEffect(() => {
-        console.log(stock)
+        console.log('EFFECT')
         if (stock) {
-            console.log("EFFECT")
+
             assetsService.getChart(stock.ticker).then(
                 quotes => {
-                    const chart = quotes.chart
-                    const points = [chart.length]
-                    for (let i = 0; i < chart.length; i++) {
-                        const dataPoint = [chart[i].date, chart[i].close]
-                        points[i] = dataPoint
+                    if (quotes) {
+                        const chart = quotes.chart
+                        const points = [chart.length]
+                        for (let i = 0; i < chart.length; i++) {
+                            const dataPoint = [chart[i].date, chart[i].close]
+                            points[i] = dataPoint
+                        }
+                        const series = [{
+                            name: stock.ticker,
+                            data: points
+                        }]
+                        setDataPoints(series)
+                    }else{
+                        setDataPoints(null)
                     }
-                    const series = [{
-                        name: stock.ticker,
-                        data: points
-                    }]
-                    setDataPoints(series)
                 }
             )
         }
@@ -71,21 +75,32 @@ const LineChart = ({ stock }) => {
     }]
 
     if (stock) {
+        if (dataPoints) {
+            return (
+                <div className="box">
+                    <Chart className="line-chart"
+                        options={
+                            stock
+                                ? generateLineChartOptions(stock)
+                                : generateLineChartOptions('click a stock')}
+                        series={dataPoints
+                            ? dataPoints
+                            : emptySeries}
+                        type="area"
+                        height='100%'
+                    />
+                </div>
+            )
+        }
         return (
-            <div className="box">
-                <Chart className="line-chart"
-                    options={
-                        stock
-                            ? generateLineChartOptions(stock)
-                            : generateLineChartOptions('click a stock')}
-                    series={dataPoints
-                        ? dataPoints
-                        : emptySeries}
-                    type="area"
-                    height='100%'
-                />
+            <div className="placeholder-box box">
+                <div className="placeholder-text">
+                    Could not retrieve asset price history
+            </div>
             </div>
         )
+
+
     }
 
     return (
