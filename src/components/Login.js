@@ -11,6 +11,8 @@ const Login = () => {
     const [username, setUsername] = useState('')
     const [password, setPassword] = useState('')
     const [rememberMe, setRememberMe] = useState(true)
+    const [showLoginError, setShowLoginError] = useState(false)
+    const [errorString, setErrorString] = useState('')
 
     let history = useHistory()
 
@@ -40,11 +42,21 @@ const Login = () => {
                 window.localStorage.setItem('loggedInUser', JSON.stringify(user))
             }
             history.push("/portfolio");
-        } catch (exception) {
-            console.log(exception)
+        } catch (error) {
+            setErrorString(error.response.data.error)
+            setShowLoginError(true)
+            setTimeout(() => {
+                console.log('timeout')
+                setShowLoginError(false)
+            }, 3000)
         }
         setUsername('')
         setPassword('')
+    }
+
+    let errorMessage = <div className="error-message-invisible">Placeholder</div>
+    if(showLoginError){
+        errorMessage = <div className="error-message">{errorString}</div>
     }
 
     return (
@@ -52,14 +64,15 @@ const Login = () => {
             <form className="form-signin" onSubmit={handleLogin}>
                 <i class="fas fa-seedling fa-7x icon"></i>
                 <h1 className="h3 mb-3 font-weight-normal">Log In</h1>
-                <input value={username} onChange={onUsernameChange} type="text" className="form-control" placeholder="Username" required autofocus />
-                <input value={password} onChange={onPasswordChange} type="password" className="form-control" placeholder="Password" required />
+                <input value={username} onChange={onUsernameChange} type="text" className="form-control mb-2" placeholder="Username" required autofocus />
+                <input value={password} onChange={onPasswordChange} type="password" className="form-control mb-2" placeholder="Password" required />
+                {errorMessage}
                 <div className="checkbox mb-3">
                     <label>
                         <input type="checkbox" value="remember-me" checked={rememberMe} onChange={handleCheckBoxChange}/> Remember me
                     </label>
                 </div>
-                <button className="btn btn-lg btn-primary btn-block" type="submit">Log In</button>
+                <button className="btn btn-lg btn-primary btn-block signup-btn" type="submit">Log In</button>
             </form>
         </div>
     )

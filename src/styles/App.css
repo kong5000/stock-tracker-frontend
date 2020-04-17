@@ -139,3 +139,12 @@ body{
   background-color: rgb(51, 66, 109);
   padding: 20px 10px 20px 10px;
 }
+
+.error-message{
+  color: red;
+  visibility: visible;
+}
+
+.error-message-invisible{
+  visibility: hidden;
+}

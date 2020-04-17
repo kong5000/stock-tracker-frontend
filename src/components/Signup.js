@@ -10,6 +10,8 @@ const Signup = () => {
   const [username, setUsername] = useState('')
   const [password, setPassword] = useState('')
   const [rememberMe, setRememberMe] = useState(true)
+  const [showLoginError, setShowLoginError] = useState(false)
+  const [errorString, setErrorString] = useState('')
 
   const dispatch = useDispatch()
 
@@ -43,11 +45,22 @@ const Signup = () => {
         window.localStorage.setItem('loggedInUser', JSON.stringify(loggednInUser))
       }
       history.push('/portfolio')
-    } catch (exception) {
+    } catch (error) {
+      const errorResponse = error.response.data.error
+      setErrorString(errorResponse)
 
+      setShowLoginError(true)
+      setTimeout(() => {
+        setShowLoginError(false)
+      }, 3000)
     }
     setUsername('')
     setPassword('')
+  }
+
+  let errorMessage = <div className="error-message-invisible">placeholder</div>
+  if (showLoginError) {
+    errorMessage = <div className="error-message">{errorString}</div>
   }
 
   return (
@@ -55,14 +68,15 @@ const Signup = () => {
       <form className="form-signin" onSubmit={handleSignup}>
         <i class="fas fa-seedling fa-7x icon"></i>
         <h1 className="h3 mb-3 font-weight-normal">Sign Up</h1>
-        <input value={username} onChange={onUsernameChange} type="text" className="form-control" placeholder="Username" required autofocus />
-        <input value={password} onChange={onPasswordChange} type="password" className="form-control" placeholder="Password" required />
+        <input value={username} onChange={onUsernameChange} type="text" className="form-control mb-2" placeholder="Username" required autofocus />
+        <input value={password} onChange={onPasswordChange} type="password" className="form-control mb-2" placeholder="Password" required />
+        {errorMessage}
         <div className="checkbox mb-3">
           <label>
             <input type="checkbox" value="remember-me" checked={rememberMe} onChange={handleCheckBoxChange} /> Remember me
           </label>
         </div>
-        <button className="btn btn-lg btn-primary btn-block" type="submit">Sign Up</button>
+        <button className="btn btn-lg btn-primary btn-block signup-btn" type="submit">Sign Up</button>
       </form>
     </div>
   )
