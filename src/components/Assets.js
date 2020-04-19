@@ -10,10 +10,12 @@ import { ReactComponent as Spinner } from '../Assets/spinner.svg'
 import LineChart from './LineChart'
 import ButtonBox from './ButtonBox'
 import AllocationForm from './AllocationForm'
+import CashForm from './CashForm'
 
 const Assets = () => {
     const [selectedStock, setSelectedStock] = useState(null)
     const [showOrderForm, setShowOrderForm] = useState(false)
+    const [showCashForm, setShowCashForm] = useState(false)
     const [showAllocationForm, setShowAllocationForm] = useState(false)
     const [pageIsLoading, setPageIsLoading] = useState(true)
 
@@ -25,6 +27,7 @@ const Assets = () => {
         setShowOrderForm(false)
         setSelectedStock(false)
         setShowAllocationForm(false)
+        setShowCashForm(false)
     }
     const chartClick = (event, chartContext, config) => {
         setSelectedStock(assets.stocks[config.dataPointIndex])
@@ -38,9 +41,16 @@ const Assets = () => {
         setShowAllocationForm(true)
     }
 
+    const onCashClicked = (event) => {
+        console.log('Cash Clicked')
+        setShowCashForm(true)
+    }
+
     const onSubmissionFinished = () => {
         updateAssets()
         setShowOrderForm(false)
+        setShowAllocationForm(false)
+        setShowCashForm(false)
     }
 
     const updateAssets = () => {
@@ -82,11 +92,31 @@ const Assets = () => {
                     show={showAllocationForm}
                     onHide={handleModalClose}
                     className="form-modal"
-                    >
-                    <Modal.Body   className="form-modal">
-                            <AllocationForm stocks={assets.stocks}/>
+
+                >
+                    <Modal.Body className="form-modal">
+                        <AllocationForm
+                            stocks={assets.stocks}
+                            onSubmissionFinished={onSubmissionFinished}
+                        />
                     </Modal.Body>
                 </Modal>
+
+                <Modal
+                    show={showCashForm}
+                    onHide={handleModalClose}
+                    className="form-modal"
+                    onSubmissionFinished={onSubmissionFinished}
+                >
+                    <Modal.Body className="form-modal">
+                        <CashForm
+                            currentCash={assets.cash}
+                            onSubmissionFinished={onSubmissionFinished}
+                        />
+                    </Modal.Body>
+                </Modal>
+
+
 
                 <div id="asset-page-container">
                     <div >
@@ -100,7 +130,11 @@ const Assets = () => {
                         </div>
                         <div className="row bottom-row">
                             <div className="col-lg-5  col-md-12 order">
-                                <ButtonBox onOrderClicked={onOrderClicked} onAllocationClicked={onAllocationClicked} />
+                                <ButtonBox
+                                    onOrderClicked={onOrderClicked}
+                                    onAllocationClicked={onAllocationClicked}
+                                    onCashClicked={onCashClicked}
+                                />
                             </div>
                             <div className="col-lg-7  col-md-12  stocks">
                                 <div className="box my-custom-scrollbar">

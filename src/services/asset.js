@@ -47,7 +47,17 @@ const getChart = async (symbol) => {
     } catch(error){
         return null
     }
+}
 
+const updateCash = async (cash) => {
+    const config = {
+        headers: { Authorization: token}
+    }
+    const body = {
+        cash
+    }
+    const response = await axios.post(baseUrl + '/cash', body, config)
+    return response.data
 }
 
 const updateAllocations = async (stocks) =>{
@@ -61,4 +71,4 @@ const updateAllocations = async (stocks) =>{
     return response.data
 }
 
-export default {setToken, addStock, sellStock, getAssets, getChart, updateAllocations}
+export default {setToken, addStock, sellStock, getAssets, getChart, updateAllocations, updateCash}

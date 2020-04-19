@@ -67,6 +67,7 @@ tr{
   padding: 25px 35px 25px 30px;
   box-sizing: border-box;
   background-color: #2B2D3E;
+  border-radius: 10px;
 }
 
 
@@ -154,7 +155,7 @@ body{
 }
 
 .allocation-form{
-  width: 100%;
+  width: 500px;
   background-color: #2B2D3E;
   height: 100%;
   text-align: center;
@@ -172,4 +173,24 @@ body{
 
 .allocation-button{
   margin: 10px;
+}
+
+.modal-dialog {
+  position: absolute;
+  top: 45%;
+  left: 50%;
+  transform: translate(-50%, -50%) !important;
+  padding: 20px;
+}
+
+.form-container{
+  background-color: #2B2D3E;
+  height: 100%;
+  padding: 20px;
+}
+
+.tolerance-row{
+  background-color: rgb(51, 66, 109);
+  font-weight: bolder;
+  color: white;
 }

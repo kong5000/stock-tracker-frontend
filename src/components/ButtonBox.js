@@ -2,7 +2,7 @@ import React from 'react'
 import '../Assets/css/all.css'
 import FontButton from './FontButton'
 
-const ButtonBox = ({onOrderClicked, onAllocationClicked}) => {
+const ButtonBox = ({onOrderClicked, onAllocationClicked, onCashClicked}) => {
     return (
         <div className="box">
             <div className="button-holder">
@@ -11,7 +11,7 @@ const ButtonBox = ({onOrderClicked, onAllocationClicked}) => {
                     <FontButton type="bell" onClick={null}/>
                 </div>
                 <div className="row">
-                    <FontButton type="cash" onClick={null}/>
+                    <FontButton type="cash" onClick={onCashClicked}/>
                     <FontButton type="pie" onClick={onAllocationClicked}/>
                 </div>
             </div>

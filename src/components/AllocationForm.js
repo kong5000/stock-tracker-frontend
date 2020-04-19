@@ -6,11 +6,14 @@ import '../styles/orderform.css'
 import './StockWeightSelector'
 import Button from 'react-bootstrap/Button'
 
-const AllocationForm = ({ stocks }) => {
+const AllocationForm = ({ stocks, onSubmissionFinished }) => {
     const [showError, setShowError] = useState(null)
+    const [tolerance, setTolerance] = useState(5)
+
+    const inputRefs = useRef([])
 
     const dispatch = useDispatch()
-    
+
     const onSubmit = async (event) => {
         event.preventDefault()
         const totalAllocation = inputRefs.current.reduce((total, input) => total + Number(input.value), 0)
@@ -26,10 +29,13 @@ const AllocationForm = ({ stocks }) => {
             }
             const update = await assetsService.updateAllocations(stocksToUpdate)
             dispatch(setAssets(update))
+            onSubmissionFinished()
         }
     }
 
-    const inputRefs = useRef([])
+    const onToleranceChange = (event) => {
+        setTolerance(event.target.value)
+    }
 
     const formatStockWeight = (stock) => {
         if (stock.targetWeight) {
@@ -38,49 +44,73 @@ const AllocationForm = ({ stocks }) => {
         return 'Not Set'
     }
 
-    if (stocks.length <= 0) {
-        return (<div>No Stocks Available</div>)
-    }
-
     let errorMessage = <div className="error-message-invisible">Placeholder</div>
-    if(showError){
+    if (showError) {
         errorMessage = <div className="error-message">Total allocation must be less than 100%</div>
     }
 
+
     return (
-        <form onSubmit={onSubmit} className="allocation-form">
-            <table className="allocation-form">
-                <tbody>
-                    <tr>
-                        <th className="info-header">Symbol</th>
-                        <th className="info-header">Current Target</th>
-                        <th className="info-header">New Target %</th>
-                    </tr>
-                    {stocks.map((stock, index) =>
-                        <tr className="">
+        <div className="form-container">
+            <div className="py-3 text-center">
+                <i className="fas fa-seedling fa-3x icon"></i>
+                <h4 className="mb-1">Asset Allocation</h4>
+            </div>
+
+            <form onSubmit={onSubmit} className="allocation-form">
+                <table className="allocation-form">
+                    <tbody>
+                        <tr>
+                            <th className="info-header">Symbol</th>
+                            <th className="info-header">Target</th>
+                            <th className="info-header">New Target</th>
+                        </tr>
+                        {stocks.map((stock, index) =>
+                            <tr className="">
+                                <td>
+                                    <div className="">{stock.ticker}</div>
+                                </td>
+                                <td>
+                                    <div className="">{formatStockWeight(stock)}</div>
+                                </td>
+                                <td>
+                                    <input
+                                        className="allocation-input"
+                                        ref={(inputElement) => inputRefs.current[index] = inputElement}
+                                        type="number"
+                                        min="0"
+                                        max="100"
+                                        defaultValue={stock.targetWeight * 100}
+                                    />
+                                </td>
+                            </tr>
+                        )}
+                        <tr className="tolerance-row">
                             <td>
-                                <div className="">{stock.ticker}</div>
+                                <div className="">TOLERANCE</div>
                             </td>
                             <td>
-                                <div className="">{formatStockWeight(stock)}</div>
+                                <div className="">X%</div>
                             </td>
                             <td>
                                 <input
                                     className="allocation-input"
-                                    ref={(inputElement) => inputRefs.current[index] = inputElement}
                                     type="number"
                                     min="0"
                                     max="100"
-                                    defaultValue={stock.targetWeight * 100}
+                                    value={tolerance}
+                                    onChange={onToleranceChange}
                                 />
                             </td>
                         </tr>
-                    )}
-                </tbody>
-            </table>
-            {errorMessage}
-            <Button type="allocation-button">Update</Button>
-        </form>
+                    </tbody>
+                </table>
+
+
+                {errorMessage}
+                <Button type="allocation-button">Update</Button>
+            </form>
+        </div>
     )
 }
 
