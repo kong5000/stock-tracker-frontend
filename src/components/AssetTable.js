@@ -26,12 +26,6 @@ const AssetTable = ({tableRowClicked, assets}) => {
     const getStockWeight = (stock) => {
         const weightString = `${(stock.currentWeight * 100).toFixed(1)}%`
         return <div>{weightString}</div>
-        // if (stock.targetWeight) {
-        //     if (Math.abs(stock.currentWeight - stock.targetWeight) > threshold) {
-        //         return <div className="loss-text">{weightString}</div>
-        //     }
-        // }
-        // return <div className="profit-text">{weightString}</div>
     }
 
     const getTarget = (stock) => {
@@ -53,16 +47,18 @@ const AssetTable = ({tableRowClicked, assets}) => {
     }
 
     const outOfBalance = (stock) => {
-        const error = ((stock.targetWeight - stock.currentWeight) * 100).toFixed(1)
-        if (Math.abs(error) > Number(threshold)) {
-            return true
+        if(stock.targetWeight){
+            const error = ((stock.targetWeight - stock.currentWeight) * 100).toFixed(1)
+            if (Math.abs(error) > Number(threshold)) {
+                return true
+            }
         }
         return false
     }
 
     return (
         <div>
-            <div>Cash Balance: ${assets.cash}  threshold: +-{settings.balanceThreshold}%</div>
+            <div>Cash Balance: ${assets.cash}</div>
             <table className="stock-table">
                 <tbody>
                     <tr>
@@ -94,7 +90,6 @@ const AssetTable = ({tableRowClicked, assets}) => {
                             </tr>
                         )
                     }
-
                     )}
                 </tbody>
             </table>

@@ -14,7 +14,7 @@ import AllocationForm from './AllocationForm'
 import CashForm from './CashForm'
 
 const Assets = () => {
-    const [selectedStock, setSelectedStock] = useState({ ticker: 'AAPL' })
+    const [selectedStock, setSelectedStock] = useState(null)
     const [showOrderForm, setShowOrderForm] = useState(false)
     const [showCashForm, setShowCashForm] = useState(false)
     const [showAllocationForm, setShowAllocationForm] = useState(false)
@@ -26,7 +26,6 @@ const Assets = () => {
 
     const handleModalClose = () => {
         setShowOrderForm(false)
-        setSelectedStock(false)
         setShowAllocationForm(false)
         setShowCashForm(false)
     }

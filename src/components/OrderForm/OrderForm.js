@@ -8,7 +8,7 @@ import '../../styles/orderform.css'
 import NYSE from './NYSE_SYMBOLS.json'
 
 const OrderForm = (props) => {
-    const [symbol, setSymbol] = useState(props.selectedStock.ticker)
+    const [symbol, setSymbol] = useState('')
     const [assetName, setAssetName] = useState('')
     const [price, setPrice] = useState('')
     const [shares, setShares] = useState('')
@@ -18,6 +18,12 @@ const OrderForm = (props) => {
     const [showError, setShowError] = useState(false)
 
     const dispatch = useDispatch()
+
+    useEffect(() =>{
+        if(props.selectedStock){
+            setSymbol(props.selectedStock.ticker)
+        }
+    },[props.selectedStock])
 
     const clearForm = () => {
         setPrice(0)
@@ -120,6 +126,7 @@ const OrderForm = (props) => {
 
     return (
         <div className="form-container">
+            <i class="fas fa-times-circle close-btn" onClick={props.onSubmissionFinished}></i>
             <div className="py-3 text-center">
                 <i className="fas fa-seedling fa-3x icon"></i>
             </div>
@@ -179,6 +186,7 @@ const OrderForm = (props) => {
                                 id="assetName"
                                 value={assetName}
                                 onChange={onAssetNameChange}
+                                maxLength= '10'
                             />
                             <div className="invalid-feedback">
                                 A an asset name is required

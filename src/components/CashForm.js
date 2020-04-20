@@ -44,12 +44,13 @@ const CashForm = ({ currentCash, onSubmissionFinished }) => {
     }
 
     let errorMessage = <div className="error-message-invisible mb-2">Placeholder</div>
-    if(showError){
+    if (showError) {
         errorMessage = <div className="error-message mb-2">Insufficient funds</div>
     }
 
     return (
         <form onSubmit={onSubmit} className="form-container text-center">
+            <i class="fas fa-times-circle close-btn" onClick={onSubmissionFinished}></i>
             <div className="py-2 text-center">
                 <i className="fas fa-seedling fa-3x icon"></i>
             </div>

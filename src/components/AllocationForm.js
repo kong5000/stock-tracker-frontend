@@ -57,6 +57,7 @@ const AllocationForm = ({ stocks, onSubmissionFinished }) => {
 
     return (
         <div className="form-container">
+            <i class="fas fa-times-circle close-btn" onClick={onSubmissionFinished}></i>
             <div className="py-3 text-center">
                 <i className="fas fa-seedling fa-3x icon"></i>
                 <h4 className="mb-1">Asset Allocation</h4>
@@ -93,7 +94,7 @@ const AllocationForm = ({ stocks, onSubmissionFinished }) => {
                     </tbody>
 
                 </table>
-                <div className="tolerance-row ">
+                <div className>
                     <h4>Tolerance</h4>
                     <div clasName="row">
                         <div className="col-12">

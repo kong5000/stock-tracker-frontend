@@ -132,7 +132,6 @@ body{
 }
 
 .placeholder-box{
-  
   text-align: center;
 }
 
@@ -202,3 +201,16 @@ body{
 }
 
 .stock-table tr:hover {background-color:lightgray; color:black; cursor: pointer;}
+
+.close-btn{
+  font-weight: bolder;
+  font-size: 40px;
+  position: absolute;
+  right:5%;
+  top:3%;
+}
+
+.close-btn:hover {
+  color: white;
+  cursor: pointer;
+}
