@@ -90,28 +90,29 @@ const AllocationForm = ({ stocks, onSubmissionFinished }) => {
                                 </td>
                             </tr>
                         )}
-                        <tr className="tolerance-row">
-                            <td>
-                                <div className="">TOLERANCE</div>
-                            </td>
-                            <td>
-                                <div className="">+- {threshold}%</div>
-                            </td>
-                            <td>
-                                <input
-                                    className="allocation-input"
-                                    type="number"
-                                    min="0"
-                                    max="100"
-                                    value={tolerance}
-                                    onChange={onToleranceChange}
-                                />
-                            </td>
-                        </tr>
                     </tbody>
+
                 </table>
+                <div className="tolerance-row ">
+                    <h4>Tolerance</h4>
+                    <div clasName="row">
+                        <div className="col-12">
+                            <span>+-{threshold}%  </span>
+                        </div>
+                        <div className="col-12">
+                            <input
+                                className="allocation-input"
+                                type="number"
+                                min="0"
+                                max="100"
+                                value={tolerance}
+                                onChange={onToleranceChange}
+                            />
+                        </div>
+                    </div>
 
 
+                </div>
                 {errorMessage}
                 <Button type="allocation-button">Update</Button>
             </form>
