@@ -1,6 +1,7 @@
 import React, { useRef, useState } from 'react'
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { setAssets } from '../reducers/assets'
+import { setSettings } from '../reducers/settings'
 import assetsService from '../services/asset'
 import '../styles/orderform.css'
 import './StockWeightSelector'
@@ -8,7 +9,8 @@ import Button from 'react-bootstrap/Button'
 
 const AllocationForm = ({ stocks, onSubmissionFinished }) => {
     const [showError, setShowError] = useState(null)
-    const [tolerance, setTolerance] = useState(5)
+    const threshold = useSelector(state => state.settings.balanceThreshold)
+    const [tolerance, setTolerance] = useState(threshold)
 
     const inputRefs = useRef([])
 
@@ -27,8 +29,12 @@ const AllocationForm = ({ stocks, onSubmissionFinished }) => {
             for (let i = 0; i < stocksToUpdate.length; i++) {
                 stocksToUpdate[i].targetWeight = inputRefs.current[i].value / 100
             }
+            const newSettings = await assetsService.updateThreshold(tolerance)
+            dispatch(setSettings(newSettings))
+
             const update = await assetsService.updateAllocations(stocksToUpdate)
             dispatch(setAssets(update))
+
             onSubmissionFinished()
         }
     }
@@ -48,7 +54,6 @@ const AllocationForm = ({ stocks, onSubmissionFinished }) => {
     if (showError) {
         errorMessage = <div className="error-message">Total allocation must be less than 100%</div>
     }
-
 
     return (
         <div className="form-container">
@@ -90,7 +95,7 @@ const AllocationForm = ({ stocks, onSubmissionFinished }) => {
                                 <div className="">TOLERANCE</div>
                             </td>
                             <td>
-                                <div className="">X%</div>
+                                <div className="">+- {threshold}%</div>
                             </td>
                             <td>
                                 <input

@@ -1,9 +1,8 @@
-import React, { useRef, useState } from 'react'
+import React, { useState } from 'react'
 import { useDispatch } from 'react-redux'
 import { setAssets } from '../reducers/assets'
 import assetsService from '../services/asset'
 import '../styles/orderform.css'
-import './StockWeightSelector'
 import Button from 'react-bootstrap/Button'
 
 const CashForm = ({ currentCash, onSubmissionFinished }) => {
@@ -11,6 +10,7 @@ const CashForm = ({ currentCash, onSubmissionFinished }) => {
 
     const [orderType, setOrderType] = useState('deposit')
     const [cash, setCash] = useState(0)
+    const [showError, setShowError] = useState(false)
 
     const onSubmit = async (event) => {
         event.preventDefault()
@@ -23,9 +23,12 @@ const CashForm = ({ currentCash, onSubmissionFinished }) => {
             dispatch(setAssets(updatedUserAssets))
             onSubmissionFinished()
         } catch (error) {
+            setShowError(true)
+            setTimeout(() => {
+                setShowError(false)
+            }, 3000)
             console.log(error)
         }
-
     }
 
     const onOrderTypeChange = () => {
@@ -38,6 +41,11 @@ const CashForm = ({ currentCash, onSubmissionFinished }) => {
 
     const onCashChange = (event) => {
         setCash(event.target.value)
+    }
+
+    let errorMessage = <div className="error-message-invisible mb-2">Placeholder</div>
+    if(showError){
+        errorMessage = <div className="error-message mb-2">Insufficient funds</div>
     }
 
     return (
@@ -83,6 +91,7 @@ const CashForm = ({ currentCash, onSubmissionFinished }) => {
                     <label className="custom-control-label" htmlFor="sellOrder">Withdraw</label>
                 </div>
             </div>
+            {errorMessage}
             <Button type="allocation-button submit">Transact</Button>
         </form>
     )

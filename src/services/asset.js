@@ -71,4 +71,25 @@ const updateAllocations = async (stocks) =>{
     return response.data
 }
 
-export default {setToken, addStock, sellStock, getAssets, getChart, updateAllocations, updateCash}
+const getSettings = async () =>{
+    const config = {
+        headers: { Authorization: token}
+    }
+    const response =  await axios.get('http://localhost:3003/api/users/settings', config)
+    console.log(response.data)
+    return response.data
+}
+
+const updateThreshold = async threshold =>{
+    const config = {
+        headers: { Authorization: token }
+    }
+    const newThreshold = {
+        balanceThreshold: threshold
+    }
+    const response =  await axios.post('http://localhost:3003/api/users/threshold', newThreshold, config)
+    return response.data
+}
+
+
+export default {setToken, addStock, sellStock, getAssets, getChart, updateAllocations, updateCash, updateThreshold, getSettings}

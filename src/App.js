@@ -9,6 +9,7 @@ import NavigationBar from './components/NavigationBar'
 import assetService from './services/asset'
 import { useSelector, useDispatch } from 'react-redux'
 import { login, logout } from './reducers/user'
+import { setSettings } from './reducers/settings'
 import { BrowserRouter, Switch, Route } from 'react-router-dom'
 
 const App = () => {
@@ -21,6 +22,7 @@ const App = () => {
     if (loggedInUser) {
       const userObj = JSON.parse(loggedInUser)
       dispatch(login(userObj))
+      dispatch(setSettings(userObj.settings))
       assetService.setToken(userObj.token)
     }
   }, [dispatch])

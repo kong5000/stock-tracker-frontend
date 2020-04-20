@@ -11,8 +11,5 @@ const login = async credentials => {
     return response.data
 }
 
-const test = () => {
-    console.log('TEST')
-}
 
-export default { signup, test, login }
+export default { signup, login }

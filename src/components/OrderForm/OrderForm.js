@@ -175,12 +175,11 @@ const OrderForm = (props) => {
                                 </div>
                         </div>
                         <div className="col-md-6 mb-1 form-input-container">
-                            <label htmlFor="assetName">Name</label>
+                            <label htmlFor="assetName">Name (optional)</label>
                             <input
                                 type="text"
                                 className="form-control"
                                 id="assetName"
-                                required
                                 value={assetName}
                                 onChange={onAssetNameChange}
                             />

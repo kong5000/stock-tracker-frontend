@@ -5,10 +5,12 @@ import { createStore, combineReducers } from 'redux'
 import {Provider} from 'react-redux'
 import userReducer from './reducers/user'
 import assetsReducer from './reducers/assets'
+import settingsReducer from './reducers/settings'
 
 const reducer = combineReducers({
     user: userReducer,
-    assets: assetsReducer
+    assets: assetsReducer,
+    settings: settingsReducer
 })
 const store = createStore(reducer)
 

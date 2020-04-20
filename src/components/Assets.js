@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import assetsService from '../services/asset'
 import { setAssets } from '../reducers/assets'
+import { setSettings } from '../reducers/settings'
 import PieChart from './PieChart'
 import { Modal } from 'react-bootstrap'
 import OrderForm from './OrderForm/OrderForm'
@@ -68,6 +69,11 @@ const Assets = () => {
                 setPageIsLoading(false)
             }
         )
+        assetsService.getSettings().then(
+            settings => {
+                dispatch(setSettings(settings))
+            }
+        )
     }, [dispatch])
 
     if (pageIsLoading) {
@@ -98,6 +104,7 @@ const Assets = () => {
                         <AllocationForm
                             stocks={assets.stocks}
                             onSubmissionFinished={onSubmissionFinished}
+
                         />
                     </Modal.Body>
                 </Modal>
@@ -138,8 +145,10 @@ const Assets = () => {
                             </div>
                             <div className="col-lg-7  col-md-12  stocks">
                                 <div className="box my-custom-scrollbar">
-                                    {assets && <div>Cash Balance: {assets.cash}</div>}
-                                    <AssetTable assets={assets} className="asset-table" />
+                                    <AssetTable
+                                        assets={assets}
+                                        className="asset-table"
+                                       />
                                 </div>
                             </div>
                         </div>
