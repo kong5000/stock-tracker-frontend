@@ -8,7 +8,7 @@ import '../../styles/orderform.css'
 import NYSE from './NYSE_SYMBOLS.json'
 
 const OrderForm = (props) => {
-    const [symbol, setSymbol] = useState('')
+    const [symbol, setSymbol] = useState(props.selectedStock.ticker)
     const [assetName, setAssetName] = useState('')
     const [price, setPrice] = useState('')
     const [shares, setShares] = useState('')
@@ -18,12 +18,6 @@ const OrderForm = (props) => {
     const [showError, setShowError] = useState(false)
 
     const dispatch = useDispatch()
-
-    useEffect(() => {
-        if (props.symbol) {
-            setSymbol(props.symbol)
-        }
-    }, [props.symbol])
 
     const clearForm = () => {
         setPrice(0)
@@ -120,7 +114,7 @@ const OrderForm = (props) => {
     }
 
     let errorMessage = <div className="error-message-invisible">Placeholder</div>
-    if(showError){
+    if (showError) {
         errorMessage = <div className="error-message">Insufficient funds</div>
     }
 
@@ -136,6 +130,7 @@ const OrderForm = (props) => {
                         <div className="col-md-6 mb-1 form-input-container">
                             <label htmlFor="symbol">Ticker Symbol</label>
                             <Autocomplete
+                            value={symbol}
                                 freeSolo
                                 className="symbol-input"
                                 options={filteredSymbols}
@@ -146,10 +141,11 @@ const OrderForm = (props) => {
                                     }
                                     return symbol
                                 }}
-                                style={{ width: 200,
-                                         margin: "auto",
-                                         borderRadius: 5
-                                         }}
+                                style={{
+                                    width: 200,
+                                    margin: "auto",
+                                    borderRadius: 5
+                                }}
                                 renderOption={(option) => {
                                     if (option.Name) {
                                         return (
@@ -164,6 +160,7 @@ const OrderForm = (props) => {
                                 renderInput={(params) => (
                                     <TextField
                                         value={symbol}
+                  
                                         onChange={onSymbolChange}
                                         {...params}
                                         variant="outlined"

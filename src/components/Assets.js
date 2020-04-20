@@ -14,7 +14,7 @@ import AllocationForm from './AllocationForm'
 import CashForm from './CashForm'
 
 const Assets = () => {
-    const [selectedStock, setSelectedStock] = useState(null)
+    const [selectedStock, setSelectedStock] = useState({ ticker: 'AAPL' })
     const [showOrderForm, setShowOrderForm] = useState(false)
     const [showCashForm, setShowCashForm] = useState(false)
     const [showAllocationForm, setShowAllocationForm] = useState(false)
@@ -62,6 +62,13 @@ const Assets = () => {
         )
     }
 
+    const tableRowClicked = (stock) => {
+        return (() => {
+            setSelectedStock(stock)
+            setShowOrderForm(true)
+        })
+    }
+
     useEffect(() => {
         assetsService.getAssets().then(
             assets => {
@@ -86,10 +93,9 @@ const Assets = () => {
                     onHide={handleModalClose}>
                     <Modal.Body>
                         <div>
-                            {selectedStock
-                                ? <OrderForm onSubmissionFinished={onSubmissionFinished} symbol={selectedStock.ticker} />
-                                : <OrderForm onSubmissionFinished={onSubmissionFinished} />
-                            }
+
+                            <OrderForm onSubmissionFinished={onSubmissionFinished} selectedStock={selectedStock} />
+
                         </div>
                     </Modal.Body>
                 </Modal>
@@ -148,7 +154,8 @@ const Assets = () => {
                                     <AssetTable
                                         assets={assets}
                                         className="asset-table"
-                                       />
+                                        tableRowClicked={tableRowClicked}
+                                    />
                                 </div>
                             </div>
                         </div>

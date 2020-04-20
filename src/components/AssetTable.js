@@ -1,9 +1,10 @@
 import React from 'react'
 import { useSelector } from 'react-redux'
 
-const AssetTable = (props) => {
-    const assets = props.assets
+const AssetTable = ({tableRowClicked, assets}) => {
+
     const settings = useSelector(state => state.settings)
+    const threshold = settings.balanceThreshold
 
     const getProfitPercentage = (stock) => {
         let ratio = stock.price / stock.costBasis
@@ -23,14 +24,14 @@ const AssetTable = (props) => {
         }
     }
     const getStockWeight = (stock) => {
-        const threshold = 0.05
         const weightString = `${(stock.currentWeight * 100).toFixed(1)}%`
-        if (stock.targetWeight) {
-            if (Math.abs(stock.currentWeight - stock.targetWeight) > threshold) {
-                return <div className="loss-text">{weightString}</div>
-            }
-        }
-        return <div className="profit-text">{weightString}</div>
+        return <div>{weightString}</div>
+        // if (stock.targetWeight) {
+        //     if (Math.abs(stock.currentWeight - stock.targetWeight) > threshold) {
+        //         return <div className="loss-text">{weightString}</div>
+        //     }
+        // }
+        // return <div className="profit-text">{weightString}</div>
     }
 
     const getTarget = (stock) => {
@@ -43,12 +44,20 @@ const AssetTable = (props) => {
     const getError = (stock) => {
         if (stock.targetWeight) {
             const error = ((stock.targetWeight - stock.currentWeight) * 100).toFixed(1)
-            if (error > 0) {
-                return <td className="profit-text">{error}</td>
+            if (Math.abs(error) > Number(threshold)) {
+                return <td className="loss-text">{error}%</td>
             }
-            return <td className="loss-text">{error}</td>
+            return <td className="profit-text">{error}</td>
         }
         return '--'
+    }
+
+    const outOfBalance = (stock) => {
+        const error = ((stock.targetWeight - stock.currentWeight) * 100).toFixed(1)
+        if (Math.abs(error) > Number(threshold)) {
+            return true
+        }
+        return false
     }
 
     return (
@@ -60,24 +69,33 @@ const AssetTable = (props) => {
                         <th className="info-header">Symbol</th>
                         <th className="info-header">Value</th>
                         <th className="info-header">Profit</th>
-                        <th className="info-header">Target</th>
+                        <th className="info-header">Target </th>
                         <th className="info-header">Current</th>
                         <th className="info-header">Error</th>
                     </tr>
-                    {assets && assets.stocks.map(stock =>
-                        <tr key={stock.ticker}>
-                            <td>
-                                <div>
-                                    <div>{stock.ticker}</div>
-                                    <small>{stock.name}</small>
-                                </div>
-                            </td>
-                            <td><span >${(stock.price * stock.shares).toFixed(2)}</span></td>
-                            <td>{getProfitAbsolute(stock)}</td>
-                            <td>{getTarget(stock)}</td>
-                            <td>{getStockWeight(stock)}</td>
-                            <td>{getError(stock)}</td>
-                        </tr>)}
+                    {assets && assets.stocks.map(stock => {
+                        let rowClass = ''
+                        if (outOfBalance(stock)) {
+                            rowClass = "red-background"
+                        }
+                        return (
+                            <tr key={stock.ticker} className={rowClass} onClick={tableRowClicked(stock)}>
+                                <td>
+                                    <div>
+                                        <div>{stock.ticker}</div>
+                                        <small>{stock.name}</small>
+                                    </div>
+                                </td>
+                                <td><span >${(stock.price * stock.shares).toFixed(2)}</span></td>
+                                <td>{getProfitAbsolute(stock)}</td>
+                                <td>{getTarget(stock)}</td>
+                                <td>{getStockWeight(stock)}</td>
+                                <td>{getError(stock)}</td>
+                            </tr>
+                        )
+                    }
+
+                    )}
                 </tbody>
             </table>
         </div>
