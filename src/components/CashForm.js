@@ -5,7 +5,7 @@ import assetsService from '../services/asset'
 import '../styles/orderform.css'
 import Button from 'react-bootstrap/Button'
 
-const CashForm = ({ currentCash, onSubmissionFinished }) => {
+const CashForm = ({ currentCash, onFormSubmit }) => {
     const dispatch = useDispatch()
 
     const [orderType, setOrderType] = useState('deposit')
@@ -21,7 +21,7 @@ const CashForm = ({ currentCash, onSubmissionFinished }) => {
         try {
             const updatedUserAssets = await assetsService.updateCash(signedCash)
             dispatch(setAssets(updatedUserAssets))
-            onSubmissionFinished()
+            onFormSubmit()
         } catch (error) {
             setShowError(true)
             setTimeout(() => {
@@ -50,7 +50,7 @@ const CashForm = ({ currentCash, onSubmissionFinished }) => {
 
     return (
         <form onSubmit={onSubmit} className="form-container text-center">
-            <i class="fas fa-times-circle close-btn" onClick={onSubmissionFinished}></i>
+            <i class="fas fa-times-circle close-btn" onClick={onFormSubmit}></i>
             <div className="py-2 text-center">
                 <i className="fas fa-seedling fa-3x icon"></i>
             </div>

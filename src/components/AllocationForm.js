@@ -7,7 +7,7 @@ import '../styles/orderform.css'
 import './StockWeightSelector'
 import Button from 'react-bootstrap/Button'
 
-const AllocationForm = ({ stocks, onSubmissionFinished }) => {
+const AllocationForm = ({ stocks, onFormSubmit }) => {
     const [showError, setShowError] = useState(null)
     const threshold = useSelector(state => state.settings.balanceThreshold)
     const [tolerance, setTolerance] = useState(threshold)
@@ -35,7 +35,7 @@ const AllocationForm = ({ stocks, onSubmissionFinished }) => {
             const update = await assetsService.updateAllocations(stocksToUpdate)
             dispatch(setAssets(update))
 
-            onSubmissionFinished()
+            onFormSubmit()
         }
     }
 
@@ -57,14 +57,14 @@ const AllocationForm = ({ stocks, onSubmissionFinished }) => {
 
     return (
         <div className="form-container">
-            <i class="fas fa-times-circle close-btn" onClick={onSubmissionFinished}></i>
+            <i class="fas fa-times-circle close-btn" onClick={onFormSubmit}></i>
             <div className="py-3 text-center">
                 <i className="fas fa-seedling fa-3x icon"></i>
                 <h4 className="mb-1">Asset Allocation</h4>
             </div>
 
             <form onSubmit={onSubmit} className="allocation-form">
-                <table className="allocation-form">
+                <table className="allocation-form mb-3">
                     <tbody>
                         <tr>
                             <th className="info-header">Symbol</th>
@@ -98,7 +98,7 @@ const AllocationForm = ({ stocks, onSubmissionFinished }) => {
                     <h4>Tolerance</h4>
                     <div clasName="row">
                         <div className="col-12">
-                            <span>+-{threshold}%  </span>
+                            Current +-{threshold}%
                         </div>
                         <div className="col-12">
                             <input

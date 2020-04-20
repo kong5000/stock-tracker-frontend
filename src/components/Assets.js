@@ -5,13 +5,18 @@ import { setAssets } from '../reducers/assets'
 import { setSettings } from '../reducers/settings'
 import PieChart from './PieChart'
 import { Modal } from 'react-bootstrap'
-import OrderForm from './OrderForm/OrderForm'
+
 import AssetTable from './AssetTable'
 import { ReactComponent as Spinner } from '../Assets/spinner.svg'
 import LineChart from './LineChart'
 import ButtonBox from './ButtonBox'
-import AllocationForm from './AllocationForm'
+
 import CashForm from './CashForm'
+import ModalOrderForm from './OrderForm/ModalOrderForm'
+import ModalAllocationForm from './ModalAllocationForm'
+import ModalCashForm from './ModalCashForm'
+
+import ModalForms from './ModalForms'
 
 const Assets = () => {
     const [selectedStock, setSelectedStock] = useState(null)
@@ -46,7 +51,7 @@ const Assets = () => {
         setShowCashForm(true)
     }
 
-    const onSubmissionFinished = () => {
+    const onFormSubmit = () => {
         updateAssets()
         setShowOrderForm(false)
         setShowAllocationForm(false)
@@ -87,48 +92,22 @@ const Assets = () => {
     } else {
         return (
             <div className="assets-page">
-                <Modal
-                    show={showOrderForm}
-                    onHide={handleModalClose}>
-                    <Modal.Body>
-                        <div>
-
-                            <OrderForm onSubmissionFinished={onSubmissionFinished} selectedStock={selectedStock} />
-
-                        </div>
-                    </Modal.Body>
-                </Modal>
-
-                <Modal
-                    show={showAllocationForm}
-                    onHide={handleModalClose}
-                    className="form-modal"
-
-                >
-                    <Modal.Body className="form-modal">
-                        <AllocationForm
-                            stocks={assets.stocks}
-                            onSubmissionFinished={onSubmissionFinished}
-
-                        />
-                    </Modal.Body>
-                </Modal>
-
-                <Modal
-                    show={showCashForm}
-                    onHide={handleModalClose}
-                    className="form-modal"
-                    onSubmissionFinished={onSubmissionFinished}
-                >
-                    <Modal.Body className="form-modal">
-                        <CashForm
-                            currentCash={assets.cash}
-                            onSubmissionFinished={onSubmissionFinished}
-                        />
-                    </Modal.Body>
-                </Modal>
-
-
+                <ModalOrderForm
+                    showForm={showOrderForm}
+                    handleClose={handleModalClose}
+                    onFormSubmit={onFormSubmit}
+                    selectedStock={selectedStock} />
+                <ModalAllocationForm
+                    showForm={showAllocationForm}
+                    handleClose={handleModalClose}
+                    onFormSubmit={onFormSubmit}
+                    stocks={assets.stocks}
+                />
+                <ModalCashForm
+                    showForm={showCashForm}
+                    handleClose={handleModalClose}
+                    onFormSubmit={onFormSubmit}
+                    currentCash={assets.cash} />
 
                 <div id="asset-page-container">
                     <div >
@@ -160,7 +139,7 @@ const Assets = () => {
                         </div>
                     </div>
                 </div>
-            </div>
+            </div >
         )
     }
 }
