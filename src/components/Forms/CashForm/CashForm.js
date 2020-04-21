@@ -1,8 +1,8 @@
 import React, { useState } from 'react'
 import { useDispatch } from 'react-redux'
-import { setAssets } from '../reducers/assets'
-import assetsService from '../services/asset'
-import '../styles/orderform.css'
+import { setAssets } from '../../../reducers/assets'
+import assetsService from '../../../services/asset'
+import '../forms.css'
 import Button from 'react-bootstrap/Button'
 
 const CashForm = ({ currentCash, onFormSubmit }) => {

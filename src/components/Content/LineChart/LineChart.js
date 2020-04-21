@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import Chart from "react-apexcharts"
-import assetsService from '../services/asset'
+import assetsService from '../../../services/asset'
 
 const LineChart = ({ stock }) => {
     const [dataPoints, setDataPoints] = useState(null)

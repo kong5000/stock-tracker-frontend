@@ -1,10 +1,10 @@
 import React, { useState } from 'react'
 import { useDispatch } from 'react-redux'
-import { login } from '../reducers/user'
-import assetService from '../services/asset'
-import userService from '../services/user'
+import { login } from '../../../reducers/user'
+import assetService from '../../../services/asset'
+import userService from '../../../services/user'
 import { useHistory } from 'react-router-dom'
-import '../styles/form.css'
+import './Signup.css'
 
 const Signup = () => {
   const [username, setUsername] = useState('')

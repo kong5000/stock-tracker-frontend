@@ -1,0 +1,45 @@
+.container {
+    max-width: 960px;
+    background-color: #2B2D3E;
+  }
+  
+
+.modal-dialog {
+    max-width: 600px;
+    margin: 1.75rem auto;
+}
+
+.form-control{
+  /* width: px; */
+  margin: auto;
+  width: 200px;
+}
+
+.form-input-container{
+  text-align: center;
+}
+
+
+.modal-body {
+  position: relative;
+  flex: 1 1 auto;
+  padding: 0.25rem;
+}
+
+.submit-btn{
+  width: 50%;
+  margin: 20px auto;
+}
+
+.company-name{
+  font-size: 0.75rem;
+}
+
+#symbol-auto-input{
+  width: 50% !important;
+}
+
+.symbol-input{
+  background-color: white;
+  width: 50%;
+}

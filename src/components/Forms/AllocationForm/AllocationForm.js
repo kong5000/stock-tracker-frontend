@@ -1,10 +1,9 @@
 import React, { useRef, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { setAssets } from '../reducers/assets'
-import { setSettings } from '../reducers/settings'
-import assetsService from '../services/asset'
-import '../styles/orderform.css'
-import './StockWeightSelector'
+import { setAssets } from '../../../reducers/assets'
+import { setSettings } from '../../../reducers/settings'
+import assetsService from '../../../services/asset'
+import '../forms.css'
 import Button from 'react-bootstrap/Button'
 
 const AllocationForm = ({ stocks, onFormSubmit }) => {

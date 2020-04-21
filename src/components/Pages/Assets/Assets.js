@@ -1,22 +1,19 @@
 import React, { useEffect, useState } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
-import assetsService from '../services/asset'
-import { setAssets } from '../reducers/assets'
-import { setSettings } from '../reducers/settings'
-import PieChart from './PieChart'
-import { Modal } from 'react-bootstrap'
+import assetsService from '../../../services/asset'
+import { setAssets } from '../../../reducers/assets'
+import { setSettings } from '../../../reducers/settings'
 
-import AssetTable from './AssetTable'
-import { ReactComponent as Spinner } from '../Assets/spinner.svg'
-import LineChart from './LineChart'
-import ButtonBox from './ButtonBox'
+import { ReactComponent as Spinner } from '../../../Assets/spinner.svg'
 
-import CashForm from './CashForm'
-import ModalOrderForm from './OrderForm/ModalOrderForm'
-import ModalAllocationForm from './ModalAllocationForm'
-import ModalCashForm from './ModalCashForm'
+import AssetTable from '../../Content/AssetTable/AssetTable'
+import LineChart from '../../Content/LineChart/LineChart'
+import PieChart from '../../Content/PieChart/PieChart'
+import ButtonBox from '../../Content/ButtonBox/ButtonBox'
 
-import ModalForms from './ModalForms'
+import ModalOrderForm from '../../Forms/OrderForm/ModalOrderForm'
+import ModalAllocationForm from '../../Forms/AllocationForm/ModalAllocationForm'
+import ModalCashForm from '../../Forms/CashForm/ModalCashForm'
 
 const Assets = () => {
     const [selectedStock, setSelectedStock] = useState(null)
@@ -47,7 +44,6 @@ const Assets = () => {
     }
 
     const onCashClicked = (event) => {
-        console.log('Cash Clicked')
         setShowCashForm(true)
     }
 

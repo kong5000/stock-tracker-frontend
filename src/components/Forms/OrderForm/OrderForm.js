@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from 'react'
 import { useDispatch } from 'react-redux'
-import { setAssets } from '../../reducers/assets'
-import assetsService from '../../services/asset'
+import { setAssets } from '../../../reducers/assets'
+import assetsService from '../../../services/asset'
 import TextField from '@material-ui/core/TextField';
 import Autocomplete from '@material-ui/lab/Autocomplete';
-import '../../styles/orderform.css'
+import '../forms.css'
 import NYSE from './NYSE_SYMBOLS.json'
 
 const OrderForm = (props) => {

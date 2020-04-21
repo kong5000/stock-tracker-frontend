@@ -1,5 +1,5 @@
 import React from 'react'
-import '../Assets/css/all.css'
+import '../../../Assets/css/all.css'
 import FontButton from './FontButton'
 
 const ButtonBox = ({onOrderClicked, onAllocationClicked, onCashClicked}) => {
