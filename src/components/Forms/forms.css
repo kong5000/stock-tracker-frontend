@@ -43,3 +43,51 @@
   background-color: white;
   width: 50%;
 }
+
+.close-btn{
+  font-weight: bolder;
+  font-size: 40px;
+  position: absolute;
+  right:5%;
+  top:3%;
+}
+
+.close-btn:hover {
+  color: white;
+  cursor: pointer;
+}
+
+.error-message{
+  color: red;
+  visibility: visible;
+}
+
+.error-message-invisible{
+  visibility: hidden;
+}
+
+.allocation-input{
+  width: 100px;
+}
+
+.allocation-form{
+  width: 500px;
+  background-color: #2B2D3E;
+  height: 100%;
+  text-align: center;
+  padding-bottom: 20px;
+}
+
+.allocation-form th {
+  text-align: center;
+}
+
+.allocation-form td{
+  text-align: center;
+  padding: 5px;
+}
+
+.allocation-button{
+  margin: 10px;
+}
+

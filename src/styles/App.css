@@ -70,41 +70,11 @@ tr{
   border-radius: 10px;
 }
 
-
 .bottom-row{
   margin-top: 20px;
 }
-.pie-chart{
-  height: 100%;
-}
-
-.stock-table{
-  width: 100%;
-  font-size: 0.6rem;
-}
-
-.profit-text{
-  color: green;
-}
-.loss-text{
-  color:red
-}
 
 .my-btn{
-  margin: 10px;
-}
-.button-holder{}
-
-.clickable-font{
-  cursor: pointer;
-  color: gray;
-}
-.clickable-font:hover{
-  color:white;
-}
-
-
-.labeled-font{
   margin: 10px;
 }
 
@@ -117,29 +87,6 @@ body{
   overflow: auto;
 }
 
-.apexcharts-tooltip {
-  background: #f3f3f3;
-  color: black;
-}
-
-
-.placeholder-text{
-  margin: 0;
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-}
-
-.placeholder-box{
-  text-align: center;
-}
-
-.assets-page{
-  background-color: rgb(51, 66, 109);
-  padding: 20px 10px 20px 10px;
-}
-
 .error-message{
   color: red;
   visibility: visible;
@@ -147,31 +94,6 @@ body{
 
 .error-message-invisible{
   visibility: hidden;
-}
-
-.allocation-input{
-  width: 100px;
-}
-
-.allocation-form{
-  width: 500px;
-  background-color: #2B2D3E;
-  height: 100%;
-  text-align: center;
-  padding-bottom: 20px;
-}
-
-.allocation-form th {
-  text-align: center;
-}
-
-.allocation-form td{
-  text-align: center;
-  padding: 5px;
-}
-
-.allocation-button{
-  margin: 10px;
 }
 
 .modal-dialog {
@@ -196,21 +118,6 @@ body{
   padding-top: 20px;
 }
 
-.red-background{
-  background-color: rgba(255, 0, 0, 0.274);
-}
 
-.stock-table tr:hover {background-color:lightgray; color:black; cursor: pointer;}
 
-.close-btn{
-  font-weight: bolder;
-  font-size: 40px;
-  position: absolute;
-  right:5%;
-  top:3%;
-}
 
-.close-btn:hover {
-  color: white;
-  cursor: pointer;
-}

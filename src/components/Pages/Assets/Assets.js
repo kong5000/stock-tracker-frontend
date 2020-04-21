@@ -4,11 +4,13 @@ import assetsService from '../../../services/asset'
 import { setAssets } from '../../../reducers/assets'
 import { setSettings } from '../../../reducers/settings'
 
+import './AssetsPage.css'
+
 import { ReactComponent as Spinner } from '../../../Assets/spinner.svg'
 
 import AssetTable from '../../Content/AssetTable/AssetTable'
-import LineChart from '../../Content/LineChart/LineChart'
-import PieChart from '../../Content/PieChart/PieChart'
+import LineChart from '../../Content/Charts/LineChart/LineChart'
+import PieChart from '../../Content/Charts/PieChart/PieChart'
 import ButtonBox from '../../Content/ButtonBox/ButtonBox'
 
 import ModalOrderForm from '../../Forms/OrderForm/ModalOrderForm'

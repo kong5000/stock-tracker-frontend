@@ -1,0 +1,12 @@
+.clickable-font{
+    cursor: pointer;
+    color: gray;
+}
+
+.clickable-font:hover{
+    color:white;
+}
+
+.labeled-font{
+    margin: 10px;
+}
