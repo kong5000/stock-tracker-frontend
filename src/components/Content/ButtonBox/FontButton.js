@@ -1,4 +1,5 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 
 const FontButton = ({ onClick, type }) => {
     let font = null
@@ -32,6 +33,11 @@ const FontButton = ({ onClick, type }) => {
             {label}
         </div>
     )
+}
+
+FontButton.propTypes = {
+    onClick: PropTypes.func.isRequired,
+    type: PropTypes.string.isRequired
 }
 
 export default FontButton

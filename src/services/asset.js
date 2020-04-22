@@ -35,7 +35,8 @@ const getAssets = async () => {
     } 
     catch(error){
         console.log('CAUGHT')
-        throw 'API Key Exhausted'
+        let message = {message: 'API Key Exhausted'}
+        throw message
     }
   
 }

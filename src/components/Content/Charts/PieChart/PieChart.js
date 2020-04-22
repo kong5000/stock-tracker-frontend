@@ -1,6 +1,7 @@
 import React from 'react'
 import Chart from "react-apexcharts"
 import '../Charts.css'
+import PropTypes from 'prop-types'
 
 const PieChart = ({ assets, chartClick }) => {
 
@@ -53,6 +54,10 @@ const PieChart = ({ assets, chartClick }) => {
             </div>
         </div>
     )
+}
+
+PieChart.propTypes = {
+    chartClick: PropTypes.func.isRequired
 }
 
 export default PieChart

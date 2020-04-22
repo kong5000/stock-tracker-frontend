@@ -7,6 +7,7 @@ import Autocomplete from '@material-ui/lab/Autocomplete';
 import '../forms.css'
 import NYSE from './NYSE_SYMBOLS.json'
 import withModal from '../../HOC/withModal'
+import PropTypes from 'prop-types'
 
 const OrderForm = (props) => {
     const [symbol, setSymbol] = useState('')
@@ -274,6 +275,10 @@ const OrderForm = (props) => {
             </div>
         </div>
     )
+}
+
+OrderForm.propTypes = {
+    onFormSubmit: PropTypes.func.isRequired
 }
 
 export default withModal(OrderForm)

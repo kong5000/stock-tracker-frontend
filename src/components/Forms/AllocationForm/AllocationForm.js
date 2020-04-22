@@ -6,6 +6,7 @@ import assetsService from '../../../services/asset'
 import '../forms.css'
 import Button from 'react-bootstrap/Button'
 import withModal from '../../HOC/withModal'
+import PropTypes from 'prop-types'
 
 const AllocationForm = ({ stocks, onFormSubmit }) => {
     const [showError, setShowError] = useState(null)
@@ -119,6 +120,10 @@ const AllocationForm = ({ stocks, onFormSubmit }) => {
             </form>
         </div>
     )
+}
+
+AllocationForm.propTypes = {
+    onFormSubmit: PropTypes.func.isRequired
 }
 
 export default withModal(AllocationForm)

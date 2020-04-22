@@ -109,8 +109,6 @@ const LineChart = ({ stock }) => {
             </div>
         </div>
     )
-
-
 }
 
 export default LineChart

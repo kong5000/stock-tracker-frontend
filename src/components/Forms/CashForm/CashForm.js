@@ -5,6 +5,7 @@ import assetsService from '../../../services/asset'
 import '../forms.css'
 import Button from 'react-bootstrap/Button'
 import withModal from '../../HOC/withModal'
+import PropTypes from 'prop-types'
 
 const CashForm = ({ currentCash, onFormSubmit }) => {
     const dispatch = useDispatch()
@@ -51,7 +52,7 @@ const CashForm = ({ currentCash, onFormSubmit }) => {
 
     return (
         <form onSubmit={onSubmit} className="form-container text-center">
-            <i class="fas fa-times-circle close-btn" onClick={onFormSubmit}></i>
+            <i className="fas fa-times-circle close-btn" onClick={onFormSubmit}></i>
             <div className="py-2 text-center">
                 <i className="fas fa-seedling fa-3x icon"></i>
             </div>
@@ -97,6 +98,11 @@ const CashForm = ({ currentCash, onFormSubmit }) => {
             <Button type="allocation-button submit">Transact</Button>
         </form>
     )
+}
+
+CashForm.propTypes = { 
+    currentCash: PropTypes.number.isRequired,
+    onFormSubmit: PropTypes.func.isRequired
 }
 
 export default withModal(CashForm)

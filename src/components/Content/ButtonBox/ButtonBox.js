@@ -9,7 +9,7 @@ const ButtonBox = ({onOrderClicked, onAllocationClicked, onCashClicked}) => {
             <div className="button-holder">
                 <div className="row">
                     <FontButton type="order" onClick={onOrderClicked}/>
-                    <FontButton type="bell" onClick={null}/>
+                    <FontButton type="bell" onClick={onOrderClicked}/>
                 </div>
                 <div className="row">
                     <FontButton type="cash" onClick={onCashClicked}/>

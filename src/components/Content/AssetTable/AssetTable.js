@@ -1,20 +1,21 @@
 import React from 'react'
 import { useSelector } from 'react-redux'
 import './AssetTable.css'
+import PropTypes from 'prop-types'
 
 const AssetTable = ({ tableRowClicked, assets }) => {
 
     const settings = useSelector(state => state.settings)
     const threshold = settings.balanceThreshold
 
-    const getProfitPercentage = (stock) => {
-        let ratio = stock.price / stock.costBasis
-        if (stock.price > stock.costBasis) {
-            return <div className="profit-text">{((ratio - 1) * 100).toFixed(1) + '%'}</div>
-        } else {
-            return <div className="loss-text">{((1 - ratio) * 100).toFixed(1) + '%'}</div>
-        }
-    }
+    // const getProfitPercentage = (stock) => {
+    //     let ratio = stock.price / stock.costBasis
+    //     if (stock.price > stock.costBasis) {
+    //         return <div className="profit-text">{((ratio - 1) * 100).toFixed(1) + '%'}</div>
+    //     } else {
+    //         return <div className="loss-text">{((1 - ratio) * 100).toFixed(1) + '%'}</div>
+    //     }
+    // }
     const getProfitAbsolute = (stock) => {
         let profit = stock.shares * (stock.price - stock.costBasis)
         if (profit > 0) {
@@ -96,6 +97,11 @@ const AssetTable = ({ tableRowClicked, assets }) => {
             </table>
         </div>
     )
+}
+
+AssetTable.propTypes = {
+    assets: PropTypes.object,
+    tableRowClicked: PropTypes.func
 }
 
 export default AssetTable
