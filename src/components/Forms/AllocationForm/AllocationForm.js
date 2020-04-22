@@ -112,8 +112,6 @@ const AllocationForm = ({ stocks, onFormSubmit }) => {
                             />
                         </div>
                     </div>
-
-
                 </div>
                 {errorMessage}
                 <Button type="allocation-button">Update</Button>

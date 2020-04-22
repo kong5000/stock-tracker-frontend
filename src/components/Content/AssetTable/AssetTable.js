@@ -63,7 +63,7 @@ const AssetTable = ({ tableRowClicked, assets }) => {
             <div>Cash Balance: ${assets.cash}</div>
             <table className="stock-table">
                 <tbody>
-                    <tr>
+                    <tr id="table-header">
                         <th className="info-header">Symbol</th>
                         <th className="info-header">Value</th>
                         <th className="info-header">Profit</th>
