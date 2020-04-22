@@ -5,6 +5,7 @@ import { setSettings } from '../../../reducers/settings'
 import assetsService from '../../../services/asset'
 import '../forms.css'
 import Button from 'react-bootstrap/Button'
+import withModal from '../../HOC/withModal'
 
 const AllocationForm = ({ stocks, onFormSubmit }) => {
     const [showError, setShowError] = useState(null)
@@ -120,4 +121,4 @@ const AllocationForm = ({ stocks, onFormSubmit }) => {
     )
 }
 
-export default AllocationForm
+export default withModal(AllocationForm)

@@ -6,6 +6,7 @@ import TextField from '@material-ui/core/TextField';
 import Autocomplete from '@material-ui/lab/Autocomplete';
 import '../forms.css'
 import NYSE from './NYSE_SYMBOLS.json'
+import withModal from '../../HOC/withModal'
 
 const OrderForm = (props) => {
     const [symbol, setSymbol] = useState('')
@@ -58,7 +59,7 @@ const OrderForm = (props) => {
             dispatch(setAssets(
                 updatedAssets
             ))
-            props.onSubmissionFinished()
+            props.onFormSubmit()
             clearForm()
         } catch (error) {
             console.log(error)
@@ -81,7 +82,7 @@ const OrderForm = (props) => {
             dispatch(setAssets(
                 updatedPortfolio
             ))
-            props.onSubmissionFinished()
+            props.onFormSubmit()
             clearForm()
         } catch (error) {
             console.log(error)
@@ -126,7 +127,7 @@ const OrderForm = (props) => {
 
     return (
         <div className="form-container">
-            <i class="fas fa-times-circle close-btn" onClick={props.onSubmissionFinished}></i>
+            <i class="fas fa-times-circle close-btn" onClick={props.onFormSubmit}></i>
             <div className="py-3 text-center">
                 <i className="fas fa-seedling fa-3x icon"></i>
             </div>
@@ -275,4 +276,4 @@ const OrderForm = (props) => {
     )
 }
 
-export default OrderForm
+export default withModal(OrderForm)

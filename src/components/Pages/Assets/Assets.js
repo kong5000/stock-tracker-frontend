@@ -13,11 +13,9 @@ import LineChart from '../../Content/Charts/LineChart/LineChart'
 import PieChart from '../../Content/Charts/PieChart/PieChart'
 import ButtonBox from '../../Content/ButtonBox/ButtonBox'
 
-import ModalOrderForm from '../../Forms/OrderForm/ModalOrderForm'
-import ModalAllocationForm from '../../Forms/AllocationForm/ModalAllocationForm'
-import ModalCashForm from '../../Forms/CashForm/ModalCashForm'
-
 import CashForm from '../../Forms/CashForm/CashForm'
+import AllocationForm from '../../Forms/AllocationForm/AllocationForm'
+import OrderForm from '../../Forms/OrderForm/OrderForm'
 
 const Assets = () => {
     const [selectedStock, setSelectedStock] = useState(null)
@@ -93,14 +91,14 @@ const Assets = () => {
     } else {
         return (
             <div className="assets-page">
-                <ModalOrderForm
-                    showForm={showOrderForm}
-                    handleClose={handleModalClose}
+                <OrderForm
+                    show={showOrderForm}
+                    onHide={handleModalClose}
                     onFormSubmit={onFormSubmit}
                     selectedStock={selectedStock} />
-                <ModalAllocationForm
-                    showForm={showAllocationForm}
-                    handleClose={handleModalClose}
+                <AllocationForm
+                    show={showAllocationForm}
+                    onHide={handleModalClose}
                     onFormSubmit={onFormSubmit}
                     stocks={assets.stocks}
                 />
