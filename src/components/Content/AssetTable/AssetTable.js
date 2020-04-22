@@ -2,7 +2,7 @@ import React from 'react'
 import { useSelector } from 'react-redux'
 import './AssetTable.css'
 
-const AssetTable = ({tableRowClicked, assets}) => {
+const AssetTable = ({ tableRowClicked, assets }) => {
 
     const settings = useSelector(state => state.settings)
     const threshold = settings.balanceThreshold
@@ -44,11 +44,11 @@ const AssetTable = ({tableRowClicked, assets}) => {
             }
             return <td className="profit-text">{error}</td>
         }
-        return '--'
+        return <td>--</td>
     }
 
     const outOfBalance = (stock) => {
-        if(stock.targetWeight){
+        if (stock.targetWeight) {
             const error = ((stock.targetWeight - stock.currentWeight) * 100).toFixed(1)
             if (Math.abs(error) > Number(threshold)) {
                 return true
@@ -87,7 +87,7 @@ const AssetTable = ({tableRowClicked, assets}) => {
                                 <td>{getProfitAbsolute(stock)}</td>
                                 <td>{getTarget(stock)}</td>
                                 <td>{getStockWeight(stock)}</td>
-                                <td>{getError(stock)}</td>
+                                {getError(stock)}
                             </tr>
                         )
                     }

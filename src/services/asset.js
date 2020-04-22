@@ -8,50 +8,61 @@ const setToken = newToken => {
 }
 
 const addStock = async stock => {
-   const config = {
-       headers: { Authorization: token}
-   }
-   const response = await axios.post(baseUrl +'/asset', stock, config)
-   return response.data
+    const config = {
+        headers: { Authorization: token }
+    }
+    const response = await axios.post(baseUrl + '/asset', stock, config)
+    return response.data
 }
 
 const sellStock = async stock => {
     const config = {
-        headers: { Authorization: token}
+        headers: { Authorization: token }
     }
-    const response = await axios.post(baseUrl +'/sell', stock, config)
+    const response = await axios.post(baseUrl + '/sell', stock, config)
     return response.data
 }
 
 const getAssets = async () => {
     const config = {
-        headers: { Authorization: token}
+        headers: { Authorization: token }
     }
-    await axios.post(baseUrl + '/update', null, config)
-
-    const response = await axios.get(baseUrl, config)
-    
-    return response.data
+    console.log('Post')
+    try{
+        await axios.post(baseUrl + '/update', null, config)
+        const response = await axios.get(baseUrl, config)
+        return response.data
+    } 
+    catch(error){
+        console.log('CAUGHT')
+        throw 'API Key Exhausted'
+    }
+  
 }
 
 const getChart = async (symbol) => {
     const config = {
-        headers: { Authorization: token}
+        headers: { Authorization: token }
     }
     const stock = {
         ticker: symbol
     }
-    try{
+    try {
         const response = await axios.post(baseUrl + '/chart', stock, config)
+        console.log('The data', response.data)
         return response.data
-    } catch(error){
+    } catch (error) {
+        //Error can be either
+        // Payment Required
+        // Not Found
+        console.log('The Error', error.response.data.error)
         return null
     }
 }
 
 const updateCash = async (cash) => {
     const config = {
-        headers: { Authorization: token}
+        headers: { Authorization: token }
     }
     const body = {
         cash
@@ -60,9 +71,9 @@ const updateCash = async (cash) => {
     return response.data
 }
 
-const updateAllocations = async (stocks) =>{
+const updateAllocations = async (stocks) => {
     const config = {
-        headers: { Authorization: token}
+        headers: { Authorization: token }
     }
     const stocksToUpdate = {
         stocks
@@ -71,25 +82,25 @@ const updateAllocations = async (stocks) =>{
     return response.data
 }
 
-const getSettings = async () =>{
+const getSettings = async () => {
     const config = {
-        headers: { Authorization: token}
+        headers: { Authorization: token }
     }
-    const response =  await axios.get('http://localhost:3003/api/users/settings', config)
+    const response = await axios.get('http://localhost:3003/api/users/settings', config)
     console.log(response.data)
     return response.data
 }
 
-const updateThreshold = async threshold =>{
+const updateThreshold = async threshold => {
     const config = {
         headers: { Authorization: token }
     }
     const newThreshold = {
         balanceThreshold: threshold
     }
-    const response =  await axios.post('http://localhost:3003/api/users/threshold', newThreshold, config)
+    const response = await axios.post('http://localhost:3003/api/users/threshold', newThreshold, config)
     return response.data
 }
 
 
-export default {setToken, addStock, sellStock, getAssets, getChart, updateAllocations, updateCash, updateThreshold, getSettings}
+export default { setToken, addStock, sellStock, getAssets, getChart, updateAllocations, updateCash, updateThreshold, getSettings }

@@ -17,6 +17,8 @@ import ModalOrderForm from '../../Forms/OrderForm/ModalOrderForm'
 import ModalAllocationForm from '../../Forms/AllocationForm/ModalAllocationForm'
 import ModalCashForm from '../../Forms/CashForm/ModalCashForm'
 
+import CashForm from '../../Forms/CashForm/CashForm'
+
 const Assets = () => {
     const [selectedStock, setSelectedStock] = useState(null)
     const [showOrderForm, setShowOrderForm] = useState(false)
@@ -72,17 +74,18 @@ const Assets = () => {
     }
 
     useEffect(() => {
-        assetsService.getAssets().then(
-            assets => {
+        (async function () {
+            try {
+                const assets = await assetsService.getAssets()
                 dispatch(setAssets(assets))
                 setPageIsLoading(false)
-            }
-        )
-        assetsService.getSettings().then(
-            settings => {
+
+                const settings = await assetsService.getSettings()
                 dispatch(setSettings(settings))
+            } catch (error) {
+                console.log('I caught', error)
             }
-        )
+        })()
     }, [dispatch])
 
     if (pageIsLoading) {
@@ -101,12 +104,12 @@ const Assets = () => {
                     onFormSubmit={onFormSubmit}
                     stocks={assets.stocks}
                 />
-                <ModalCashForm
-                    showForm={showCashForm}
-                    handleClose={handleModalClose}
+                <CashForm
+                    show={showCashForm}
+                    onHide={handleModalClose}
                     onFormSubmit={onFormSubmit}
-                    currentCash={assets.cash} />
-
+                    currentCash={assets.cash} 
+                    />
                 <div id="asset-page-container">
                     <div >
                         <div className="row top-row">

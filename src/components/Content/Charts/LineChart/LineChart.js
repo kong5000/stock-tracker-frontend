@@ -5,30 +5,30 @@ import '../Charts.css'
 
 const LineChart = ({ stock }) => {
     const [dataPoints, setDataPoints] = useState(null)
+    const [message, setMessage] = useState('Could not find stock')
 
     useEffect(() => {
-        console.log('EFFECT')
         if (stock) {
-
-            assetsService.getChart(stock.ticker).then(
-                quotes => {
-                    if (quotes) {
-                        const chart = quotes.chart
-                        const points = [chart.length]
-                        for (let i = 0; i < chart.length; i++) {
-                            const dataPoint = [chart[i].date, chart[i].close]
-                            points[i] = dataPoint
+            // try {
+                assetsService.getChart(stock.ticker).then(
+                    quotes => {
+                        if (quotes) {
+                            const chart = quotes.chart
+                            const points = [chart.length]
+                            for (let i = 0; i < chart.length; i++) {
+                                const dataPoint = [chart[i].date, chart[i].close]
+                                points[i] = dataPoint
+                            }
+                            const series = [{
+                                name: stock.ticker,
+                                data: points
+                            }]
+                            setDataPoints(series)
+                        } else {
+                            setDataPoints(null)
                         }
-                        const series = [{
-                            name: stock.ticker,
-                            data: points
-                        }]
-                        setDataPoints(series)
-                    }else{
-                        setDataPoints(null)
                     }
-                }
-            )
+                )
         }
     }, [stock])
 
@@ -96,12 +96,10 @@ const LineChart = ({ stock }) => {
         return (
             <div className="placeholder-box box">
                 <div className="placeholder-text">
-                    Could not retrieve asset price history
+                    {message}
             </div>
             </div>
         )
-
-
     }
 
     return (

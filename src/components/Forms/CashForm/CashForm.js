@@ -4,6 +4,7 @@ import { setAssets } from '../../../reducers/assets'
 import assetsService from '../../../services/asset'
 import '../forms.css'
 import Button from 'react-bootstrap/Button'
+import withModal from '../../HOC/withModal'
 
 const CashForm = ({ currentCash, onFormSubmit }) => {
     const dispatch = useDispatch()
@@ -98,4 +99,4 @@ const CashForm = ({ currentCash, onFormSubmit }) => {
     )
 }
 
-export default CashForm
+export default withModal(CashForm)
