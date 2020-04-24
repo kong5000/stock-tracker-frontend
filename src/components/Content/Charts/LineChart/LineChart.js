@@ -3,6 +3,7 @@ import Chart from "react-apexcharts"
 import assetsService from '../../../../services/asset'
 import { ReactComponent as Spinner } from '../../../../Assets/spinner.svg'
 import '../Charts.css'
+import './LineChart.css'
 
 const LineChart = ({ stock }) => {
     const [dataPoints, setDataPoints] = useState(null)
@@ -62,12 +63,25 @@ const LineChart = ({ stock }) => {
                 },
                 xaxis: {
                     type: 'datetime',
+                    tooltip: {
+                        enabled: true,
+                        formatter: undefined,
+                        offsetY: 0,
+                        style: {
+                          fontSize: '12px',
+                        },
+                    },
                 },
                 yaxis: {
                     labels: {
                         style: {
                             fontSize: '1rem'
                         }
+                    }
+                },
+                tooltip:{
+                    style:{
+                        fontSize: '12px',
                     }
                 }
             }
