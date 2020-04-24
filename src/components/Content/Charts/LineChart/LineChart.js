@@ -1,15 +1,17 @@
 import React, { useEffect, useState } from 'react'
 import Chart from "react-apexcharts"
 import assetsService from '../../../../services/asset'
+import { ReactComponent as Spinner } from '../../../../Assets/spinner.svg'
 import '../Charts.css'
 
 const LineChart = ({ stock }) => {
     const [dataPoints, setDataPoints] = useState(null)
     const [message, setMessage] = useState('Could not find stock')
+    const [isLoading, setIsLoading] = useState(false)
 
     useEffect(() => {
         if (stock) {
-            // try {
+                setIsLoading(true)
                 assetsService.getChart(stock.ticker).then(
                     quotes => {
                         if (quotes) {
@@ -24,8 +26,10 @@ const LineChart = ({ stock }) => {
                                 data: points
                             }]
                             setDataPoints(series)
+                            setIsLoading(false)
                         } else {
                             setDataPoints(null)
+                            setIsLoading(false)
                         }
                     }
                 )
@@ -74,6 +78,10 @@ const LineChart = ({ stock }) => {
         name: "6 Month",
         data: [0, 0, 0, 0, 0, 0]
     }]
+    
+    if(isLoading){
+        return <Spinner className="spinner"/>
+    }
 
     if (stock) {
         if (dataPoints) {

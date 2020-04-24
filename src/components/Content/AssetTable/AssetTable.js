@@ -60,7 +60,7 @@ const AssetTable = ({ tableRowClicked, assets }) => {
 
     return (
         <div>
-            <div>Cash Balance: ${assets.cash}</div>
+            <div className="cash-balance">Cash : ${assets.cash}</div>
             <table className="stock-table">
                 <tbody>
                     <tr id="table-header">
