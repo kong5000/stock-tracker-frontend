@@ -71,6 +71,11 @@ const Assets = () => {
             setShowOrderForm(true)
         })
     }
+    const getTotalProfit = (stocks) => {
+        return stocks.reduce((totalProfit, stock) => {
+            return totalProfit + stock.shares * (stock.price - stock.costBasis)
+        },0)
+    }
 
     useEffect(() => {
         (async function () {
@@ -96,6 +101,8 @@ const Assets = () => {
                     onOrderClicked={onOrderClicked}
                     onAllocationClicked={onAllocationClicked}
                     onCashClicked={onCashClicked}
+                    cash={assets.cash}
+                    profit={getTotalProfit(assets.stocks)}
                 />
                 <div className="assets-page">
                     <OrderForm

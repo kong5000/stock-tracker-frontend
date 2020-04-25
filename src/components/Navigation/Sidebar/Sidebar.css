@@ -30,3 +30,8 @@ hr{
   margin: 10px;
   font-weight: bolder;
 }
+
+.side-bar-logout :hover{
+  text-decoration: none;
+}
+

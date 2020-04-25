@@ -60,15 +60,14 @@ const AssetTable = ({ tableRowClicked, assets }) => {
 
     return (
         <div>
-            <div className="cash-balance">Cash : ${assets.cash}</div>
             <table className="stock-table">
                 <tbody>
                     <tr id="table-header">
                         <th className="info-header">Symbol</th>
                         <th className="info-header">Value</th>
                         <th className="info-header">Profit</th>
-                        <th className="info-header">Target </th>
                         <th className="info-header">Current</th>
+                        <th className="info-header">Target </th>
                         <th className="info-header">Error</th>
                     </tr>
                     {assets && assets.stocks.map(stock => {
@@ -86,8 +85,8 @@ const AssetTable = ({ tableRowClicked, assets }) => {
                                 </td>
                                 <td><span >${(stock.price * stock.shares).toFixed(2)}</span></td>
                                 <td>{getProfitAbsolute(stock)}</td>
-                                <td>{getTarget(stock)}</td>
                                 <td>{getStockWeight(stock)}</td>
+                                <td>{getTarget(stock)}</td>
                                 {getError(stock)}
                             </tr>
                         )

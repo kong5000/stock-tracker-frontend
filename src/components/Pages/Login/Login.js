@@ -4,6 +4,7 @@ import { login } from '../../../reducers/user'
 import assetService from '../../../services/asset'
 import userService from '../../../services/user'
 import { useHistory } from 'react-router-dom'
+import './Login.css'
 
 const Login = () => {
     const dispatch = useDispatch()
@@ -60,7 +61,7 @@ const Login = () => {
     }
 
     return (
-        <div className="text-center">
+        <div className="text-center login-page">
             <form className="form-signin" onSubmit={handleLogin}>
                 <i class="fas fa-seedling fa-7x icon"></i>
                 <h1 className="h3 mb-3 font-weight-normal">Log In</h1>
