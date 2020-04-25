@@ -94,7 +94,7 @@ const LineChart = ({ stock }) => {
     }]
     
     if(isLoading){
-        return <Spinner className="spinner"/>
+        return <div className="box"><Spinner className="spinner"/></div>
     }
 
     if (stock) {

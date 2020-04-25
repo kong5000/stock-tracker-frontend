@@ -65,7 +65,7 @@ td{
 }
 
 .box{
-  height: 400px;
+  height: 45vh;
   box-shadow: 0px 1px 22px -12px #607D8B;
   outline: burlywood 3px;
   padding: 25px 35px 25px 30px;
@@ -123,4 +123,12 @@ body{
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%)
+}
+
+#asset-page-container{
+  margin-top: 75px;
+}
+.box-container {
+  /* margin-top: 75px; */
+  /* padding: 30px; */
 }

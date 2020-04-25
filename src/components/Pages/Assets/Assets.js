@@ -12,6 +12,7 @@ import AssetTable from '../../Content/AssetTable/AssetTable'
 import LineChart from '../../Content/Charts/LineChart/LineChart'
 import PieChart from '../../Content/Charts/PieChart/PieChart'
 import ButtonBox from '../../Content/ButtonBox/ButtonBox'
+import Sidebar from '../../Navigation/Sidebar/Sidebar'
 
 import CashForm from '../../Forms/CashForm/CashForm'
 import AllocationForm from '../../Forms/AllocationForm/AllocationForm'
@@ -90,55 +91,58 @@ const Assets = () => {
         return <Spinner className="spinner" />
     } else {
         return (
-            <div className="assets-page">
-                <OrderForm
-                    show={showOrderForm}
-                    onHide={handleModalClose}
-                    onFormSubmit={onFormSubmit}
-                    selectedStock={selectedStock} />
-                <AllocationForm
-                    show={showAllocationForm}
-                    onHide={handleModalClose}
-                    onFormSubmit={onFormSubmit}
-                    stocks={assets.stocks}
-                />
-                <CashForm
-                    show={showCashForm}
-                    onHide={handleModalClose}
-                    onFormSubmit={onFormSubmit}
-                    currentCash={assets.cash} 
+            <div>
+                <Sidebar/>
+                <div className="assets-page">
+                    <OrderForm
+                        show={showOrderForm}
+                        onHide={handleModalClose}
+                        onFormSubmit={onFormSubmit}
+                        selectedStock={selectedStock} />
+                    <AllocationForm
+                        show={showAllocationForm}
+                        onHide={handleModalClose}
+                        onFormSubmit={onFormSubmit}
+                        stocks={assets.stocks}
                     />
-                <div id="asset-page-container">
-                    <div >
-                        <div className="row top-row">
-                            <div className="col-lg-5 col-md-12">
-                                <PieChart assets={assets} chartClick={chartClick} />
+                    <CashForm
+                        show={showCashForm}
+                        onHide={handleModalClose}
+                        onFormSubmit={onFormSubmit}
+                        currentCash={assets.cash}
+                    />
+                    <div id="asset-page-container">
+                        <div >
+                            <div className="row top-row">
+                                <div className="col-lg-5 col-md-12 box-container">
+                                    <PieChart assets={assets} chartClick={chartClick} />
+                                </div>
+                                <div className="col-lg-7  col-md-12 box-container">
+                                    <LineChart stock={selectedStock} />
+                                </div>
                             </div>
-                            <div className="col-lg-7  col-md-12 line">
-                                <LineChart stock={selectedStock} />
-                            </div>
-                        </div>
-                        <div className="row bottom-row">
-                            <div className="col-lg-5  col-md-12 order">
-                                <ButtonBox
-                                    onOrderClicked={onOrderClicked}
-                                    onAllocationClicked={onAllocationClicked}
-                                    onCashClicked={onCashClicked}
-                                />
-                            </div>
-                            <div className="col-lg-7  col-md-12  stocks">
-                                <div className="box my-custom-scrollbar">
-                                    <AssetTable
-                                        assets={assets}
-                                        className="asset-table"
-                                        tableRowClicked={tableRowClicked}
+                            <div className="row bottom-row">
+                                <div className="col-lg-5  col-md-12 order box-container">
+                                    <ButtonBox
+                                        onOrderClicked={onOrderClicked}
+                                        onAllocationClicked={onAllocationClicked}
+                                        onCashClicked={onCashClicked}
                                     />
+                                </div>
+                                <div className="col-lg-7  col-md-12 stocks">
+                                    <div className="box my-custom-scrollbar box-container">
+                                        <AssetTable
+                                            assets={assets}
+                                            className="asset-table"
+                                            tableRowClicked={tableRowClicked}
+                                        />
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                </div>
-            </div >
+                </div >
+            </div>
         )
     }
 }

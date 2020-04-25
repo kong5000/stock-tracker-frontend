@@ -3,8 +3,12 @@
 }
 
 .navigation-bar{
-    height: 10vh;
+    position: fixed;
+    height: 70px;
     padding-bottom: 0;
+    z-index: 1000;
+    width: 100vw;
+    background-color: #343E59;
 }
 
 .logo-text{
