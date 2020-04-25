@@ -47,17 +47,7 @@ td{
   height: 50vh;
   color: white;
 }
-.side-bar{
-  box-shadow: 0px 1px 22px -12px #607D8B;
-  text-align: center;
-  width: 200px;
-}
 
-.side-bar-button{
-  display: block;
-  margin: 10px auto;
-  width: 100px;
-}
 #asset-page-container{
   /* max-width: none; */
   height: 100vh;
@@ -66,11 +56,11 @@ td{
 
 .box{
   height: 45vh;
-  box-shadow: 0px 1px 22px -12px #607D8B;
+  box-shadow: 0px 1px 22px -12px rgba(243, 243, 243, 0.774);
   outline: burlywood 3px;
   padding: 25px 35px 25px 30px;
   box-sizing: border-box;
-  background-color: #2B2D3E;
+  background-color: #10273d;
   border-radius: 10px;
 }
 
@@ -86,6 +76,7 @@ td{
 body{
   background-color: #343E59;
   color: rgb(209, 209, 209);
+  font-family: 'Roboto', sans-serif;
 }
 
 .error-message{

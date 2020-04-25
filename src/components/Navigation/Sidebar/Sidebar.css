@@ -2,10 +2,10 @@
     height: 100%;
     width: 256px;
     position: fixed;
-    z-index: 1;
+    z-index: 1001;
     top: 70px;
     left: 0;
-    background-color: #111;
+    background-color: #0f2031;
     padding-top: 20px;
     display: flex;
     flex-direction: column;
@@ -18,8 +18,9 @@
 }
 
 hr{
-  border: 1px solid rgb(49, 49, 129);
-  width: 90%;
+  border: 1px solid #21374f;
+  width: 100%;
+  box-shadow: 0 20px 20px -20px #333;
 }
 
 .cash-balance{
@@ -35,3 +36,23 @@ hr{
   text-decoration: none;
 }
 
+.logo{
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 256px;
+  height: 70px;
+  padding-top: 12px;
+  font-size: 35px;
+  background-color: #1f354a;
+}
+
+
+.cash{
+  text-align: center;
+  background-color: #3e4f5f;
+  border-radius: 5px;
+  width: 220px;
+  margin: 10px;
+  font-weight: bolder;
+}

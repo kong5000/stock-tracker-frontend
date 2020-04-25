@@ -30,11 +30,3 @@
   cursor: default;
 }
 
-.cash-balance{
-  text-align: center;
-  background-color: green;
-  border-radius: 5px;
-  width: 220px;
-  margin: 10px;
-  font-weight: bolder;
-}
