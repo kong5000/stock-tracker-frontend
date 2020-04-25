@@ -92,7 +92,11 @@ const Assets = () => {
     } else {
         return (
             <div>
-                <Sidebar/>
+                <Sidebar
+                    onOrderClicked={onOrderClicked}
+                    onAllocationClicked={onAllocationClicked}
+                    onCashClicked={onCashClicked}
+                />
                 <div className="assets-page">
                     <OrderForm
                         show={showOrderForm}
@@ -122,14 +126,14 @@ const Assets = () => {
                                 </div>
                             </div>
                             <div className="row bottom-row">
-                                <div className="col-lg-5  col-md-12 order box-container">
+                                {/* <div className="col-lg-5  col-md-12 order box-container">
                                     <ButtonBox
                                         onOrderClicked={onOrderClicked}
                                         onAllocationClicked={onAllocationClicked}
                                         onCashClicked={onCashClicked}
                                     />
-                                </div>
-                                <div className="col-lg-7  col-md-12 stocks">
+                                </div> */}
+                                <div className="col-lg-12 col-md-12 stocks">
                                     <div className="box my-custom-scrollbar box-container">
                                         <AssetTable
                                             assets={assets}
