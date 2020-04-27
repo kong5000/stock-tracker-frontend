@@ -3,11 +3,11 @@
     background-color: #2B2D3E;
   }
 
-  .form-container{
+.form-container{
     background-color: #0f2031;
     height: 100%;
     padding: 20px;
-  }
+}
   
 
 .modal-dialog {
@@ -19,6 +19,7 @@
   /* width: px; */
   margin: auto;
   width: 200px;
+  height: 64px;
 }
 
 .form-input-container{
@@ -96,3 +97,8 @@
   margin: 10px;
 }
 
+input[type=number]::-webkit-inner-spin-button, 
+input[type=number]::-webkit-outer-spin-button { 
+  -webkit-appearance: none; 
+  margin: 0; 
+}

@@ -10,6 +10,11 @@
     margin-left: 10px;
 }
 
+.btn-label :focus{
+    background-color: transparent;
+    
+}
+
 .font{
     width: 100px;
 }

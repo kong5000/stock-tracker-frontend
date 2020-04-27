@@ -133,7 +133,7 @@ const OrderForm = (props) => {
                 <i className="fas fa-seedling fa-3x icon"></i>
             </div>
             <div className="text-center">
-                <h4 className="mb-1">Order Info</h4>
+                <h2 className="mb-3">Submit Order</h2>
                 <form onSubmit={onOrderSubmit}>
                     <div className="row">
                         <div className="col-md-6 mb-1 form-input-container">
@@ -195,6 +195,7 @@ const OrderForm = (props) => {
                             </div>
                         </div>
                     </div>
+                    <hr/>
                     <div className="row">
                         <div className="col-md-6 mb-1 form-input-container">
                             <label htmlFor="shareQuantity">Share Quantity</label>

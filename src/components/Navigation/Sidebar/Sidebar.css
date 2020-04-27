@@ -32,14 +32,19 @@ hr{
   font-weight: bolder;
 }
 
-.side-bar-logout :hover{
-  text-decoration: none;
-  background-color: rgba(255, 0, 0, 0.541);
-}
-
 .side-bar-logout{
   padding: 20px 0;
 }
+
+.side-bar-logout :hover{
+  text-decoration: none;
+  background-color: rgba(255, 0, 0, 1);
+}
+
+.side-bar-link :hover{
+  background-color: transparent;
+}
+
 
 .logo{
   position: fixed;

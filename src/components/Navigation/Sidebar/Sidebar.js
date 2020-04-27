@@ -27,9 +27,7 @@ const Sidebar = (props) => {
                 <FontButton type="pie" onClick={props.onAllocationClicked} />
                 <FontButton type="cash" onClick={props.onCashClicked} />
             </div>
-            <hr></hr>
             <FontButton type="gear"  onClick={props.onSettingsClicked} />
-            <FontButton type="key" />
             <hr />
             <div>Total Cash</div>
             <div className="cash">${Number(props.cash).toFixed(2)}</div>

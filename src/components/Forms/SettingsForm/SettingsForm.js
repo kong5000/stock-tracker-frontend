@@ -11,7 +11,6 @@ import Button from 'react-bootstrap/Button'
 const SettingsForm = (props) => {
     const [email, setEmail] = useState('')
     const [alertFrequency, setAlertFrequency] = useState('never')
-    const [alertsEnabled, setAlertsEnabled] = useState(true)
     const [showError, setShowError] = useState(false)
 
     const dispatch = useDispatch()
