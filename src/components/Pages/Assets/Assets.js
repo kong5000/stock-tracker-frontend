@@ -8,9 +8,7 @@ import './AssetsPage.css'
 
 import { ReactComponent as Spinner } from '../../../Assets/spinner.svg'
 
-import AssetTable from '../../Content/AssetTable/AssetTable'
-import LineChart from '../../Content/Charts/LineChart/LineChart'
-import PieChart from '../../Content/Charts/PieChart/PieChart'
+import PorfolioDisplay from './PortfolioDisplay/PortfolioDisplay'
 import Sidebar from '../../Navigation/Sidebar/Sidebar'
 
 import CashForm from '../../Forms/CashForm/CashForm'
@@ -19,11 +17,13 @@ import OrderForm from '../../Forms/OrderForm/OrderForm'
 import SettingsForm from '../../Forms/SettingsForm/SettingsForm'
 
 const Assets = () => {
-    const [selectedStock, setSelectedStock] = useState(null)
     const [showOrderForm, setShowOrderForm] = useState(false)
     const [showCashForm, setShowCashForm] = useState(false)
     const [showSettingsForm, setShowSettingsForm] = useState(false)
     const [showAllocationForm, setShowAllocationForm] = useState(false)
+
+    const [selectedStock, setSelectedStock] = useState(null)
+    
     const [pageIsLoading, setPageIsLoading] = useState(true)
 
     const assets = useSelector(state => state.assets)
@@ -37,7 +37,6 @@ const Assets = () => {
                 const assets = await assetsService.getAssets()
                 dispatch(setAssets(assets))
                 setPageIsLoading(false)
-
                 const settings = await assetsService.getSettings()
                 dispatch(setSettings(settings))
             } catch (error) {
@@ -103,6 +102,7 @@ const Assets = () => {
                     onSettingsClicked={onSettingsClicked}
                     cash={assets.cash}
                     profit={getTotalProfit(assets.stocks)}
+                    lastUpdate={assets.stocks[0] ? assets.stocks[0].lastPriceUpdate : 'N/A'}
                 />
                 <div className="assets-page">
                     <OrderForm
@@ -129,29 +129,12 @@ const Assets = () => {
                         email={userSettings.email}
                         alertFrequency={userSettings.alertFrequency}
                     />
-                    <div id="asset-page-container">
-                        <div >
-                            <div className="row top-row">
-                                <div className="col-lg-5 col-md-12 box-container">
-                                    <PieChart assets={assets} chartClick={chartClick} />
-                                </div>
-                                <div className="col-lg-7  col-md-12 box-container">
-                                    <LineChart stock={selectedStock} />
-                                </div>
-                            </div>
-                            <div className="row bottom-row">
-                                <div className="col-lg-12 col-md-12 stocks">
-                                    <div className="box my-custom-scrollbar box-container">
-                                        <AssetTable
-                                            assets={assets}
-                                            className="asset-table"
-                                            tableRowClicked={tableRowClicked}
-                                        />
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                    <PorfolioDisplay
+                        selectedStock={selectedStock}
+                        assets={assets}
+                        chartClick={chartClick}
+                        tableRowClicked={tableRowClicked}
+                    />
                 </div >
             </div>
         )

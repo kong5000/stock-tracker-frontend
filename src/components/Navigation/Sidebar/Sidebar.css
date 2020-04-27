@@ -58,7 +58,7 @@ hr{
 }
 
 
-.cash{
+.cash, .date-box{
   text-align: center;
   background-color: #3e4f5f;
   border-radius: 5px;
@@ -66,3 +66,4 @@ hr{
   margin: 10px;
   font-weight: bolder;
 }
+

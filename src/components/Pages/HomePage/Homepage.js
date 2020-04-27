@@ -30,10 +30,8 @@ const Homepage = () => {
                     <li>
                         BeanStock is an asset allocation app that will notify you
                         if your portfolio goes out of your target balance.
-                </li>
-                    <li>
-                        Market data provided by IEX Cloud
-                </li>
+                    </li>
+                    <li>Market data provided by IEX Cloud</li>
                 </ul>
                 <div>
                     <Link to='/login' className="homepage-btn btn btn-primary">Login</Link>

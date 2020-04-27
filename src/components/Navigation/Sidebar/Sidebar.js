@@ -14,6 +14,17 @@ const Sidebar = (props) => {
         dispatch(logout())
     }
 
+    const formatDate = (date) => {
+        return (
+            <div className="date-box">
+                <div>
+                    {`${date.getDate()}/${date.getMonth() + 1}/${date.getFullYear()} `}
+                </div>
+                <div>{`${date.getHours()}:${date.getMinutes()}`}</div>
+            </div>
+        )
+    }
+
     return (
         <div className='sidebar'>
             <div>
@@ -27,7 +38,7 @@ const Sidebar = (props) => {
                 <FontButton type="pie" onClick={props.onAllocationClicked} />
                 <FontButton type="cash" onClick={props.onCashClicked} />
             </div>
-            <FontButton type="gear"  onClick={props.onSettingsClicked} />
+            <FontButton type="gear" onClick={props.onSettingsClicked} />
             <hr />
             <div>Total Cash</div>
             <div className="cash">${Number(props.cash).toFixed(2)}</div>
@@ -35,12 +46,17 @@ const Sidebar = (props) => {
             <div>Total Profit</div>
             <div className="cash">${Number(props.profit).toFixed(2)}</div>
             <hr />
+            <div className="latest-update-indicator">
+                Last Update
+                <div>{formatDate(new Date(props.lastUpdate))}</div>
+            </div>
+            <hr />
             <div className="side-bar-logout">
                 <Link onClick={logoutHandler} to='/' href="#projects-section" className="sidebar-link">
                     <FontButton type="signout" />
                 </Link>
             </div>
-            <hr/>
+            <hr />
         </div>
     )
 }
