@@ -2,6 +2,7 @@ import React from 'react'
 import AssetTable from '../../../Content/AssetTable/AssetTable'
 import LineChart from '../../../Content/Charts/LineChart/LineChart'
 import PieChart from '../../../Content/Charts/PieChart/PieChart'
+
 const PortfolioDisplay = ({assets, chartClick, selectedStock, tableRowClicked}) => {
     return (
         <div id="asset-page-container">

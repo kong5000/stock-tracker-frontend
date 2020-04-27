@@ -1,5 +1,5 @@
 import React from 'react'
-import Chart from "react-apexcharts"
+import DummyPieChart from './DummyPieChart/DummyPieChart'
 import './homepage.css'
 import { Link } from 'react-router-dom'
 
@@ -39,12 +39,7 @@ const Homepage = () => {
                 </div>
             </div>
             <div className="homepage-right-half">
-                <Chart
-                    options={chartOptions}
-                    series={exampleData}
-                    type="pie"
-                    width="500">
-                </Chart>
+                <DummyPieChart/>
             </div>
         </div>
     )
