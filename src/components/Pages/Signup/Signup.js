@@ -4,6 +4,7 @@ import { login } from '../../../reducers/user'
 import assetService from '../../../services/asset'
 import userService from '../../../services/user'
 import { useHistory } from 'react-router-dom'
+import { setSettings } from '../../../reducers/settings'
 import './Signup.css'
 
 const Signup = () => {
@@ -41,6 +42,8 @@ const Signup = () => {
       const loggednInUser = await userService.login(signupCredentials)
       assetService.setToken(loggednInUser.token)
       dispatch(login(loggednInUser))
+      const settings = await assetService.getSettings()
+      dispatch(setSettings(settings))
       if (rememberMe) {
         window.localStorage.setItem('loggedInUser', JSON.stringify(loggednInUser))
       }

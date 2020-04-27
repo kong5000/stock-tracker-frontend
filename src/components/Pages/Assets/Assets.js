@@ -17,15 +17,18 @@ import Sidebar from '../../Navigation/Sidebar/Sidebar'
 import CashForm from '../../Forms/CashForm/CashForm'
 import AllocationForm from '../../Forms/AllocationForm/AllocationForm'
 import OrderForm from '../../Forms/OrderForm/OrderForm'
+import AlertsForm from '../../Forms/AlertsForm/AlertsForm'
 
 const Assets = () => {
     const [selectedStock, setSelectedStock] = useState(null)
     const [showOrderForm, setShowOrderForm] = useState(false)
     const [showCashForm, setShowCashForm] = useState(false)
+    const [showAlertsForm, setShowAlertsForm] = useState(false)
     const [showAllocationForm, setShowAllocationForm] = useState(false)
     const [pageIsLoading, setPageIsLoading] = useState(true)
 
     const assets = useSelector(state => state.assets)
+    const userSettings = useSelector(state => state.settings)
 
     const dispatch = useDispatch()
 
@@ -33,6 +36,7 @@ const Assets = () => {
         setShowOrderForm(false)
         setShowAllocationForm(false)
         setShowCashForm(false)
+        setShowAlertsForm(false)
     }
     const chartClick = (event, chartContext, config) => {
         setSelectedStock(assets.stocks[config.dataPointIndex])
@@ -50,11 +54,16 @@ const Assets = () => {
         setShowCashForm(true)
     }
 
+    const onAlertsClicked = (event) =>{
+        setShowAlertsForm(true)
+    }
+
     const onFormSubmit = () => {
         updateAssets()
         setShowOrderForm(false)
         setShowAllocationForm(false)
         setShowCashForm(false)
+        setShowAlertsForm(false)
     }
 
     const updateAssets = () => {
@@ -74,7 +83,7 @@ const Assets = () => {
     const getTotalProfit = (stocks) => {
         return stocks.reduce((totalProfit, stock) => {
             return totalProfit + stock.shares * (stock.price - stock.costBasis)
-        },0)
+        }, 0)
     }
 
     useEffect(() => {
@@ -101,6 +110,7 @@ const Assets = () => {
                     onOrderClicked={onOrderClicked}
                     onAllocationClicked={onAllocationClicked}
                     onCashClicked={onCashClicked}
+                    onAlertsClicked={onAlertsClicked}
                     cash={assets.cash}
                     profit={getTotalProfit(assets.stocks)}
                 />
@@ -121,6 +131,13 @@ const Assets = () => {
                         onHide={handleModalClose}
                         onFormSubmit={onFormSubmit}
                         currentCash={assets.cash}
+                    />
+                    <AlertsForm
+                        show={showAlertsForm}
+                        onHide={handleModalClose}
+                        onFormSubmit={onFormSubmit}
+                        email={userSettings.email}
+                        alertFrequency={userSettings.alertFrequency}
                     />
                     <div id="asset-page-container">
                         <div >

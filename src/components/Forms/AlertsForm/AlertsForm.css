@@ -1,0 +1,28 @@
+.alert-form-container{
+    background-color: #0f2031;
+    height: 100%;
+    width: 450px;
+    padding: 20px;
+}
+
+.radio {
+    text-align: left;
+}
+.radio input[type="radio"]{
+    margin-right: 10px;
+}
+
+.radio-label{
+    padding-left: 10px;
+    font-size: 1.15rem;
+}
+
+.radio-container{
+    text-align: center;
+    padding: 0 120px;
+}
+
+.alerts-form{
+    width: 400px;
+    text-align: center;
+}

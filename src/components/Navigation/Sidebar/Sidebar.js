@@ -24,18 +24,18 @@ const Sidebar = (props) => {
             <div className='actions'>
                 <FontButton type="order" onClick={props.onOrderClicked} />
                 <FontButton type="pie" onClick={props.onAllocationClicked} />
-                <FontButton type="bell" onClick={props.onOrderClicked} />
+                <FontButton type="bell" onClick={props.onAlertsClicked} />
                 <FontButton type="cash" onClick={props.onCashClicked} />
             </div>
             <hr></hr>
             <FontButton type="gear" onClick={() => console.log('Bar button')} />
 
             <hr />
-            <div>Portfolio Cash</div>
-            <div className="cash">${props.cash}</div>
+            <div>Total Cash</div>
+            <div className="cash">${Number(props.cash).toFixed(2)}</div>
             <hr />
-            <div>Portfolio Profit</div>
-            <div className="cash">{props.profit}</div>
+            <div>Total Profit</div>
+            <div className="cash">${Number(props.profit).toFixed(2)}</div>
             <hr />
             <div className="side-bar-logout">
                 <Link onClick={logoutHandler} to='/' href="#projects-section" className="sidebar-link">

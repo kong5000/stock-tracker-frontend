@@ -99,7 +99,7 @@ const AllocationForm = ({ stocks, onFormSubmit }) => {
                     <h4>Tolerance</h4>
                     <div clasName="row">
                         <div className="col-12">
-                            Current +-{threshold}%
+                            Current Tolerance +-{threshold}%
                         </div>
                         <div className="col-12">
                             <input

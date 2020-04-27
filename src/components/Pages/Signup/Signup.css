@@ -1,8 +1,8 @@
 .signup-page{
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
+  width: 100%;
+  height: 100vh;
+  padding-top: 100px;
+  background-image: linear-gradient(-70deg, rgb(1, 54, 100) 50.3%, rgb(4, 81, 153) 50%);
 }
 
 .form-signin {

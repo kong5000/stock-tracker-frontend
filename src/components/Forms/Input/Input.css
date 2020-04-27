@@ -1,0 +1,9 @@
+.current-value{
+    display: flex;
+    margin-left: 100px;
+}
+
+.custom-input{
+    text-align: center;
+
+}

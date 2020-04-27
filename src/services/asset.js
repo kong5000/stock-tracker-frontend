@@ -28,17 +28,17 @@ const getAssets = async () => {
         headers: { Authorization: token }
     }
     console.log('Post')
-    try{
+    try {
         await axios.post(baseUrl + '/update', null, config)
         const response = await axios.get(baseUrl, config)
         return response.data
-    } 
-    catch(error){
+    }
+    catch (error) {
         console.log('CAUGHT')
-        let message = {message: 'API Key Exhausted'}
+        let message = { message: 'API Key Exhausted' }
         throw message
     }
-  
+
 }
 
 const getChart = async (symbol) => {
@@ -92,6 +92,14 @@ const getSettings = async () => {
     return response.data
 }
 
+const setAlerts = async (alertSettings) => {
+    const config = {
+        headers: { Authorization: token }
+    }
+    const response = await axios.post('http://localhost:3003/api/users/alerts', alertSettings, config)
+    return response.data
+}
+
 const updateThreshold = async threshold => {
     const config = {
         headers: { Authorization: token }
@@ -104,4 +112,15 @@ const updateThreshold = async threshold => {
 }
 
 
-export default { setToken, addStock, sellStock, getAssets, getChart, updateAllocations, updateCash, updateThreshold, getSettings }
+export default {
+    setToken,
+    addStock,
+    sellStock,
+    getAssets,
+    getChart,
+    updateAllocations,
+    updateCash,
+    updateThreshold,
+    getSettings,
+    setAlerts
+}

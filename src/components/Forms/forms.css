@@ -2,6 +2,12 @@
     max-width: 960px;
     background-color: #2B2D3E;
   }
+
+  .form-container{
+    background-color: #0f2031;
+    height: 100%;
+    padding: 20px;
+  }
   
 
 .modal-dialog {
@@ -72,7 +78,6 @@
 
 .allocation-form{
   width: 500px;
-  background-color: #2B2D3E;
   height: 100%;
   text-align: center;
   padding-bottom: 20px;

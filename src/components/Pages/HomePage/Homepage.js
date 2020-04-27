@@ -19,7 +19,7 @@ const Homepage = () => {
         seriesLabels: {
             enabled: false
         },
-        tooltip: {enabled: false},
+        tooltip: { enabled: false },
     }
 
     return (
@@ -28,12 +28,8 @@ const Homepage = () => {
                 <h1 className="tagline">Watch Your Stocks Grow</h1>
                 <ul>
                     <li>
-                        BeanStock is an asset allocation app that will notify you 
-                        if your portfolio goes out of your target balance. 
-                </li>
-
-                    <li>
-                        Built using React, Redux, Express , Boostrap and MongoDB
+                        BeanStock is an asset allocation app that will notify you
+                        if your portfolio goes out of your target balance.
                 </li>
                     <li>
                         Market data provided by IEX Cloud
