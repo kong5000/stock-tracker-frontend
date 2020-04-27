@@ -34,6 +34,11 @@ hr{
 
 .side-bar-logout :hover{
   text-decoration: none;
+  background-color: rgba(255, 0, 0, 0.541);
+}
+
+.side-bar-logout{
+  padding: 20px 0;
 }
 
 .logo{

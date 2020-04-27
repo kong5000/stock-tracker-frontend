@@ -2,14 +2,13 @@ import React, { useState, useEffect } from 'react'
 import { useDispatch } from 'react-redux'
 import { setSettings } from '../../../reducers/settings'
 import '../forms.css'
-import './AlertsForm.css'
+import './SettingsForm.css'
 import assetsService from '../../../services/asset'
 import withModal from '../../HOC/withModal'
 import PropTypes from 'prop-types'
 import Button from 'react-bootstrap/Button'
-import Input from '../Input/Input'
 
-const AlertsForm = (props) => {
+const SettingsForm = (props) => {
     const [email, setEmail] = useState('')
     const [alertFrequency, setAlertFrequency] = useState('never')
     const [alertsEnabled, setAlertsEnabled] = useState(true)
@@ -76,7 +75,6 @@ const AlertsForm = (props) => {
                                 onChange={onEmailChange} />
                         </div>
                     </div>
-
                     <hr />
                     <h4>Alert If Unbalanced</h4>
                     <div className="radio-container">
@@ -133,8 +131,8 @@ const AlertsForm = (props) => {
     )
 }
 
-AlertsForm.propTypes = {
+SettingsForm.propTypes = {
     onFormSubmit: PropTypes.func.isRequired
 }
 
-export default withModal(AlertsForm)
+export default withModal(SettingsForm)

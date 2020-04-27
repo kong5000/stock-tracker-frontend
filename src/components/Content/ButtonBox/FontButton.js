@@ -31,6 +31,10 @@ const FontButton = ({ onClick, type }) => {
             font = <i class="fas fa-sign-out-alt fa-2x font"></i>
             label = <div className="btn-label">Logout</div>
             break
+        case 'key':
+            font = <i class="fas fa-key fa-2x font"></i>
+            label = <div className="btn-label">API Key</div>
+            break
         default:
     }
 

@@ -1,5 +1,6 @@
 import React from 'react'
 import './Sidebar.css'
+import '../../../Assets/css/all.css'
 import FontButton from '../../Content/ButtonBox/FontButton'
 import { useDispatch } from 'react-redux'
 import { logout } from '../../../reducers/user'
@@ -24,12 +25,11 @@ const Sidebar = (props) => {
             <div className='actions'>
                 <FontButton type="order" onClick={props.onOrderClicked} />
                 <FontButton type="pie" onClick={props.onAllocationClicked} />
-                <FontButton type="bell" onClick={props.onAlertsClicked} />
                 <FontButton type="cash" onClick={props.onCashClicked} />
             </div>
             <hr></hr>
-            <FontButton type="gear" onClick={() => console.log('Bar button')} />
-
+            <FontButton type="gear"  onClick={props.onSettingsClicked} />
+            <FontButton type="key" />
             <hr />
             <div>Total Cash</div>
             <div className="cash">${Number(props.cash).toFixed(2)}</div>
@@ -42,6 +42,7 @@ const Sidebar = (props) => {
                     <FontButton type="signout" />
                 </Link>
             </div>
+            <hr/>
         </div>
     )
 }
