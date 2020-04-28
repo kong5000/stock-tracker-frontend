@@ -30,3 +30,15 @@
   cursor: default;
 }
 
+@media only screen and (max-width: 1200px)  {
+  .profit-header, .shares-header, .price-header, .target-weight-header{
+    display: none;
+  }
+  .profit, .shares, .price, .target-weight{
+    display: none;
+  }
+}
+
+
+
+

@@ -1,5 +1,5 @@
 import React from 'react'
-
+import './AllocationTable.css'
 const AllocationTable = ({stocks, inputRefs}) => {
 
     const formatStockWeight = (stock) => {

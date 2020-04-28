@@ -1,5 +1,6 @@
 import React from 'react'
 import { Modal } from 'react-bootstrap'
+import './Modal.css'
 
 const withModal = (WrappedComponent) => {
     return props => (
@@ -8,7 +9,7 @@ const withModal = (WrappedComponent) => {
             onHide={props.onHide}
             className="form-modal"
         >
-            <Modal.Body className="form-modal">
+            <Modal.Body className="modal-content">
                 <WrappedComponent {...props} />
             </Modal.Body>
         </Modal>

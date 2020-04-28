@@ -4,24 +4,6 @@ import './homepage.css'
 import { Link } from 'react-router-dom'
 
 const Homepage = () => {
-    const exampleData = [100, 100, 100]
-
-    const chartOptions = {
-        chart: {
-            type: 'pie'
-        },
-        legend: {
-            show: false,
-        },
-        dataLabels: {
-            enabled: false
-        },
-        seriesLabels: {
-            enabled: false
-        },
-        tooltip: { enabled: false },
-    }
-
     return (
         <div className="homepage">
             <div className="homepage-left-half">

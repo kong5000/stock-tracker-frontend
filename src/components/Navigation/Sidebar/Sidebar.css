@@ -1,17 +1,35 @@
 .sidebar{
+    position: fixed;
     height: 100%;
     width: 256px;
-    position: fixed;
-    z-index: 1001;
-    top: 70px;
+    max-width: 70%;
+    z-index: 2000;
+    top: 0;
     left: 0;
     background-color: #0f2031;
-    padding-top: 20px;
     display: flex;
     flex-direction: column;
     text-align: center;
+    transition: transform 0.3s ease-out;
   }
   
+.open{
+  transform: translateX(0);
+}
+.close{
+  transform: translateX(-100%);
+}
+
+@media (max-width: 700px){
+  .sidebar{
+    display: none;
+  }
+  .logo{
+    display: none;
+  }
+}
+
+
 .actions{
   display: flex;
   flex-direction: column;
@@ -47,12 +65,9 @@ hr{
 
 
 .logo{
-  position: fixed;
-  top: 0;
-  left: 0;
+  padding-top: 15px;
   width: 256px;
   height: 70px;
-  padding-top: 12px;
   font-size: 35px;
   background-color: #1f354a;
 }

@@ -39,20 +39,25 @@ const Signup = () => {
 
     try {
       await userService.signup(signupCredentials)
+
       const loggednInUser = await userService.login(signupCredentials)
-      assetService.setToken(loggednInUser.token)
       dispatch(login(loggednInUser))
+      assetService.setToken(loggednInUser.token)
+
       const settings = await assetService.getSettings()
       dispatch(setSettings(settings))
+      
       if (rememberMe) {
         window.localStorage.setItem('loggedInUser', JSON.stringify(loggednInUser))
       }
+      
       history.push('/portfolio')
     } catch (error) {
       const errorResponse = error.response.data.error
       setErrorString(errorResponse)
 
       setShowLoginError(true)
+      
       setTimeout(() => {
         setShowLoginError(false)
       }, 3000)

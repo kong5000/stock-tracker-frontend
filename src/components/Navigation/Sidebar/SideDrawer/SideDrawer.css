@@ -1,0 +1,45 @@
+.side-drawer{
+    position: fixed;
+    height: 100%;
+    width: 256px;
+    max-width: 70%;
+    z-index: 2000;
+    top: 75px;
+    left: 0;
+    background-color: red;
+    /* background-color: #0f2031; */
+    display: none;
+    flex-direction: column;
+    text-align: center;
+    transition: transform 0.3s ease-out;
+  }
+
+  .menu-button{
+    position: fixed;
+    height: 50px;
+    width: 50px;
+    z-index: 2000;
+    top: 0;
+    left: 0;
+    background-color: red;
+    display: none;
+  }
+
+
+  .open{
+    transform: translateX(0);
+  }
+  .close{
+    transform: translateX(-100%);
+  }
+  
+  @media (max-width: 700px){
+    .side-drawer{
+      display: flex;
+      background-color: rebeccapurple
+    }
+    .menu-button{
+      display: block;
+    }
+    
+  }

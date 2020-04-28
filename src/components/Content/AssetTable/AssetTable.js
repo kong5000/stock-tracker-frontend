@@ -55,12 +55,12 @@ const AssetTable = ({ tableRowClicked, assets }) => {
                 <tbody>
                     <tr id="table-header">
                         <th className="info-header">Symbol</th>
-                        <th className="info-header">Current Price</th>
-                        <th className="info-header">Shares</th>
+                        <th className="info-header price-header">Current Price</th>
+                        <th className="info-header shares-header">Shares</th>
                         <th className="info-header">Value</th>
-                        <th className="info-header">Profit</th>
+                        <th className="info-header profit-header">Profit</th>
                         <th className="info-header">Current Weight</th>
-                        <th className="info-header">Target Weight</th>
+                        <th className="info-header target-weight-header">Target Weight</th>
                         <th className="info-header">Error</th>
                     </tr>
                     {assets && assets.stocks.map(stock => {
@@ -76,12 +76,12 @@ const AssetTable = ({ tableRowClicked, assets }) => {
                                         <small>{stock.name}</small>
                                     </div>
                                 </td>
-                                <td>${Number(stock.price).toFixed(2)}</td>
-                                <td>{stock.shares}</td>
+                                <td className="price">${Number(stock.price).toFixed(2)}</td>
+                                <td className="shares">{stock.shares}</td>
                                 <td><span >${(stock.price * stock.shares).toFixed(2)}</span></td>
-                                <td>{getProfitAbsolute(stock)}</td>
+                                <td className="profit">{getProfitAbsolute(stock)}</td>
                                 <td>{getStockWeight(stock)}</td>
-                                <td>{getTarget(stock)}</td>
+                                <td className="target-weight">{getTarget(stock)}</td>
                                 {getError(stock)}
                             </tr>
                         )

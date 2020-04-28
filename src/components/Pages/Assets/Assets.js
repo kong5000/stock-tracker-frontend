@@ -10,11 +10,14 @@ import { ReactComponent as Spinner } from '../../../Assets/spinner.svg'
 
 import PorfolioDisplay from './PortfolioDisplay/PortfolioDisplay'
 import Sidebar from '../../Navigation/Sidebar/Sidebar'
+import SideDrawer from '../../Navigation/Sidebar/SideDrawer/SideDrawer'
 
 import CashForm from '../../Forms/CashForm/CashForm'
 import AllocationForm from '../../Forms/AllocationForm/AllocationForm'
 import OrderForm from '../../Forms/OrderForm/OrderForm'
 import SettingsForm from '../../Forms/SettingsForm/SettingsForm'
+
+import BackDrop from '../../../components/Navigation/Sidebar/BackDrop/BackDrop'
 
 const Assets = () => {
     const [showOrderForm, setShowOrderForm] = useState(false)
@@ -23,8 +26,9 @@ const Assets = () => {
     const [showAllocationForm, setShowAllocationForm] = useState(false)
 
     const [selectedStock, setSelectedStock] = useState(null)
-    
+
     const [pageIsLoading, setPageIsLoading] = useState(true)
+    
 
     const assets = useSelector(state => state.assets)
     const userSettings = useSelector(state => state.settings)
@@ -52,10 +56,22 @@ const Assets = () => {
         setShowSettingsForm(false)
     }
 
-    const onOrderClicked = () => setShowOrderForm(true)
-    const onAllocationClicked = () => setShowAllocationForm(true)
-    const onCashClicked = () => setShowCashForm(true)
-    const onSettingsClicked = () => setShowSettingsForm(true)
+    const onOrderClicked = () => {
+        handleModalClose()
+        setShowOrderForm(true)
+    }
+    const onAllocationClicked = () => {
+        handleModalClose()
+        setShowAllocationForm(true)
+    }
+    const onCashClicked = () => {
+        handleModalClose()
+        setShowCashForm(true)
+    }
+    const onSettingsClicked = () => {
+        handleModalClose()
+        setShowSettingsForm(true)
+    }
 
     const chartClick = (event, chartContext, config) => {
         setSelectedStock(assets.stocks[config.dataPointIndex])
@@ -88,6 +104,10 @@ const Assets = () => {
         return stocks.reduce((totalProfit, stock) => {
             return totalProfit + stock.shares * (stock.price - stock.costBasis)
         }, 0)
+    }
+
+    const drawerToggleClickHandler = () => {
+
     }
 
     if (pageIsLoading) {

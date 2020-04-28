@@ -129,13 +129,13 @@ const OrderForm = (props) => {
     }
 
     return (
-        <div className="form-container">
+        <div className="form-container" id="order-form-container">
             <i class="fas fa-times-circle close-btn" onClick={props.onFormSubmit}></i>
-            <div className="py-3 text-center">
+            <div className="py-1 text-center">
                 <i className="fas fa-seedling fa-3x icon"></i>
             </div>
             <div className="text-center">
-                <h2 className="mb-3">Submit Order</h2>
+                <h2 className="mb-2">Stock Order</h2>
                 <form onSubmit={onOrderSubmit}>
                     <div className="row">
                         <div className="col-md-6 mb-1 form-input-container">
