@@ -2,7 +2,7 @@ import React from 'react'
 
 const ToleranceSettings = ({threshold, onToleranceChange, tolerance}) => {
     return (
-        <div>
+        <div className="tolerance-settings">
             <h4>Tolerance</h4>
             <div clasName="row">
                 <div className="col-12 mb-2">

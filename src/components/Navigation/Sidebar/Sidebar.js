@@ -6,6 +6,7 @@ import { useDispatch } from 'react-redux'
 import { logout } from '../../../reducers/user'
 import { Link } from 'react-router-dom'
 import SideDrawer from './SideDrawer/SideDrawer'
+import BackDrop from './BackDrop/BackDrop'
 const Sidebar = (props) => {
     const [showDrawer, setShowDrawer] = useState(false)
     const dispatch = useDispatch()
@@ -16,7 +17,7 @@ const Sidebar = (props) => {
 
     const formatDate = (inputDate) => {
         console.log('DATE', inputDate)
-        if(!inputDate){
+        if (!inputDate) {
             return 'N/A'
         }
         const date = new Date(inputDate)
@@ -49,6 +50,10 @@ const Sidebar = (props) => {
                 menuClicked={onMenuClicked}
                 closeDrawer={closeDrawer}
             />
+            <BackDrop
+                show={showDrawer} 
+                onClick={onMenuClicked}
+                />
             <div className='sidebar'>
                 <div>
                     <h1 className="logo">BeanS
@@ -66,12 +71,12 @@ const Sidebar = (props) => {
                     <div className="cash-display">
                         <div>Total Cash</div>
                         <div className="cash">${Number(props.cash).toFixed(2)}</div>
-                        <hr/>
+                        <hr />
                     </div>
                     <div className="profit-display">
                         <div>Total Profit</div>
                         <div className="cash">${Number(props.profit).toFixed(2)}</div>
-                        <hr/>
+                        <hr />
                     </div>
                     <div className="latest-update-indicator">
                         Last Update

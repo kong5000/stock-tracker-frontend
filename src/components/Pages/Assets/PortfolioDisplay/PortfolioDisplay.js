@@ -6,7 +6,6 @@ import PieChart from '../../../Content/Charts/PieChart/PieChart'
 const PortfolioDisplay = ({assets, chartClick, selectedStock, tableRowClicked}) => {
     return (
         <div id="asset-page-container">
-
                 <div className="top-row">
                     <div className="pie-chart-container box-container">
                         <PieChart assets={assets} chartClick={chartClick} />

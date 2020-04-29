@@ -3,8 +3,7 @@ import './BackDrop.css'
 
 const BackDrop = (props) => {
     return(
-        props.show ? <div className="backdrop"></div> : null
- 
+        props.show ? <div className="backdrop" onClick={props.onClick}></div> : null
     )
 }
 

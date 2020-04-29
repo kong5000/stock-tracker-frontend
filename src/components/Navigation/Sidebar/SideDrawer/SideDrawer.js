@@ -51,7 +51,6 @@ const SideDrawer = (props) => {
 
     return (
         <div className="side-drawer-container">
-            {/* <BackDrop show /> */}
             <div
                 className="menu-button"
                 onClick={props.menuClicked}

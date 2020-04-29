@@ -7,7 +7,6 @@ const withModal = (WrappedComponent) => {
         <Modal
             show={props.show}
             onHide={props.onHide}
-            className="form-modal"
         >
             <Modal.Body className="modal-content">
                 <WrappedComponent {...props} />
