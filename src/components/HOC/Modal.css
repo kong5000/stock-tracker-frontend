@@ -2,14 +2,18 @@
     min-width: 100%;
     margin: 0;
 }
+
 .modal-dialog {
     max-width: 100%;
     max-height: 90%;
-    position: absolute;
     top:38%;
+    position: absolute;
+    left: 50%;
+    transform: translate(-50%, -50%) !important;
+    padding: 20px;
 }
 
-@media (max-width: 700px){
+@media (max-width: 1000px){
     .modal-dialog{
         position: absolute;
         top:50%;
@@ -20,8 +24,6 @@
         margin: 0;
         padding: 0;
     }    
-    .modal-content {
-        border: none;
-    }
+
     
 }

@@ -1,4 +1,4 @@
-import React, {useState} from 'react'
+import React, { useState } from 'react'
 import './Sidebar.css'
 import '../../../Assets/css/all.css'
 import FontButton from '../../Content/ButtonBox/FontButton'
@@ -14,7 +14,12 @@ const Sidebar = (props) => {
         dispatch(logout())
     }
 
-    const formatDate = (date) => {
+    const formatDate = (inputDate) => {
+        console.log('DATE', inputDate)
+        if(!inputDate){
+            return 'N/A'
+        }
+        const date = new Date(inputDate)
         return (
             <div className="date-box">
                 <div>
@@ -25,7 +30,7 @@ const Sidebar = (props) => {
         )
     }
 
-    const onMenuClicked = () =>{
+    const onMenuClicked = () => {
         setShowDrawer(!showDrawer)
     }
     const closeDrawer = () => setShowDrawer(false)
@@ -55,20 +60,24 @@ const Sidebar = (props) => {
                     <FontButton type="order" onClick={props.onOrderClicked} />
                     <FontButton type="pie" onClick={props.onAllocationClicked} />
                     <FontButton type="cash" onClick={props.onCashClicked} />
+                    <FontButton type="gear" onClick={props.onSettingsClicked} />
                 </div>
-                <FontButton type="gear" onClick={props.onSettingsClicked} />
-                <hr />
-                <div>Total Cash</div>
-                <div className="cash">${Number(props.cash).toFixed(2)}</div>
-                <hr />
-                <div>Total Profit</div>
-                <div className="cash">${Number(props.profit).toFixed(2)}</div>
-                <hr />
-                <div className="latest-update-indicator">
-                    Last Update
-                <div>{formatDate(new Date(props.lastUpdate))}</div>
+                <div className="scrollable">
+                    <div className="cash-display">
+                        <div>Total Cash</div>
+                        <div className="cash">${Number(props.cash).toFixed(2)}</div>
+                        <hr/>
+                    </div>
+                    <div className="profit-display">
+                        <div>Total Profit</div>
+                        <div className="cash">${Number(props.profit).toFixed(2)}</div>
+                        <hr/>
+                    </div>
+                    <div className="latest-update-indicator">
+                        Last Update
+                    <div>{formatDate(props.lastUpdate)}</div>
+                    </div>
                 </div>
-                <hr />
                 <div className="side-bar-logout">
                     <Link onClick={logoutHandler} to='/' href="#projects-section" className="sidebar-link">
                         <FontButton type="signout" />

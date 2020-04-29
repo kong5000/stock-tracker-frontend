@@ -54,21 +54,6 @@ td{
   padding: 0 20px;
 }
 
-.box{
-  height: 45vh;
-  box-shadow: 0px 1px 22px -12px rgba(243, 243, 243, 0.774);
-  outline: burlywood 3px;
-  padding: 25px 35px 25px 30px;
-  box-sizing: border-box;
-  background-color: rgb(1, 39, 73);
-  border-radius: 10px;
-}
-
-.bottom-row{
-  margin-top: 20px;
-  text-align: center;
-}
-
 .my-btn{
   margin: 10px;
 }
@@ -81,6 +66,14 @@ body{
 
 }
 
+/* .modal-dialog {
+  position: absolute;
+  top: 45%;
+  left: 50%;
+  transform: translate(-50%, -50%) !important;
+  padding: 20px;
+} */
+
 .error-message{
   color: red;
   visibility: visible;
@@ -89,15 +82,6 @@ body{
 .error-message-invisible{
   visibility: hidden;
 }
-
-.modal-dialog {
-  position: absolute;
-  top: 45%;
-  left: 50%;
-  transform: translate(-50%, -50%) !important;
-  padding: 20px;
-}
-
 
 .tolerance-row{
   background-color: rgb(51, 66, 109);
@@ -114,12 +98,13 @@ body{
   transform: translate(-50%, -50%)
 }
 
-#asset-page-container{
-  margin-top: 75px;
-  margin-left: 256px;
-}
+
 .box-container {
   /* margin-top: 75px; */
   /* padding: 30px; */
 }
 
+
+:root{
+  font-size: 22px;
+}

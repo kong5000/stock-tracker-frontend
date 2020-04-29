@@ -30,11 +30,11 @@
   cursor: default;
 }
 
-@media only screen and (max-width: 1200px)  {
-  .profit-header, .shares-header, .price-header, .target-weight-header{
+@media (max-width: 1200px)  {
+  .profit-header, .shares-header, .price-header, .target-weight-header, .current-weight-header{
     display: none;
   }
-  .profit, .shares, .price, .target-weight{
+  .profit, .shares, .price, .target-weight, .current-weight{
     display: none;
   }
 }

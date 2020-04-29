@@ -51,10 +51,10 @@ const SideDrawer = (props) => {
 
     return (
         <div className="side-drawer-container">
-            <BackDrop show />
-            <div 
-            className="menu-button"
-            onClick={props.menuClicked}
+            {/* <BackDrop show /> */}
+            <div
+                className="menu-button"
+                onClick={props.menuClicked}
             >MENU</div>
             <div className={classes}>
                 <div className='actions'>
@@ -63,18 +63,22 @@ const SideDrawer = (props) => {
                     <FontButton type="cash" onClick={cashClickHanlder} />
                 </div>
                 <FontButton type="gear" onClick={settingsClickHanlder} />
-                <hr />
-                <div>Total Cash</div>
-                <div className="cash">${Number(props.cash).toFixed(2)}</div>
-                <hr />
-                <div>Total Profit</div>
-                <div className="cash">${Number(props.profit).toFixed(2)}</div>
-                <hr />
-                <div className="latest-update-indicator">
-                    Last Update
-                <div>{formatDate(new Date(props.lastUpdate))}</div>
+                <div className="scrollable">
+                    <div className="cash-display">
+                        <div>Total Cash</div>
+                        <div className="cash">${Number(props.cash).toFixed(2)}</div>
+                        <hr/>
+                    </div>
+                    <div className="profit-display">
+                        <div>Total Profit</div>
+                        <div className="cash">${Number(props.profit).toFixed(2)}</div>
+                        <hr/>
+                    </div>
+                    <div className="latest-update-indicator">
+                        Last Update
+                    <div>{formatDate(new Date(props.lastUpdate))}</div>
+                    </div>
                 </div>
-                <hr />
                 <div className="side-bar-logout">
                     <Link onClick={logoutHandler} to='/' href="#projects-section" className="sidebar-link">
                         <FontButton type="signout" />

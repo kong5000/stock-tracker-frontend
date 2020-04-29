@@ -116,7 +116,7 @@ const LineChart = ({ stock }) => {
             )
         }
         return (
-            <div className="placeholder-box box">
+            <div className="placeholder-box box ">
                 <div className="placeholder-text">
                     {message}
             </div>

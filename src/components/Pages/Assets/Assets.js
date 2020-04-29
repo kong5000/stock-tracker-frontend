@@ -122,7 +122,7 @@ const Assets = () => {
                     onSettingsClicked={onSettingsClicked}
                     cash={assets.cash}
                     profit={getTotalProfit(assets.stocks)}
-                    lastUpdate={assets.stocks[0] ? assets.stocks[0].lastPriceUpdate : 'N/A'}
+                    lastUpdate={assets.stocks[0] ? assets.stocks[0].lastPriceUpdate : null}
                 />
                 <div className="assets-page">
                     <OrderForm
