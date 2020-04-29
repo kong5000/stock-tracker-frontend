@@ -83,7 +83,23 @@ const LineChart = ({ stock }) => {
                     style:{
                         fontSize: '12px',
                     }
-                }
+                },
+                responsive: [{
+                    breakpoint: 525,
+                    options: {
+                        chart: {
+                            width: 270,
+                            height: 350
+                        },
+                        yaxis: {
+                            labels: {
+                                style: {
+                                    fontSize: '0.6rem'
+                                }
+                            }
+                        },
+                    }
+                }]
             }
         )
     }

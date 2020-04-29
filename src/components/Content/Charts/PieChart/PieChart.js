@@ -22,10 +22,10 @@ const PieChart = ({ assets, chartClick }) => {
                     fontSize: '20px'
                 },
                 responsive: [{
-                    breakpoint: 40,
+                    breakpoint: 525,
                     options: {
                         chart: {
-                            width: 200
+                            width: 300
                         },
                         legend: {
                             position: 'bottom'
