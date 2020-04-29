@@ -23,7 +23,7 @@
 .menu-item{
     cursor: pointer;
     color: 	#b1beca;
-    margin: 5px 0;
+    margin: 5px 7px;
 }
 
 .menu-item:hover{

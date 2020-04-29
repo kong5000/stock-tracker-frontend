@@ -6,6 +6,7 @@ import { useDispatch } from 'react-redux'
 import { logout } from '../../../../reducers/user'
 import { Link } from 'react-router-dom'
 import BackDrop from '../BackDrop/BackDrop'
+import MenuButton from './MenuButton/MenuButton'
 
 const SideDrawer = (props) => {
     const dispatch = useDispatch()
@@ -51,10 +52,10 @@ const SideDrawer = (props) => {
 
     return (
         <div className="side-drawer-container">
-            <div
-                className="menu-button"
-                onClick={props.menuClicked}
-            >MENU</div>
+            <MenuButton 
+                menuClicked={props.menuClicked}
+                open={props.open}
+            />
             <div className={classes}>
                 <div className='actions'>
                     <FontButton type="order" onClick={orderClickHanlder} />

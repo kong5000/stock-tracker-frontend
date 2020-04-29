@@ -100,13 +100,18 @@ hr{
   font-weight: bolder;
 }
 
-.side-bar-logout :hover{
+.side-bar-logout{
   text-decoration: none;
-  background-color: rgba(255, 0, 0, 1);
+}
+.side-bar-logout:hover{
+  background-color: rgba(255, 0, 0, 0.7);
 }
 
-.side-bar-link :hover{
-  background-color: transparent;
+.side-bar-link:hover{
+  text-decoration: none;
+}
+.side-bar-link{
+  margin: 0 10px;
 }
 
 .logo{

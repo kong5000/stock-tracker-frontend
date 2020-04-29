@@ -16,3 +16,13 @@
     font-size: 1.75rem;
     color: white;
 }
+
+.brand{
+    background-color: red;
+}
+@media (max-width: 1300px){
+    .brand{
+        background-color: royalblue;
+        display: none;
+    }
+}

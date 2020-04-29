@@ -59,38 +59,36 @@ const Sidebar = (props) => {
                     <h1 className="logo">BeanS<i className="fas fa-seedling fa-1x icon"></i>ock
                      </h1>
                 </div>
-                {/* <div className="side-bar-content"> */}
-                    {/* <div className='actions'> */}
-                        <FontButton type="order" onClick={props.onOrderClicked} />
-                        <FontButton type="pie" onClick={props.onAllocationClicked} />
-                        <FontButton type="cash" onClick={props.onCashClicked} />
-                        <FontButton type="gear" onClick={props.onSettingsClicked} />
-                    {/* </div> */}
-                    <div className="scrollable">
-                        <div className="cash-display">
-                            <div>Total Cash</div>
-                            <div className="cash">${Number(props.cash).toFixed(2)}</div>
-                            <hr />
-                        </div>
-                        <div className="profit-display">
-                            <div>Total Profit</div>
-                            <div className="cash">${Number(props.profit).toFixed(2)}</div>
-                            <hr />
-                        </div>
-                        <div className="latest-update-indicator">
-                            Last Update
+                <FontButton type="order" onClick={props.onOrderClicked} />
+                <FontButton type="pie" onClick={props.onAllocationClicked} />
+                <FontButton type="cash" onClick={props.onCashClicked} />
+                <FontButton type="gear" onClick={props.onSettingsClicked} />
+                <div className="scrollable">
+                    <div className="cash-display">
+                        <div>Total Cash</div>
+                        <div className="cash">${Number(props.cash).toFixed(2)}</div>
+                        <hr />
+                    </div>
+                    <div className="profit-display">
+                        <div>Total Profit</div>
+                        <div className="cash">${Number(props.profit).toFixed(2)}</div>
+                        <hr />
+                    </div>
+                    <div className="latest-update-indicator">
+                        Last Update
                     <div>{formatDate(props.lastUpdate)}</div>
-                        </div>
                     </div>
-                    <div className="side-bar-logout">
-                        <Link onClick={logoutHandler} to='/' href="#projects-section" className="sidebar-link">
-                            <FontButton type="signout" />
-                        </Link>
-                    </div>
-                    <hr />
                 </div>
+
+                <Link onClick={logoutHandler} to='/' href="#projects-section" className="side-bar-link">
+                    <div className="side-bar-logout">
+                        <FontButton type="signout" />
+                    </div>
+                </Link>
+
+                <hr />
             </div>
-        // </div>
+        </div>
     )
 }
 

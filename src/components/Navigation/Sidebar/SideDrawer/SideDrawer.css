@@ -4,7 +4,7 @@
     width: 256px;
     max-width: 70%;
     z-index: 2000;
-    top: 75px;
+    top: 74px;
     left: 0;
     background-color: #0f2031;
     display: none;
@@ -57,15 +57,26 @@
 
   .menu-button{
     position: fixed;
-    height: 50px;
-    width: 50px;
     z-index: 2000;
-    top: 0;
-    left: 0;
-    background-color: red;
+    top: 15px;
+    left: 15px;
     display: none;
+    font-size: 40px;
   }
 
+  .menu-button:hover{
+    transition: transform 0.3s ease-out;
+    cursor: pointer;
+    color: white;
+  }
+
+  .menu-open{
+    transform: rotate(90deg);
+  }
+
+  .menu-close{
+    transform: rotate(0);
+  }
 
   .open{
     transform: translateX(0);
