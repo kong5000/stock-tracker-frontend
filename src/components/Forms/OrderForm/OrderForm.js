@@ -4,7 +4,7 @@ import { setAssets } from '../../../reducers/assets'
 import assetsService from '../../../services/asset'
 import '../forms.css'
 import NYSE from './NYSE_SYMBOLS.json'
-import withModal from '../../HOC/withModal'
+import withModal from '../../Modal/withModal'
 import PropTypes from 'prop-types'
 import SymbolAutoComplete from './SymbolAutoComplete/SymbolAutoComplete'
 

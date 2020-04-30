@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react'
 import 'bootstrap/dist/css/bootstrap.min.css';
-import './styles/App.css'
+import './App.css'
 import Signup from './components/Pages/Signup/Signup'
 import Login from './components/Pages/Login/Login'
 import PortfolioPage from './components/Pages/PortfolioPage/PortfolioPage'

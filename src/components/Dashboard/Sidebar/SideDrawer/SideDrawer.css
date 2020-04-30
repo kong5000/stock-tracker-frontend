@@ -13,18 +13,6 @@
     transition: transform 0.3s ease-out;
   }
 
-  .scrollable{
-    overflow: auto;
-    overflow-x: hidden;
-    background-color:  #0f2031;
-    border-top: 3px solid #21374f;
-    border-bottom: 3px solid #21374f;
-    margin: 15px 0;
-    padding-bottom: 10px;
-    scrollbar-color: grey #21374f;
-    scrollbar-width: thin;
-  }
-
   @media (max-height: 750px){
     .cash-display{
       display: none;
@@ -48,18 +36,6 @@
       overflow: scroll;
       overflow-x: hidden;
     }
-  }
-
-  .scrollable::-webkit-scrollbar {
-    width: 10px;
-  }
-  .scrollable::-webkit-scrollbar-track {
-    box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
-  }
-  .scrollable::-webkit-scrollbar-thumb {
-    background-color: #21374f;
-    outline: 1px solid slategrey;
-    border-radius: 30px;
   }
 
   .menu-button{

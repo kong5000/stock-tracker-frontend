@@ -4,7 +4,7 @@ import { setAssets } from '../../../reducers/assets'
 import assetsService from '../../../services/asset'
 import '../forms.css'
 import Button from 'react-bootstrap/Button'
-import withModal from '../../HOC/withModal'
+import withModal from '../../Modal/withModal'
 import PropTypes from 'prop-types'
 
 const CashForm = ({ currentCash, onFormSubmit }) => {
@@ -68,7 +68,7 @@ const CashForm = ({ currentCash, onFormSubmit }) => {
                 value={cash}
                 onChange={onCashChange}
             />
-            <div className='mt-3 mb-3'>
+            <div className='mt-3 mb-3 radio-container'>
                 <div className="custom-control custom-radio">
                     <input
                         id="buyOrder"

@@ -4,9 +4,10 @@ import { setSettings } from '../../../reducers/settings'
 import '../forms.css'
 import './SettingsForm.css'
 import assetsService from '../../../services/asset'
-import withModal from '../../HOC/withModal'
+import withModal from '../../Modal/withModal'
 import PropTypes from 'prop-types'
 import Button from 'react-bootstrap/Button'
+import RadioButton from '../../UI/RadioButton/RadioButton'
 
 const SettingsForm = (props) => {
     const [email, setEmail] = useState('')
@@ -22,7 +23,7 @@ const SettingsForm = (props) => {
     }, [props.email])
 
     useEffect(() => {
-        if(props.alertFrequency){
+        if (props.alertFrequency) {
             setAlertFrequency(props.alertFrequency)
         }
     }, [props.alertFrequency])
@@ -32,6 +33,7 @@ const SettingsForm = (props) => {
     }
 
     const handleRadioSelect = (event) => {
+        console.log(event.target.value)
         setAlertFrequency(event.target.value)
     }
 
@@ -41,11 +43,11 @@ const SettingsForm = (props) => {
             email,
             alertFrequency
         }
-        try{
+        try {
             const user = await assetsService.setAlerts(userAlertSettings)
             console.log(user.settings)
             dispatch(setSettings(user.settings))
-        }catch(error){
+        } catch (error) {
             console.log('Could not set alert settings')
         }
         props.onFormSubmit()
@@ -77,50 +79,34 @@ const SettingsForm = (props) => {
                     <hr />
                     <h4>Alert If Unbalanced</h4>
                     <div className="radio-container">
-                        <div className="radio">
-                            <label className="radio-label">
-                                <input
-                                    className="radio-input"
-                                    type="radio"
-                                    value="never"
-                                    checked={alertFrequency === 'never'}
-                                    onChange={handleRadioSelect} />
-                                Never
-                            </label>
-                        </div>
-                        <div className="radio">
-                            <label className="radio-label">
-                                <input
-                                    type="radio"
-                                    value="daily"
-                                    checked={alertFrequency === 'daily'}
-                                    onChange={handleRadioSelect} />
-                                Daily
-                            </label>
-                        </div>
-                        <div className="radio">
-                            <label className="radio-label">
-                                <input
-                                    className="radio-input"
-                                    type="radio"
-                                    value="monthly"
-                                    checked={alertFrequency === 'monthly'}
-                                    onChange={handleRadioSelect}
-                                />
-                                Monthly
-                            </label>
-                        </div>
-                        <div className="radio">
-                            <label className="radio-label">
-                                <input
-                                    type="radio"
-                                    value="quarterly"
-                                    checked={alertFrequency === 'quarterly'}
-                                    onChange={handleRadioSelect}
-                                />
-                                Quarterly
-                            </label>
-                        </div>
+                        <RadioButton
+                            id="never"
+                            value="never"
+                            checked={alertFrequency === 'never'}
+                            onChange={handleRadioSelect}
+                            label='Never'
+                        />
+                        <RadioButton
+                            id="daily"
+                            value="daily"
+                            checked={alertFrequency === 'daily'}
+                            onChange={handleRadioSelect}
+                            label='Daily'
+                        />
+                        <RadioButton
+                            id="monthly"
+                            value="monthly"
+                            checked={alertFrequency === 'monthly'}
+                            onChange={handleRadioSelect}
+                            label='Monthly'
+                        />
+                        <RadioButton
+                            id="quarterly"
+                            value="quarterly"
+                            checked={alertFrequency === 'quarterly'}
+                            onChange={handleRadioSelect}
+                            label='Quarterly'
+                        />
                     </div>
                     {errorMessage}
                     <Button type="allocation-button submit">Update</Button>

@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import './Sidebar.css'
 import '../../../Assets/css/all.css'
-import FontButton from '../Display/ButtonBox/FontButton'
+import FontButton from '../../UI/FontButton/FontButton'
 import { useDispatch } from 'react-redux'
 import { logout } from '../../../reducers/user'
 import { Link } from 'react-router-dom'

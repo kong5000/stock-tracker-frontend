@@ -142,7 +142,7 @@ const LineChart = ({ stock }) => {
     return (
         <div className="placeholder-box box">
             <div className="placeholder-text">
-                Select a stock from pie chart to chart
+                Click a pie chart slice to see its price history
             </div>
         </div>
     )
