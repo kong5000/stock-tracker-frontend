@@ -1,12 +1,13 @@
 import React, { useState } from 'react'
 import './Sidebar.css'
 import '../../../Assets/css/all.css'
-import FontButton from '../../Content/ButtonBox/FontButton'
+import FontButton from '../Display/ButtonBox/FontButton'
 import { useDispatch } from 'react-redux'
 import { logout } from '../../../reducers/user'
 import { Link } from 'react-router-dom'
 import SideDrawer from './SideDrawer/SideDrawer'
-import BackDrop from './BackDrop/BackDrop'
+import Backdrop from './Backdrop/Backdrop'
+
 const Sidebar = (props) => {
     const [showDrawer, setShowDrawer] = useState(false)
     const dispatch = useDispatch()
@@ -21,12 +22,18 @@ const Sidebar = (props) => {
             return 'N/A'
         }
         const date = new Date(inputDate)
+
+        let minutes = date.getMinutes()
+        if(minutes <= 9){
+            minutes = '0' + minutes
+            
+        }
         return (
             <div className="date-box">
                 <div>
                     {`${date.getDate()}/${date.getMonth() + 1}/${date.getFullYear()} `}
                 </div>
-                <div>{`${date.getHours()}:${date.getMinutes()}`}</div>
+                <div>{`${date.getHours()}:${minutes}`}</div>
             </div>
         )
     }
@@ -50,7 +57,7 @@ const Sidebar = (props) => {
                 menuClicked={onMenuClicked}
                 closeDrawer={closeDrawer}
             />
-            <BackDrop
+            <Backdrop
                 show={showDrawer}
                 onClick={onMenuClicked}
             />

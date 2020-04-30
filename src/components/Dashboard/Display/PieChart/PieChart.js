@@ -1,6 +1,5 @@
 import React from 'react'
 import Chart from "react-apexcharts"
-import '../Charts.css'
 import PropTypes from 'prop-types'
 
 const PieChart = ({ assets, chartClick }) => {

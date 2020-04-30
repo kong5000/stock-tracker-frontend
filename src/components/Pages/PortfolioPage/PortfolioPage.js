@@ -4,22 +4,20 @@ import assetsService from '../../../services/asset'
 import { setAssets } from '../../../reducers/assets'
 import { setSettings } from '../../../reducers/settings'
 
-import './AssetsPage.css'
+import './PortfolioPage.css'
 
 import { ReactComponent as Spinner } from '../../../Assets/spinner.svg'
 
-import PorfolioDisplay from './PortfolioDisplay/PortfolioDisplay'
-import Sidebar from '../../Navigation/Sidebar/Sidebar'
-import SideDrawer from '../../Navigation/Sidebar/SideDrawer/SideDrawer'
+import PorfolioDisplay from '../../Dashboard/Display/PortfolioDisplay'
+import Sidebar from '../../Dashboard/Sidebar/Sidebar'
 
 import CashForm from '../../Forms/CashForm/CashForm'
 import AllocationForm from '../../Forms/AllocationForm/AllocationForm'
 import OrderForm from '../../Forms/OrderForm/OrderForm'
 import SettingsForm from '../../Forms/SettingsForm/SettingsForm'
 
-import BackDrop from '../../../components/Navigation/Sidebar/BackDrop/BackDrop'
 
-const Assets = () => {
+const PortfolioPage = () => {
     const [showOrderForm, setShowOrderForm] = useState(false)
     const [showCashForm, setShowCashForm] = useState(false)
     const [showSettingsForm, setShowSettingsForm] = useState(false)
@@ -105,11 +103,7 @@ const Assets = () => {
             return totalProfit + stock.shares * (stock.price - stock.costBasis)
         }, 0)
     }
-
-    const drawerToggleClickHandler = () => {
-
-    }
-
+    
     if (pageIsLoading) {
         return <Spinner className="spinner" />
     } else {
@@ -161,4 +155,4 @@ const Assets = () => {
     }
 }
 
-export default Assets
+export default PortfolioPage

@@ -43,6 +43,13 @@
     }
   }
   
+  @media(max-height: 425px){
+    .side-drawer{
+      overflow: scroll;
+      overflow-x: hidden;
+    }
+  }
+
   .scrollable::-webkit-scrollbar {
     width: 10px;
   }

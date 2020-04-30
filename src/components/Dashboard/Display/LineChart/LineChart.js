@@ -2,7 +2,6 @@ import React, { useEffect, useState } from 'react'
 import Chart from "react-apexcharts"
 import assetsService from '../../../../services/asset'
 import { ReactComponent as Spinner } from '../../../../Assets/spinner.svg'
-import '../Charts.css'
 import './LineChart.css'
 
 const LineChart = ({ stock }) => {

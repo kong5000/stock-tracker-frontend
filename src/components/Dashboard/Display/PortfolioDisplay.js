@@ -1,7 +1,7 @@
 import React from 'react'
-import AssetTable from '../../../Content/AssetTable/AssetTable'
-import LineChart from '../../../Content/Charts/LineChart/LineChart'
-import PieChart from '../../../Content/Charts/PieChart/PieChart'
+import AssetTable from './AssetTable/AssetTable'
+import LineChart from './LineChart/LineChart'
+import PieChart from './PieChart/PieChart'
 
 const PortfolioDisplay = ({assets, chartClick, selectedStock, tableRowClicked}) => {
     return (
@@ -15,7 +15,7 @@ const PortfolioDisplay = ({assets, chartClick, selectedStock, tableRowClicked}) 
                     </div>
                 </div>
                 <div className="bottom-row">
-                        <div className="box my-custom-scrollbar box-container">
+                        <div className="box asset-table-container box-container">
                             <AssetTable
                                 assets={assets}
                                 className="asset-table"

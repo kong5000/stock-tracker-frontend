@@ -3,9 +3,9 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import './styles/App.css'
 import Signup from './components/Pages/Signup/Signup'
 import Login from './components/Pages/Login/Login'
-import Assets from './components/Pages/Assets/Assets'
+import PortfolioPage from './components/Pages/PortfolioPage/PortfolioPage'
 import Homepage from './components/Pages/HomePage/Homepage'
-import NavigationBar from './components/Navigation/NavigationBar/NavigationBar'
+import NavigationBar from './components/NavigationBar/NavigationBar'
 import assetService from './services/asset'
 import { useSelector, useDispatch } from 'react-redux'
 import { login, logout } from './reducers/user'
@@ -41,7 +41,7 @@ const App = () => {
             <Homepage />
           </Route>
           <Route path="/portfolio">
-            {user && <Assets/>}
+            {user && <PortfolioPage/>}
           </Route>
           <Route path='/login'>
             <Login />

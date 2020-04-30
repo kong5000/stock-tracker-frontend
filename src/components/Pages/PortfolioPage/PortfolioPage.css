@@ -53,18 +53,10 @@
 }
 .bottom-row{
   margin-bottom: 30px;
+
 }
 
-
 @media (max-width: 525px){
-  /* .top-row{
-    display: none;
-  }
-   */
-  .bottom-row{
-    /* height: 100%; */
-  }
-
   .box{
     padding: 25px 10px 25px 25px;
   }
@@ -90,4 +82,16 @@
 .bottom-row{
   margin-top: 30px;
   text-align: center;
+}
+
+.placeholder-box{
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: center;
+  text-align: center;
+}
+
+.pie-chart{
+  height: 100%;
 }

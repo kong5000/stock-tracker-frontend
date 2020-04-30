@@ -12,7 +12,6 @@
     text-align: center;
     transition: transform 0.3s ease-out;
     justify-content: space-between;
-
   }
 .sidebar-content{
   /* display: flex;
@@ -60,6 +59,13 @@
 @media(max-height: 575px){
   .scrollable{
     display: none;
+  }
+}
+
+@media(max-height: 425px){
+  .sidebar{
+    overflow: scroll;
+    overflow-x: hidden;
   }
 }
 

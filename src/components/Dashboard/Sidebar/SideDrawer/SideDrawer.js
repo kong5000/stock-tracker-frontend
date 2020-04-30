@@ -1,11 +1,10 @@
 import React from 'react'
 import './SideDrawer.css'
 import '../../../../Assets/css/all.css'
-import FontButton from '../../../Content/ButtonBox/FontButton'
+import FontButton from '../../Display/ButtonBox/FontButton'
 import { useDispatch } from 'react-redux'
 import { logout } from '../../../../reducers/user'
 import { Link } from 'react-router-dom'
-import BackDrop from '../BackDrop/BackDrop'
 import MenuButton from './MenuButton/MenuButton'
 
 const SideDrawer = (props) => {
@@ -13,17 +12,6 @@ const SideDrawer = (props) => {
 
     const logoutHandler = () => {
         dispatch(logout())
-    }
-
-    const formatDate = (date) => {
-        return (
-            <div className="date-box">
-                <div>
-                    {`${date.getDate()}/${date.getMonth() + 1}/${date.getFullYear()} `}
-                </div>
-                <div>{`${date.getHours()}:${date.getMinutes()}`}</div>
-            </div>
-        )
     }
 
     let classes = 'side-drawer'
@@ -76,7 +64,7 @@ const SideDrawer = (props) => {
                     </div>
                     <div className="latest-update-indicator">
                         Last Update
-                    <div>{formatDate(new Date(props.lastUpdate))}</div>
+                    <div>{props.lastUpdate}</div>
                     </div>
                 </div>
                 <div className="side-bar-logout">
