@@ -12,28 +12,28 @@ const LineChart = ({ stock }) => {
 
     useEffect(() => {
         if (stock) {
-                setIsLoading(true)
-                assetsService.getChart(stock.ticker).then(
-                    quotes => {
-                        if (quotes) {
-                            const chart = quotes.chart
-                            const points = [chart.length]
-                            for (let i = 0; i < chart.length; i++) {
-                                const dataPoint = [chart[i].date, chart[i].close]
-                                points[i] = dataPoint
-                            }
-                            const series = [{
-                                name: stock.ticker,
-                                data: points
-                            }]
-                            setDataPoints(series)
-                            setIsLoading(false)
-                        } else {
-                            setDataPoints(null)
-                            setIsLoading(false)
+            setIsLoading(true)
+            assetsService.getChart(stock.ticker).then(
+                quotes => {
+                    if (quotes) {
+                        const chart = quotes.chart
+                        const points = [chart.length]
+                        for (let i = 0; i < chart.length; i++) {
+                            const dataPoint = [chart[i].date, chart[i].close]
+                            points[i] = dataPoint
                         }
+                        const series = [{
+                            name: stock.ticker,
+                            data: points
+                        }]
+                        setDataPoints(series)
+                        setIsLoading(false)
+                    } else {
+                        setDataPoints(null)
+                        setIsLoading(false)
                     }
-                )
+                }
+            )
         }
     }, [stock])
 
@@ -68,7 +68,7 @@ const LineChart = ({ stock }) => {
                         formatter: undefined,
                         offsetY: 0,
                         style: {
-                          fontSize: '12px',
+                            fontSize: '12px',
                         },
                     },
                 },
@@ -79,8 +79,8 @@ const LineChart = ({ stock }) => {
                         }
                     }
                 },
-                tooltip:{
-                    style:{
+                tooltip: {
+                    style: {
                         fontSize: '12px',
                     }
                 },
@@ -88,8 +88,8 @@ const LineChart = ({ stock }) => {
                     breakpoint: 525,
                     options: {
                         chart: {
-                            width: 270,
-                            height: 350
+                            width: '90%',
+                            height: '100%'
                         },
                         yaxis: {
                             labels: {
@@ -108,9 +108,9 @@ const LineChart = ({ stock }) => {
         name: "6 Month",
         data: [0, 0, 0, 0, 0, 0]
     }]
-    
-    if(isLoading){
-        return <div className="box"><Spinner className="spinner"/></div>
+
+    if (isLoading) {
+        return <div className="box"><Spinner className="spinner" /></div>
     }
 
     if (stock) {
@@ -135,7 +135,7 @@ const LineChart = ({ stock }) => {
             <div className="placeholder-box box ">
                 <div className="placeholder-text">
                     {message}
-            </div>
+                </div>
             </div>
         )
     }

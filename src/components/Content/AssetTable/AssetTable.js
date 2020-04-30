@@ -57,7 +57,7 @@ const AssetTable = ({ tableRowClicked, assets }) => {
                         <th className="info-header">Symbol</th>
                         <th className="info-header price-header">Current Price</th>
                         <th className="info-header shares-header">Shares</th>
-                        <th className="info-header">Value</th>
+                        <th className="info-header value-header">Value</th>
                         <th className="info-header profit-header">Profit</th>
                         <th className="info-header current-weight-header">Current Weight</th>
                         <th className="info-header target-weight-header">Target Weight</th>
@@ -78,7 +78,7 @@ const AssetTable = ({ tableRowClicked, assets }) => {
                                 </td>
                                 <td className="price">${Number(stock.price).toFixed(2)}</td>
                                 <td className="shares">{stock.shares}</td>
-                                <td><span >${(stock.price * stock.shares).toFixed(2)}</span></td>
+                                <td className="value"><span >${(stock.price * stock.shares).toFixed(2)}</span></td>
                                 <td className="profit">{getProfitAbsolute(stock)}</td>
                                 <td className="current-weight">{getStockWeight(stock)}</td>
                                 <td className="target-weight">{getTarget(stock)}</td>

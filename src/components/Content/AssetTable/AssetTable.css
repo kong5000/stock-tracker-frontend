@@ -39,6 +39,10 @@
   }
 }
 
-
+@media (max-width: 450px){
+  .value-header, .value{
+    display: none;
+  }
+}
 
 

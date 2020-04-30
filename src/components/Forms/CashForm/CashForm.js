@@ -57,7 +57,7 @@ const CashForm = ({ currentCash, onFormSubmit }) => {
                 <i className="fas fa-seedling fa-3x icon"></i>
             </div>
             <h2 className="mb-3">Portfolio Cash</h2>
-            <div className="mb-3">Current Balance: ${currentCash}</div>
+            <div className="mb-3">Current Balance: ${Number(currentCash).toFixed(2)}</div>
             <input
                 type="number"
                 step="0.01"

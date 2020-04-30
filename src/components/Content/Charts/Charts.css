@@ -1,6 +1,4 @@
-.placeholder-text{
-}
-  
+
 .placeholder-box{
     display: flex;
     flex-direction: column;
@@ -11,5 +9,4 @@
   
 .pie-chart{
     height: 100%;
-    min-width: 350px;
 }
