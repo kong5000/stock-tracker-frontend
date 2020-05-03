@@ -2,10 +2,13 @@ import React, { useState } from 'react'
 import { useDispatch } from 'react-redux'
 import { setAssets } from '../../../reducers/assets'
 import assetsService from '../../../services/asset'
-import '../forms.css'
+import PropTypes from 'prop-types'
+
 import Button from 'react-bootstrap/Button'
 import withModal from '../../Modal/withModal'
-import PropTypes from 'prop-types'
+
+import '../forms.css'
+
 
 const CashForm = ({ currentCash, onFormSubmit }) => {
     const dispatch = useDispatch()

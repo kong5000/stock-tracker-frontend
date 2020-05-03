@@ -1,13 +1,15 @@
 import React, { useState, useEffect } from 'react'
 import { useDispatch } from 'react-redux'
 import { setSettings } from '../../../reducers/settings'
-import '../forms.css'
-import './SettingsForm.css'
 import assetsService from '../../../services/asset'
-import withModal from '../../Modal/withModal'
 import PropTypes from 'prop-types'
+
+import withModal from '../../Modal/withModal'
 import Button from 'react-bootstrap/Button'
 import RadioButton from '../../UI/RadioButton/RadioButton'
+
+import '../forms.css'
+import './SettingsForm.css'
 
 const SettingsForm = (props) => {
     const [email, setEmail] = useState('')

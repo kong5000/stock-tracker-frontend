@@ -1,7 +1,7 @@
 import React from 'react'
 import './AllocationTable.css'
-const AllocationTable = ({stocks, inputRefs}) => {
 
+const AllocationTable = ({stocks, inputRefs}) => {
     const formatStockWeight = (stock) => {
         if (stock.targetWeight) {
             return Math.floor(stock.targetWeight * 100) + '%'
@@ -23,7 +23,7 @@ const AllocationTable = ({stocks, inputRefs}) => {
                         <td><div>{formatStockWeight(stock)}</div></td>
                         <td>
                             <input
-                                className="allocation-input"
+                                className="form-control"
                                 ref={(inputElement) => inputRefs.current[index] = inputElement}
                                 type="number"
                                 min="0"

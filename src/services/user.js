@@ -11,5 +11,4 @@ const login = async credentials => {
     return response.data
 }
 
-
 export default { signup, login }

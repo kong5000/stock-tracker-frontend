@@ -8,7 +8,6 @@ export const setSettings = (settings) => {
 const settingsReducer = (state = null, action) => {
     switch(action.type){
         case 'CHANGE_SETTINGS':
-            console.log(action.settings, 'reducer')
             return action.settings
         default:
             return state

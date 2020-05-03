@@ -12,14 +12,8 @@
     text-align: center;
     transition: transform 0.3s ease-out;
     justify-content: space-between;
-  }
-.sidebar-content{
-  /* display: flex;
-  justify-content: space-evenly;
-  flex-direction: column;
-  text-align: center; */
 }
-  
+
 .scrollable{
   overflow: auto;
   overflow-x: hidden;
@@ -39,7 +33,7 @@
   box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
 }
 .scrollable::-webkit-scrollbar-thumb {
-  background-color: #21374f;
+  background-color: #304d6d;
   outline: 1px solid slategrey;
   border-radius: 30px;
 }

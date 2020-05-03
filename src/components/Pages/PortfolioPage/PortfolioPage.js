@@ -4,18 +4,15 @@ import assetsService from '../../../services/asset'
 import { setAssets } from '../../../reducers/assets'
 import { setSettings } from '../../../reducers/settings'
 
-import './PortfolioPage.css'
-
-import { ReactComponent as Spinner } from '../../../Assets/spinner.svg'
-
 import PorfolioDisplay from '../../Dashboard/Display/PortfolioDisplay'
 import Sidebar from '../../Dashboard/Sidebar/Sidebar'
-
 import CashForm from '../../Forms/CashForm/CashForm'
 import AllocationForm from '../../Forms/AllocationForm/AllocationForm'
 import OrderForm from '../../Forms/OrderForm/OrderForm'
 import SettingsForm from '../../Forms/SettingsForm/SettingsForm'
 
+import { ReactComponent as Spinner } from '../../../Assets/spinner.svg'
+import './PortfolioPage.css'
 
 const PortfolioPage = () => {
     const [showOrderForm, setShowOrderForm] = useState(false)
@@ -27,7 +24,6 @@ const PortfolioPage = () => {
 
     const [pageIsLoading, setPageIsLoading] = useState(true)
     
-
     const assets = useSelector(state => state.assets)
     const userSettings = useSelector(state => state.settings)
 

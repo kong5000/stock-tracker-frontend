@@ -23,11 +23,6 @@ td{
   color: white;
 }
 
-#asset-page-container{
-  height: 100vh;
-  padding: 0 20px;
-}
-
 .my-btn{
   margin: 10px;
 }
@@ -47,14 +42,6 @@ body{
 
 .error-message-invisible{
   visibility: hidden;
-}
-
-.tolerance-row{
-  background-color: rgb(51, 66, 109);
-  font-weight: bolder;
-  color: white;
-  padding-bottom: 20px;
-  padding-top: 20px;
 }
 
 .spinner{

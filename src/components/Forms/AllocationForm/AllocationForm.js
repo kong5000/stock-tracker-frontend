@@ -3,12 +3,15 @@ import { useDispatch, useSelector } from 'react-redux'
 import { setAssets } from '../../../reducers/assets'
 import { setSettings } from '../../../reducers/settings'
 import assetsService from '../../../services/asset'
-import '../forms.css'
-import Button from 'react-bootstrap/Button'
-import withModal from '../../Modal/withModal'
 import PropTypes from 'prop-types'
+
+import withModal from '../../Modal/withModal'
+import Button from 'react-bootstrap/Button'
 import AllocationTable from './AllocationTable/AllocationTable'
 import ToleranceSettings from './ToleranceSettings/ToleranceSettings'
+
+import '../forms.css'
+
 
 const AllocationForm = ({ stocks, onFormSubmit }) => {
     const [showError, setShowError] = useState(null)

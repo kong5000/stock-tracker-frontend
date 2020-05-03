@@ -12,22 +12,17 @@ const Sidebar = (props) => {
     const [showDrawer, setShowDrawer] = useState(false)
     const dispatch = useDispatch()
 
-    const logoutHandler = () => {
-        dispatch(logout())
-    }
-
     const formatDate = (inputDate) => {
-        console.log('DATE', inputDate)
         if (!inputDate) {
             return 'N/A'
         }
-        const date = new Date(inputDate)
 
+        const date = new Date(inputDate)
         let minutes = date.getMinutes()
         if(minutes <= 9){
             minutes = '0' + minutes
-            
         }
+
         return (
             <div className="date-box">
                 <div>
@@ -38,10 +33,11 @@ const Sidebar = (props) => {
         )
     }
 
-    const onMenuClicked = () => {
-        setShowDrawer(!showDrawer)
-    }
+    const onMenuClicked = () => setShowDrawer(!showDrawer)
+
     const closeDrawer = () => setShowDrawer(false)
+
+    const logoutHandler = () => dispatch(logout())
 
     return (
         <div>
@@ -86,7 +82,6 @@ const Sidebar = (props) => {
                     <div>{formatDate(props.lastUpdate)}</div>
                     </div>
                 </div>
-
                 <Link onClick={logoutHandler} to='/' href="#projects-section" className="side-bar-link">
                     <div className="side-bar-logout">
                         <FontButton type="signout" />

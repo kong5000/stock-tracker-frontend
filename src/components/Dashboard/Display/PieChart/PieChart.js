@@ -3,7 +3,6 @@ import Chart from "react-apexcharts"
 import PropTypes from 'prop-types'
 
 const PieChart = ({ assets, chartClick }) => {
-
     const generateChartOptions = () => {
         const labels = assets.stocks.map(stock => stock.ticker)
         return (
