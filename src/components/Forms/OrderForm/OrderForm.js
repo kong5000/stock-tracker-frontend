@@ -202,7 +202,7 @@ const OrderForm = (props) => {
                             </div>
                         </div>
                     </div>
-                    <div className="d-block my-3">
+                    <div className="my-3 radio-container">
                         <div className="custom-control custom-radio">
                             <input
                                 id="buyOrder"

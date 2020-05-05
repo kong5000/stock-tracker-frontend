@@ -53,14 +53,17 @@ const Signup = () => {
       
       history.push('/portfolio')
     } catch (error) {
-      const errorResponse = error.response.data.error
-      setErrorString(errorResponse)
+      if(error.response){
+        const errorResponse = error.response.data.error
+        setErrorString(errorResponse)
+        setShowLoginError(true)
+        setTimeout(() => {
+          setShowLoginError(false)
+        }, 3000)
+      }
+      console.log(error)
 
-      setShowLoginError(true)
-      
-      setTimeout(() => {
-        setShowLoginError(false)
-      }, 3000)
+
     }
     setUsername('')
     setPassword('')

@@ -65,14 +65,14 @@ const CashForm = ({ currentCash, onFormSubmit }) => {
                 type="number"
                 step="0.01"
                 min="0"
-                className="form-control"
+                className="cash-input"
                 id="cash"
                 required
                 value={cash}
                 onChange={onCashChange}
             />
             <div className='mt-3 mb-3 radio-container'>
-                <div className="custom-control custom-radio">
+                <div className="custom-control custom-radio centered-radio">
                     <input
                         id="buyOrder"
                         name="orderType"
@@ -84,7 +84,7 @@ const CashForm = ({ currentCash, onFormSubmit }) => {
                     />
                     <label className="custom-control-label" htmlFor="buyOrder">Deposit</label>
                 </div>
-                <div className="custom-control custom-radio">
+                <div className="custom-control custom-radio centered-radio">
                     <input
                         id="sellOrder"
                         name="orderType"

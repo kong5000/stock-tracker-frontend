@@ -48,6 +48,15 @@ const AssetTable = ({ tableRowClicked, assets }) => {
         }
         return false
     }
+    if (!assets.stocks) {
+        return (
+            <div className="placeholder-box box">
+                <div className="placeholder-text">
+                    Add a stock with the Order button
+            </div>
+            </div>
+        )
+    }
 
     return (
         <div>

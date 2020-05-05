@@ -1,6 +1,8 @@
 import axios from 'axios'
-const baseUrl = 'http://localhost:3003/api/portfolio'
-
+// const baseUrl = 'http://localhost:3003/api/portfolio'
+// const baseUrl = 'https://secret-sierra-61018.herokuapp.com/api/portfolio'
+const baseUrl = '/api/portfolio'
+ 
 let token = null
 
 const setToken = newToken => {
@@ -87,7 +89,7 @@ const getSettings = async () => {
     const config = {
         headers: { Authorization: token }
     }
-    const response = await axios.get('http://localhost:3003/api/users/settings', config)
+    const response = await axios.get('/api/users/settings', config)
     console.log(response.data)
     return response.data
 }
@@ -96,7 +98,7 @@ const setAlerts = async (alertSettings) => {
     const config = {
         headers: { Authorization: token }
     }
-    const response = await axios.post('http://localhost:3003/api/users/alerts', alertSettings, config)
+    const response = await axios.post('/api/users/alerts', alertSettings, config)
     return response.data
 }
 
@@ -107,7 +109,7 @@ const updateThreshold = async threshold => {
     const newThreshold = {
         balanceThreshold: threshold
     }
-    const response = await axios.post('http://localhost:3003/api/users/threshold', newThreshold, config)
+    const response = await axios.post('/api/users/threshold', newThreshold, config)
     return response.data
 }
 

@@ -32,13 +32,14 @@ const PortfolioPage = () => {
     useEffect(() => {
         (async function () {
             try {
+                setPageIsLoading(true)
                 const assets = await assetsService.getAssets()
                 dispatch(setAssets(assets))
                 setPageIsLoading(false)
                 const settings = await assetsService.getSettings()
                 dispatch(setSettings(settings))
             } catch (error) {
-                console.log('I caught', error)
+                console.log('Portfolio Page Error: ', error)
             }
         })()
     }, [dispatch])
@@ -95,6 +96,9 @@ const PortfolioPage = () => {
     }
 
     const getTotalProfit = (stocks) => {
+        if(!stocks){
+            return  0
+        }
         return stocks.reduce((totalProfit, stock) => {
             return totalProfit + stock.shares * (stock.price - stock.costBasis)
         }, 0)
@@ -112,7 +116,7 @@ const PortfolioPage = () => {
                     onSettingsClicked={onSettingsClicked}
                     cash={assets.cash}
                     profit={getTotalProfit(assets.stocks)}
-                    lastUpdate={assets.stocks[0] ? assets.stocks[0].lastPriceUpdate : null}
+                    lastUpdate={assets.lastUpdate}
                 />
                 <div className="assets-page">
                     <OrderForm
@@ -136,7 +140,7 @@ const PortfolioPage = () => {
                         show={showSettingsForm}
                         onHide={handleModalClose}
                         onFormSubmit={onFormSubmit}
-                        email={userSettings.email}
+                        email={userSettings ? userSettings.email : ''}
                         alertFrequency={userSettings.alertFrequency}
                     />
                     <PorfolioDisplay

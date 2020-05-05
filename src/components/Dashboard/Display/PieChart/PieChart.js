@@ -44,7 +44,7 @@ const PieChart = ({ assets, chartClick }) => {
             }
         )
     }
-    if (assets.stocks.length > 0) {
+    if (assets.stocks && assets.stocks.length > 0) {
         return (
             <div className="box">
                 <Chart className="pie-chart"

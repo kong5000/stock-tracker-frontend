@@ -2,7 +2,7 @@ import React from 'react'
 
 const RadioButton = ({id, value, checked, onChange, label }) => {
     return(
-        <div className="custom-control custom-radio">
+        <div className="custom-control custom-radio centered-radio">
         <input
             id={id}
             type="radio"
