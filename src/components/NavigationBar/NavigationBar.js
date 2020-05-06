@@ -15,7 +15,7 @@ const NavigationBar = ({user, onLogout}) => {
                 </h1>
                 </div>
             </Navbar.Brand>
-                <Nav className="ml-auto mr-5">
+                <Nav className="ml-auto mr-2">
                     {user
                         ? <Link onClick={onLogout} to='/' href="#projects-section" className="my-link">Logout</Link>
                         : <Link to='/login' href="#projects-section" className="my-link">Login</Link>}

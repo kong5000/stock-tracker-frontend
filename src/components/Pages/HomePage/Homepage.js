@@ -9,7 +9,7 @@ const Homepage = () => {
             <div className="homepage-left-half">
                 <h1 className="tagline">Watch Your Stocks Grow</h1>
                 <ul>
-                    <li>
+                    <li className="description-text">
                         BeanStock is an asset allocation app that will notify you
                         if your portfolio goes out of your target balance.
                     </li>
