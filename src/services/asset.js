@@ -1,7 +1,5 @@
 import axios from 'axios'
-const baseUrl = 'http://localhost:3003/api/portfolio'
-// const baseUrl = 'https://secret-sierra-61018.herokuapp.com/api/portfolio'
-// const baseUrl = '/api/portfolio'
+const baseUrl = process.env.REACT_APP_PORTFOLIO_URL
  
 let token = null
 
